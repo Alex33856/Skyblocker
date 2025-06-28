@@ -6,20 +6,27 @@ import de.hysky.skyblocker.mixins.accessors.HandledScreenAccessor;
 import de.hysky.skyblocker.skyblock.garden.visitor.VisitorHelper;
 import de.hysky.skyblocker.skyblock.itemlist.ItemRepository;
 import de.hysky.skyblocker.utils.Location;
+import de.hysky.skyblocker.utils.NEURepoManager;
 import de.hysky.skyblocker.utils.Utils;
 import me.shedaniel.math.Rectangle;
 import me.shedaniel.rei.api.client.plugins.REIClientPlugin;
 import me.shedaniel.rei.api.client.registry.category.CategoryRegistry;
 import me.shedaniel.rei.api.client.registry.display.DisplayRegistry;
+import me.shedaniel.rei.api.client.registry.entry.CollapsibleEntryRegistry;
 import me.shedaniel.rei.api.client.registry.entry.EntryRegistry;
 import me.shedaniel.rei.api.client.registry.screen.ExclusionZones;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
+import me.shedaniel.rei.api.common.entry.EntryStack;
 import me.shedaniel.rei.api.common.util.EntryStacks;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.ingame.InventoryScreen;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.util.Identifier;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * REI integration
@@ -41,6 +48,24 @@ public class SkyblockerREIClientPlugin implements REIClientPlugin {
     @Override
     public void registerEntries(EntryRegistry entryRegistry) {
         entryRegistry.addEntries(ItemRepository.getItemsStream().map(EntryStacks::of).toList());
+    }
+
+    @SuppressWarnings("UnstableApiUsage")
+    @Override
+    public void registerCollapsibleEntries(CollapsibleEntryRegistry registry) {
+        if (NEURepoManager.isLoading()) return;
+
+        NEURepoManager.NEU_REPO.getConstants().getParents().getParents().forEach((parentId, childrenList) -> {
+            Optional<ItemStack> parentItem = ItemRepository.getItemsStream().filter(itemStack -> itemStack.getNeuName().equals(parentId)).findFirst();
+            if (parentItem.isEmpty()) return;
+
+            List<ItemStack> childItems = ItemRepository.getItemsStream().filter(itemStack -> childrenList.contains(itemStack.getNeuName())).toList();
+            if (childItems.stream().anyMatch(item -> item.isOf(Items.ENCHANTED_BOOK))) return;
+            ArrayList<EntryStack<ItemStack>> allItems = new ArrayList<>(childItems.stream().map(EntryStacks::of).toList());
+            allItems.addFirst(EntryStacks.of(parentItem.get()));
+
+            registry.group(Identifier.of(SkyblockerMod.NAMESPACE, "rei_category/" + parentItem.get().getSkyblockId().toLowerCase().replace(";", ".")), parentItem.get().getName(), allItems);
+        });
     }
 
     @Override
