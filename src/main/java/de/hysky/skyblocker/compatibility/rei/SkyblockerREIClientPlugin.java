@@ -60,7 +60,6 @@ public class SkyblockerREIClientPlugin implements REIClientPlugin {
             if (parentItem.isEmpty()) return;
 
             List<ItemStack> childItems = ItemRepository.getItemsStream().filter(itemStack -> childrenList.contains(itemStack.getNeuName())).toList();
-            if (childItems.stream().anyMatch(item -> item.isOf(Items.ENCHANTED_BOOK))) return;
             ArrayList<EntryStack<ItemStack>> allItems = new ArrayList<>(childItems.stream().map(EntryStacks::of).toList());
             allItems.addFirst(EntryStacks.of(parentItem.get()));
 
