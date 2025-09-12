@@ -1,3 +1,33 @@
+# Release 5.7.1
+
+## Highlight
+- Improves Dungeons item secret detection
+- Adds New /call features
+    - Adds various prompts for calling Trevor, Maddox, and Queen Mismyla
+    - Adds recall prompt for failed calls due to "bad signal"
+    - Adds /call NPC name autocomplete
+- Adds Shortcut Key Combos
+- Adds support for Pet items and calendar events to Wiki Lookup
+- Adds an item selector for Quick Navigation buttons
+- Adds Coralot & Shellwise Highlights
+- Adds Regex capture group support for Chat Rules
+- Fixes item background color not updating when the rarity changes
+- Adds 1.8 Cactus Hitbox
+- Adds Name Sorting option to Player List tab widget
+- Adds support for Search Overlay in the Museum
+- Makes sweep overlay more accurate on Galatea
+- Adds correct axe preview in Sweep Details Widget for Hub/The Park
+- Fixes a freeze when purchasing with Fancy AH enabled
+- Improves Config Backup Preview
+- Adds disabled slot texture in Personal Deletor/Compactor preview
+- Reduces item repository initial download size
+- Fixes REI items being added outside SkyBlock
+- Fixes Melon not being recognized after latest SkyBlock update
+- Fixes Item Pickup Widget showing Quiver arrows and the SkyBlock Menu
+- Fixes Recipe Book not moving with other mods
+
+[//]: # (Add GitHub PRs here)
+---
 # Release 5.7.0
 
 ## Highlight
