@@ -17,14 +17,16 @@
 - Adds support for Search Overlay in the Museum
 - Makes sweep overlay more accurate on Galatea
 - Adds correct axe preview in Sweep Details Widget for Hub/The Park
-- Fixes a freeze when purchasing with Fancy AH enabled
 - Improves Config Backup Preview
 - Adds disabled slot texture in Personal Deletor/Compactor preview
 - Reduces item repository initial download size
+- Adds highlighting for the correct answer buttons in Quiz puzzle room
+- Adds Lasso Hud for hunting on Galatea
+- Fixes a freeze when purchasing with Fancy AH enabled
 - Fixes REI items being added outside SkyBlock
 - Fixes Melon not being recognized after latest SkyBlock update
-- Fixes Item Pickup Widget showing Quiver arrows and the SkyBlock Menu
-- Fixes Recipe Book not moving with other mods
+- Fixes the Item Pickup Widget showing Quiver arrows and the SkyBlock Menu
+- Fixes the Recipe Book not moving with other mods
 
 [//]: # (Add GitHub PRs here)
 ---
