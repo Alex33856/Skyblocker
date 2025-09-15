@@ -54,15 +54,18 @@
 - **Dungeon Splits Widget**
 - **Door Key Highlighter**
 
-### Foraging Features:
-- **Waypoints to forest nodes**
+### Hunting Features:
+- **Forest Node Highlighter**
 - **Lushlilac and Sea Lumies Highlighters**
-- **Forest temple puzzle solver**
-- **Hunting box helper**
-- **Hunting Mobs features**
-  - Silence Phantoms
-  - Highlight Hideonleaves
+- **Forest Temple puzzle solver**
+- **Hunting Box Helper**
 - **Hunting Box Shard Prices**
+- **Various Mob Features**
+  - Phantom Silencer
+  - Hideonleaf Highlighter
+- **Lasso HUD**
+
+### Foraging Features:
 - **Sweep Overlay**
   - Disclaimer: Sweep Overlay is not accurate on Galatea due to technical limitations. The sweep formula is currently unknown.
 - **Moonglade Beacon Tuner Helper**
