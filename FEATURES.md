@@ -6,7 +6,7 @@
     - Integration with Spirit Leap Overlay
 - **Starred Mob Glow**
 - **Croesus Helper:**
-    - Highlight not opened chests
+    - Highlight unopened chests
     - Profit calculator
 - **Puzzle Solver:**
     - *Three Weirdos*
@@ -289,15 +289,16 @@
 - **Recipe Book:** Lists all Skyblock items in the vanilla recipe book, allowing you to see the recipe of the item.
   - Crafting
   - Forge
-- **Backpack Preview:** After clicking your backpack or enderchest once, you can hover over the backpack or enderchest and hold Shift to preview its contents.
+- **Backpack Preview:** 
+  - After clicking a backpack or an ender chest page once, you can hover over it while holding Shift to preview its contents.
 - **New Year Cakes Helper**
 - **Fancy Crafting Table**
 - **Info Screen**
 - **Fancy Auctions Browser**
 - **Calendar Event Notifications**
-- **Sign calculator**
+- **Sign Calculator**
 - **CTRL/CMD + F to search inventory**
-- **legacy attribute background**
+- **Legacy Attribute Highlighter**
 - **Sack Message Prices**
 
 ### Barn Features:

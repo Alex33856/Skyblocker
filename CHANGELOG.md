@@ -11,7 +11,6 @@
 - Adds an item selector for Quick Navigation buttons
 - Adds Coralot & Shellwise Highlights
 - Adds Regex capture group support for Chat Rules
-- Fixes item background color not updating when the rarity changes
 - Adds 1.8 Cactus Hitbox
 - Adds Name Sorting option to Player List tab widget
 - Adds support for Search Overlay in the Museum
@@ -22,11 +21,17 @@
 - Reduces item repository initial download size
 - Adds highlighting for the correct answer buttons in Quiz puzzle room
 - Adds Lasso Hud for hunting on Galatea
+- Adds Waypoint Type option to End Node helper
+- Improves Input Calculator
+- Fixes item background color not updating when the rarity changes
+- Fixes Chronomatron solver not working sometimes
 - Fixes a freeze when purchasing with Fancy AH enabled
 - Fixes REI items being added outside SkyBlock
-- Fixes Melon not being recognized after latest SkyBlock update
+- Fixes Melon Farming Contest not being recognized after a recent SkyBlock update
 - Fixes the Item Pickup Widget showing Quiver arrows and the SkyBlock Menu
 - Fixes the Recipe Book not moving with other mods
+- Fixes Cactus Knife Blocks per Second in the Farming Hud
+- Fixes Status Bars being able to overflow
 
 [//]: # (Add GitHub PRs here)
 ---
