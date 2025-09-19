@@ -63,6 +63,8 @@
 - **Various Mob Features**
   - Phantom Silencer
   - Hideonleaf Highlighter
+  - Coralot Highlighter
+  - Shellwise Highlighter
 - **Lasso HUD**
 
 ### Foraging Features:
