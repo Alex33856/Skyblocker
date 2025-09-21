@@ -2,6 +2,8 @@
 
 ## Highlight
 - Improves Dungeons item secret detection
+- Adds Iris Compatability
+  - Waypoints and other features will now work correctly when using shaders
 - Adds New /call features
     - Adds various prompts for calling Trevor, Maddox, and Queen Mismyla
     - Adds recall prompt for failed calls due to "bad signal"
