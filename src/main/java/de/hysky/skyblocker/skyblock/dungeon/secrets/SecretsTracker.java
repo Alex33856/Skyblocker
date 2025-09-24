@@ -20,6 +20,7 @@ public class SecretsTracker {
 	private static final MinecraftClient CLIENT = MinecraftClient.getInstance();
 
 	private static int secretsFound = 0;
+	private static boolean hasSent = true;
 
 	@Init
 	public static void init() {
@@ -29,10 +30,11 @@ public class SecretsTracker {
 
 	private static void reset() {
 		secretsFound = 0;
+		hasSent = false;
 	}
 
 	private static void sendSecretCount() {
-		if (CLIENT.player == null) return;
+		if (hasSent || CLIENT.player == null) return;
 		CLIENT.player.sendMessage(Text.literal("You found %d secrets - awesome!".formatted(secretsFound)), false);
 		WsMessageHandler.sendMessage(Service.DUNGEON_SECRETS, new DungeonSecretCountMessage(CLIENT.player.getUuid(), secretsFound));
 	}

@@ -22,7 +22,7 @@ public record DungeonSecretCountMessage(UUID uuid, int secretsFound) implements 
 	}
 
 	public static void handle(Type type, Optional<Dynamic<?>> rawMsg) {
-		if (type != Type.PUBLISH || rawMsg.isEmpty()) return;
+		if (type != Type.RESPONSE || rawMsg.isEmpty()) return;
 
 		DungeonSecretCountMessage data = CODEC.parse(rawMsg.get()).getOrThrow();
 		SecretsTracker.onSecretCountReceived(data);
