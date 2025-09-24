@@ -108,6 +108,7 @@ public class DungeonManager {
 	private static final Pattern KEY_FOUND = Pattern.compile("^RIGHT CLICK on (?:the BLOOD DOOR|a WITHER door) to open it. This key can only be used to open 1 door!$");
 	private static final Pattern WITHER_DOOR_OPENED = Pattern.compile("^\\w+ opened a WITHER door!$");
 	private static final String BLOOD_DOOR_OPENED = "The BLOOD DOOR has been opened!";
+	private static final Pattern TEAM_SCORE_PATTERN = Pattern.compile(" +Team Score: [0-9]+ \\([A-z+]+\\)");
 	protected static final float[] RED_COLOR_COMPONENTS = {1, 0, 0};
 	protected static final float[] GREEN_COLOR_COMPONENTS = {0, 1, 0};
 	/**
@@ -754,11 +755,18 @@ public class DungeonManager {
 			}
 		}
 
+		// Dungeon Events
+
 		if (message.equals("§e[NPC] §bMort§f: You should find it useful if you get lost.")) {
 			DungeonEvents.DUNGEON_STARTED.invoker().onDungeonStarted();
 		}
 
-		var newBoss = DungeonBoss.fromMessage(message);
+
+		if (TEAM_SCORE_PATTERN.matcher(message).matches()) {
+			DungeonEvents.DUNGEON_ENDED.invoker().onDungeonEnded();
+		}
+
+		DungeonBoss newBoss = DungeonBoss.fromMessage(message);
 		if (!isInBoss() && newBoss.isInBoss()) {
 			reset();
 			boss = newBoss;

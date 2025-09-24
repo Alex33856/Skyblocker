@@ -627,6 +627,8 @@ public class Room implements Tickable, Renderable {
      * @param args           the args for the {@link org.slf4j.Logger#info(String, Object...) Logger#info(String, Object...)} call
      */
     private void markSecretsAndLogInfo(SecretWaypoint secretWaypoint, boolean found, String msg, Object... args) {
+		if (found)
+			SecretsTracker.onSecretFound();
         markSecrets(secretWaypoint.secretIndex, found);
         DungeonManager.LOGGER.info(msg, args);
     }

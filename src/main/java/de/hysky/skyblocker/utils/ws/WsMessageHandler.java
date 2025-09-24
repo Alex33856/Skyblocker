@@ -2,6 +2,7 @@ package de.hysky.skyblocker.utils.ws;
 
 import java.util.Optional;
 
+import de.hysky.skyblocker.utils.ws.message.DungeonSecretCountMessage;
 import org.slf4j.Logger;
 
 import com.google.gson.JsonElement;
@@ -63,12 +64,13 @@ public class WsMessageHandler {
 		try {
 			JsonObject payloadEncoded = JsonParser.parseString(message).getAsJsonObject();
 
-			//When status is present its usually a response to a packet being sent or some error, we don't need to pay attention to those
+			//When status is present it's usually a response to a packet being sent or some error, we don't need to pay attention to those
 			if (payloadEncoded.has("type")) {
 				Payload payload = Payload.CODEC.parse(JsonOps.INSTANCE, payloadEncoded).getOrThrow();
 
 				switch (payload.service()) {
 					case Service.CRYSTAL_WAYPOINTS -> CrystalsWaypointMessage.handle(payload.type(), payload.message());
+					case Service.DUNGEON_SECRETS -> DungeonSecretCountMessage.handle(payload.type(), payload.message());
 				}
 			}
 		} catch (Exception e) {

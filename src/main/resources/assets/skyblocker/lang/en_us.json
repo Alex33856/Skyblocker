@@ -1336,7 +1336,7 @@
   "skyblocker.dungeons.puzzle.boulder.noSolution": "No solution found!",
   "skyblocker.dungeons.puzzle.waterboard.invalidDoors": "Doors are in an unrecognized state. Make sure exactly three doors are closed, then reset the solver.",
   "skyblocker.dungeons.puzzle.waterboard.waterFound": "Water must be toggled off or it will interfere with the solution. Turn the water off and let it drain, then reset the solver.",
-  "skyblocker.dungeons.secretsTracker.feedback": "%s§f found %s§f secrets. %s",
+  "skyblocker.dungeons.secretsTracker.feedback": "%s§f found %s§f secrets.",
   "skyblocker.dungeons.secretsTracker.failFeedback": "§cUnable to calculate the number of secrets everybody did this run!",
   "skyblocker.dungeons.splits.bloodOpen": "Blood Open",
   "skyblocker.dungeons.splits.bloodClear": "Blood Clear",

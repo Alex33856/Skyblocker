@@ -1,48 +1,64 @@
 package de.hysky.skyblocker.skyblock.dungeon.secrets;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import de.hysky.skyblocker.annotations.Init;
-import de.hysky.skyblocker.config.SkyblockerConfigManager;
 import de.hysky.skyblocker.events.DungeonEvents;
-import de.hysky.skyblocker.utils.ApiUtils;
-import de.hysky.skyblocker.utils.Constants;
-import de.hysky.skyblocker.utils.Http;
-import de.hysky.skyblocker.utils.Http.ApiResponse;
 import de.hysky.skyblocker.utils.Utils;
-import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
-import net.fabricmc.fabric.api.client.message.v1.ClientReceiveMessageEvents;
+import de.hysky.skyblocker.utils.ws.Service;
+import de.hysky.skyblocker.utils.ws.WsMessageHandler;
+import de.hysky.skyblocker.utils.ws.message.DungeonSecretCountMessage;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.text.HoverEvent;
+import net.minecraft.entity.Entity;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.concurrent.CompletableFuture;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Tracks the amount of secrets players get every run
  */
 public class SecretsTracker {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SecretsTracker.class);
-	private static final Pattern TEAM_SCORE_PATTERN = Pattern.compile(" +Team Score: [0-9]+ \\([A-z+]+\\)");
+	private static final MinecraftClient CLIENT = MinecraftClient.getInstance();
 
-	private static volatile TrackedRun currentRun = null;
-	private static volatile TrackedRun lastRun = null;
-	private static volatile long lastRunEnded = 0L;
+	private static int secretsFound = 0;
 
 	@Init
 	public static void init() {
-		ClientReceiveMessageEvents.ALLOW_GAME.register(SecretsTracker::onMessage);
-		DungeonEvents.DUNGEON_STARTED.register(() -> calculate(RunPhase.START));
+		DungeonEvents.DUNGEON_STARTED.register(SecretsTracker::reset);
+		DungeonEvents.DUNGEON_ENDED.register(SecretsTracker::sendSecretCount);
 	}
 
+	private static void reset() {
+		secretsFound = 0;
+	}
+
+	private static void sendSecretCount() {
+		if (CLIENT.player == null) return;
+		CLIENT.player.sendMessage(Text.literal("You found %d secrets - awesome!".formatted(secretsFound)), false);
+		WsMessageHandler.sendMessage(Service.DUNGEON_SECRETS, new DungeonSecretCountMessage(CLIENT.player.getUuid(), secretsFound));
+	}
+
+	public static void onSecretCountReceived(DungeonSecretCountMessage message) {
+		if (!Utils.isInDungeons() || CLIENT.player == null || CLIENT.world == null) return;
+		LOGGER.info("{} found {} secrets!", message.uuid(), message.secretsFound());
+		if (message.uuid() == CLIENT.player.getUuid()) {
+			LOGGER.info("ignoring our own secret message");
+			return;
+		}
+
+		Entity player = CLIENT.world.getEntity(message.uuid());
+		if (player == null) {
+			LOGGER.info("received a message for an entity that doesn't exist?");
+			return;
+		}
+		String playerName = player.getName().getString();
+		CLIENT.player.sendMessage(Text.translatable("skyblocker.dungeons.secretsTracker.feedback", playerName, message.secretsFound()), false);
+	}
+
+	protected static void onSecretFound() {
+		secretsFound += 1;
+	}
+
+	/*
 	private static void calculate(RunPhase phase) {
 		switch (phase) {
 			case START -> CompletableFuture.runAsync(() -> {
@@ -53,14 +69,13 @@ public class SecretsTracker {
 					String playerName = getPlayerNameAt(i + 1);
 
 					//The player name will be blank if there isn't a player at that index
-					if (!playerName.isEmpty()) {
+					if (playerName.isEmpty()) continue;
 
-						//If the player was a part of the last run, had non-empty secret data and that run ended less than 5 mins ago then copy the secret data over
-						if (lastRun != null && System.currentTimeMillis() <= lastRunEnded + 300_000 && lastRun.playersSecretData().getOrDefault(playerName, SecretData.EMPTY) != SecretData.EMPTY) {
-							newlyStartedRun.playersSecretData().put(playerName, lastRun.playersSecretData().get(playerName));
-						} else {
-							newlyStartedRun.playersSecretData().put(playerName, getPlayerSecrets(playerName));
-						}
+					//If the player was a part of the last run, had non-empty secret data and that run ended less than 5 mins ago then copy the secret data over
+					if (lastRun != null && System.currentTimeMillis() <= lastRunEnded + 300_000 && lastRun.playersSecretData().getOrDefault(playerName, SecretData.EMPTY) != SecretData.EMPTY) {
+						newlyStartedRun.playersSecretData().put(playerName, lastRun.playersSecretData().get(playerName));
+					} else {
+						newlyStartedRun.playersSecretData().put(playerName, getPlayerSecrets(playerName));
 					}
 				}
 
@@ -150,18 +165,14 @@ public class SecretsTracker {
 		return SecretData.EMPTY;
 	}
 
-	/**
-	 * Gets a player's secret count from their hypixel achievements
-	 */
+	// Gets a player's secret count from their hypixel achievements
 	private static int getSecretCountFromAchievements(JsonObject playerJson) {
 		JsonObject player = playerJson.getAsJsonObject("player");
 		JsonObject achievements = player.has("achievements") ? player.getAsJsonObject("achievements") : null;
 		return (achievements != null && achievements.has("skyblock_treasure_hunter")) ? achievements.get("skyblock_treasure_hunter").getAsInt() : 0;
 	}
 
-	/**
-	 * This will either reflect the value at the start or the end depending on when this is called
-	 */
+	// This will either reflect the value at the start or the end depending on when this is called
 	private record TrackedRun(Object2ObjectOpenHashMap<String, SecretData> playersSecretData) {
 		private TrackedRun() {
 			this(new Object2ObjectOpenHashMap<>());
@@ -179,5 +190,5 @@ public class SecretsTracker {
 
 	private enum RunPhase {
         START, END
-	}
+	}*/
 }

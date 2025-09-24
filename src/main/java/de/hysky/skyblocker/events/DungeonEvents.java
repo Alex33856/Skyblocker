@@ -17,11 +17,20 @@ public class DungeonEvents {
 	});
 
 	/**
-	 * Called after the dungeons starts and after the tab has changed to include additional information about the run such as each player's class.
+	 * Called after the dungeons run starts and after the tab has changed to include additional information about the run such as each player's class.
 	 */
 	public static final Event<DungeonStarted> DUNGEON_STARTED = EventFactory.createArrayBacked(DungeonStarted.class, callbacks -> () -> {
 		for (DungeonStarted callback : callbacks) {
 			callback.onDungeonStarted();
+		}
+	});
+
+	/**
+	 * Called after the dungeons run ends and the score is being printed in chat.
+	 */
+	public static final Event<DungeonEnded> DUNGEON_ENDED = EventFactory.createArrayBacked(DungeonEnded.class, callbacks -> () -> {
+		for (DungeonEnded callback : callbacks) {
+			callback.onDungeonEnded();
 		}
 	});
 
@@ -50,6 +59,12 @@ public class DungeonEvents {
 	@FunctionalInterface
 	public interface DungeonStarted {
 		void onDungeonStarted();
+	}
+
+	@Environment(EnvType.CLIENT)
+	@FunctionalInterface
+	public interface DungeonEnded {
+		void onDungeonEnded();
 	}
 
 	@Environment(EnvType.CLIENT)
