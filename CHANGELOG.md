@@ -27,6 +27,7 @@
 - Fixes Melon not being recognized after latest SkyBlock update
 - Fixes the Item Pickup Widget showing Quiver arrows and the SkyBlock Menu
 - Fixes the Recipe Book not moving with other mods
+- Fixes a crash with the Garden Plots Widget when using SkyHanni
 
 [//]: # (Add GitHub PRs here)
 ---
