@@ -60,6 +60,10 @@ public class SecretsTracker {
 		secretsFound += 1;
 	}
 
+	protected static void onChestLocked() {
+		secretsFound -= 1;
+	}
+
 	/*
 	private static void calculate(RunPhase phase) {
 		switch (phase) {
