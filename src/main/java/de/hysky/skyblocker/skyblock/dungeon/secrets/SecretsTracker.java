@@ -2,6 +2,7 @@ package de.hysky.skyblocker.skyblock.dungeon.secrets;
 
 import de.hysky.skyblocker.annotations.Init;
 import de.hysky.skyblocker.events.DungeonEvents;
+import de.hysky.skyblocker.utils.Constants;
 import de.hysky.skyblocker.utils.Utils;
 import de.hysky.skyblocker.utils.ws.Service;
 import de.hysky.skyblocker.utils.ws.WsMessageHandler;
@@ -35,7 +36,7 @@ public class SecretsTracker {
 
 	private static void sendSecretCount() {
 		if (hasSent || CLIENT.player == null) return;
-		CLIENT.player.sendMessage(Text.translatable("skyblocker.dungeons.secretsTracker.feedback", CLIENT.getSession().getUsername(), secretsFound), false);
+		sendMessageForPlayer(CLIENT.getSession().getUsername(), secretsFound);
 		WsMessageHandler.sendMessage(Service.DUNGEON_SECRETS, new DungeonSecretCountMessage(CLIENT.player.getUuid(), secretsFound));
 	}
 
@@ -48,8 +49,13 @@ public class SecretsTracker {
 			return;
 		}
 
-		Text playerName = player.getName();
-		CLIENT.player.sendMessage(Text.translatable("skyblocker.dungeons.secretsTracker.feedback", playerName, message.secretsFound()), false);
+		String playerName = player.getName().getString();
+		sendMessageForPlayer(playerName, secretsFound);
+	}
+
+	private static void sendMessageForPlayer(String player, int secretCount) {
+		if (CLIENT.player == null) return;
+		CLIENT.player.sendMessage(Constants.PREFIX.get().append(Text.translatable("skyblocker.dungeons.secretsTracker.feedback", Text.literal(player).append(" (" + DungeonPlayerManager.getClassFromPlayer(player).displayName() + ")").withColor(0xf57542), "§7" + secretCount)), false);
 	}
 
 	protected static void onSecretFound() {
