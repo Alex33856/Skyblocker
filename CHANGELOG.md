@@ -28,6 +28,7 @@
 - Fixes the Item Pickup Widget showing Quiver arrows and the SkyBlock Menu
 - Fixes the Recipe Book not moving with other mods
 - Fixes a crash with the Garden Plots Widget when using SkyHanni
+- Fixes power operator right associativity
 
 [//]: # (Add GitHub PRs here)
 ---
