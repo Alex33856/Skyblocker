@@ -29,6 +29,10 @@
 - Fixes the Recipe Book not moving with other mods
 - Fixes a crash with the Garden Plots Widget when using SkyHanni
 - Fixes power operator right associativity
+- Updates dungeon crypts message config text to reflect the new default
+- Fixes the party leader being wrong in Fancy Party Finder
+- Fixes Blaze Puzzle and Guardian Health Text not working with Custom Health Bars enabled
+- Updates line width in Waterboard Puzzle to match Vanilla and other Features
 
 [//]: # (Add GitHub PRs here)
 ---
