@@ -1,4 +1,4 @@
-# Release 5.7.1
+# Release 5.8.0
 
 ## Highlight
 - Improves Dungeons item secret detection
@@ -22,6 +22,7 @@
 - Reduces item repository initial download size
 - Adds highlighting for the correct answer buttons in Quiz puzzle room
 - Adds Lasso Hud for hunting on Galatea
+- Adds true quiver count
 - Fixes a freeze when purchasing with Fancy AH enabled
 - Fixes REI items being added outside SkyBlock
 - Fixes Melon not being recognized after latest SkyBlock update
@@ -33,6 +34,12 @@
 - Fixes the party leader being wrong in Fancy Party Finder
 - Fixes Blaze Puzzle and Guardian Health Text not working with Custom Health Bars enabled
 - Updates line width in Waterboard Puzzle to match Vanilla and other Features
+- Changes progress percentage on hud widgets to show 2 decimal places.
+- Fixes items failing to load if they have invalid formatting styles.
+- Fixes being kicked to limbo when clicking a plot widget with a custom icon from SkyHanni
+- Fixes being able to auction protected items in some cases
+- Fixes WebSocket Waypoint message spam when joining the Crystal Hollows
+- Fixes Sign/Input calculator showing up on some search signs
 
 [//]: # (Add GitHub PRs here)
 ---

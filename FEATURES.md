@@ -363,6 +363,7 @@
 - **OptiFabric Compatibility**
 - **Waypoints API**
 - **Config Button in Skyblock Menu**
+- **True Quiver Count**
 - **Chest Value**
 - **Add useful tips in chat**
 - **Suppress badlion packet warnings**
