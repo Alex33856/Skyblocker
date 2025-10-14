@@ -1,45 +1,45 @@
 # Release 5.8.0
 
 ## Highlight
-- Improves Dungeons item secret detection
-- Adds New /call features
-    - Adds various prompts for calling Trevor, Maddox, and Queen Mismyla
-    - Adds recall prompt for failed calls due to "bad signal"
-    - Adds /call NPC name autocomplete
-- Adds Shortcut Key Combos
-- Adds support for Pet items and calendar events to Wiki Lookup
-- Adds an item selector for Quick Navigation buttons
-- Adds Coralot & Shellwise Highlights
-- Adds Regex capture group support for Chat Rules
-- Fixes item background color not updating when the rarity changes
-- Adds 1.8 Cactus Hitbox
-- Adds Name Sorting option to Player List tab widget
-- Adds support for Search Overlay in the Museum
-- Makes sweep overlay more accurate on Galatea
-- Adds correct axe preview in Sweep Details Widget for Hub/The Park
-- Improves Config Backup Preview
-- Adds disabled slot texture in Personal Deletor/Compactor preview
-- Reduces item repository initial download size
-- Adds highlighting for the correct answer buttons in Quiz puzzle room
-- Adds Lasso Hud for hunting on Galatea
-- Adds true quiver count
-- Fixes a freeze when purchasing with Fancy AH enabled
-- Fixes REI items being added outside SkyBlock
-- Fixes Melon not being recognized after latest SkyBlock update
-- Fixes the Item Pickup Widget showing Quiver arrows and the SkyBlock Menu
-- Fixes the Recipe Book not moving with other mods
-- Fixes a crash with the Garden Plots Widget when using SkyHanni
-- Fixes power operator right associativity
-- Updates dungeon crypts message config text to reflect the new default
-- Fixes the party leader being wrong in Fancy Party Finder
-- Fixes Blaze Puzzle and Guardian Health Text not working with Custom Health Bars enabled
-- Updates line width in Waterboard Puzzle to match Vanilla and other Features
-- Changes progress percentage on hud widgets to show 2 decimal places.
-- Fixes items failing to load if they have invalid formatting styles.
-- Fixes being kicked to limbo when clicking a plot widget with a custom icon from SkyHanni
-- Fixes being able to auction protected items in some cases
-- Fixes WebSocket Waypoint message spam when joining the Crystal Hollows
-- Fixes Sign/Input calculator showing up on some search signs
+- Improve Dungeons item secret detection
+- Add New /call features:
+    - Add prompts for calling Trevor, Maddox, and Queen Mismyla
+    - Add recall prompt for failed calls due to "bad signal"
+    - Add /call NPC name autocomplete
+- Add Shortcut Key Combos
+- Add support for Pet items and calendar events to Wiki Lookup
+- Add an item selector for Quick Navigation buttons
+- Add Coralot & Shellwise Highlights
+- Add Regex capture group support for Chat Rules
+- Fix item background color not updating when the rarity changes
+- Add 1.8 Cactus Hitbox
+- Add Name Sorting option to Player List tab widget
+- Add support for Search Overlay in the Museum
+- Make sweep overlay more accurate on Galatea
+- Add correct axe preview in Sweep Details Widget for Hub/The Park
+- Improve Config Backup Preview
+- Add disabled slot texture in Personal Deletor/Compactor preview
+- Reduce item repository initial download size
+- Add highlighting for the correct answer buttons in Quiz puzzle room
+- Add Lasso Hud for hunting on Galatea
+- Add true quiver count
+- Fix a freeze when purchasing with Fancy AH enabled
+- Fix REI items being added outside SkyBlock
+- Fix Melon not being recognized after latest SkyBlock update
+- Fix the Item Pickup Widget showing Quiver arrows and the SkyBlock Menu
+- Fix the Recipe Book not moving with other mods
+- Fix a crash with the Garden Plots Widget when using SkyHanni
+- Fix input calculator power operator right associativity
+- Update dungeon crypts message config text to reflect the new default
+- Fix the party leader always being wrong in Fancy Party Finder
+- Fix Blaze Puzzle and Guardian Health Text not working with Custom Health Bars enabled
+- Update line width in Waterboard Puzzle to match Vanilla and other Features
+- Change progress percentage on hud widgets to show 2 decimal places.
+- Fix items failing to load if they have invalid formatting styles.
+- Fix being kicked to limbo when clicking a plot widget with a custom icon from SkyHanni
+- Fix being able to auction protected items in some cases
+- Fix WebSocket Waypoint message spam when joining the Crystal Hollows
+- Fix Sign/Input calculator showing up on some search signs
 
 [//]: # (Add GitHub PRs here)
 ---
