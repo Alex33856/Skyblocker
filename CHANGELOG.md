@@ -23,6 +23,9 @@
 - Add highlighting for the correct answer buttons in Quiz puzzle room
 - Add Lasso Hud for hunting on Galatea
 - Add true quiver count
+- Add support for End Stone sword ability in Compact Damage
+- Add responsive mode for Smooth AOTE
+- Add mana estimation for Status Bars
 - Fix a freeze when purchasing with Fancy AH enabled
 - Fix REI items being added outside SkyBlock
 - Fix Melon not being recognized after latest SkyBlock update
@@ -40,6 +43,7 @@
 - Fix being able to auction protected items in some cases
 - Fix WebSocket Waypoint message spam when joining the Crystal Hollows
 - Fix Sign/Input calculator showing up on some search signs
+- Fix Sea Creature Tracker double hook not working with SkyHanni
 
 [//]: # (Add GitHub PRs here)
 ---
