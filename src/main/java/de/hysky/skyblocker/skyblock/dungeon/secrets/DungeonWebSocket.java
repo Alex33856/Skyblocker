@@ -14,6 +14,6 @@ public class DungeonWebSocket {
 	}
 
 	public static void connect() {
-		WsStateManager.subscribe(Service.DUNGEON_SECRETS, Optional.empty());
+		WsStateManager.subscribeServer(Service.DUNGEON_SECRETS, Optional.empty());
 	}
 }

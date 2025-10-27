@@ -37,7 +37,7 @@ public class SecretsTracker {
 	private static void sendSecretCount() {
 		if (hasSent || CLIENT.player == null) return;
 		sendMessageForPlayer(CLIENT.getSession().getUsername(), secretsFound);
-		WsMessageHandler.sendMessage(Service.DUNGEON_SECRETS, new DungeonSecretCountMessage(CLIENT.player.getUuid(), secretsFound));
+		WsMessageHandler.sendServerMessage(Service.DUNGEON_SECRETS, new DungeonSecretCountMessage(CLIENT.player.getUuid(), secretsFound));
 	}
 
 	public static void onSecretCountReceived(DungeonSecretCountMessage message) {
