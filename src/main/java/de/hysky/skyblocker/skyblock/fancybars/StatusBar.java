@@ -30,8 +30,8 @@ import java.util.function.Consumer;
 
 public class StatusBar implements Widget, Drawable, Element, Selectable {
 
-	private static final Identifier BAR_FILL = Identifier.of(SkyblockerMod.NAMESPACE, "bars/bar_fill");
-	private static final Identifier BAR_BACK = Identifier.of(SkyblockerMod.NAMESPACE, "bars/bar_back");
+	private static final Identifier BAR_FILL = SkyblockerMod.id("bars/bar_fill");
+	private static final Identifier BAR_BACK = SkyblockerMod.id("bars/bar_back");
 
 	public static final int ICON_SIZE = 9;
 
@@ -98,7 +98,7 @@ public class StatusBar implements Widget, Drawable, Element, Selectable {
 	public boolean showOverflow = false;
 
 	public StatusBar(StatusBarType type) {
-		this.icon = Identifier.of(SkyblockerMod.NAMESPACE, "bars/icons/" + type.asString());
+		this.icon = SkyblockerMod.id("bars/icons/" + type.asString());
 		this.colors = type.getColors();
 		this.textColor = type.getTextColor();
 		this.type = type;
@@ -180,7 +180,7 @@ public class StatusBar implements Widget, Drawable, Element, Selectable {
 		int color = transparency((textColor == null ? colors[0] : textColor).getRGB());
 		int outlineColor = transparency(Colors.BLACK);
 
-		HudHelper.drawOutlinedText(context, Text.of(text).asOrderedText(), x, y, color, outlineColor);
+		HudHelper.drawOutlinedText(context, Text.of(text), x, y, color, outlineColor);
 	}
 
 	public void renderCursor(DrawContext context, int mouseX, int mouseY, float delta) {
@@ -264,10 +264,10 @@ public class StatusBar implements Widget, Drawable, Element, Selectable {
 	}
 
 	@Override
-	public boolean mouseClicked(double mouseX, double mouseY, int button) {
-		if (!isMouseOver(mouseX, mouseY)) return false;
+	public boolean mouseClicked(Click click, boolean doubled) {
+		if (!isMouseOver(click.x(), click.y())) return false;
 		if (onClick != null) {
-			onClick.onClick(this, button, (int) mouseX, (int) mouseY);
+			onClick.onClick(this, click);
 		}
 		return true;
 	}
@@ -351,8 +351,7 @@ public class StatusBar implements Widget, Drawable, Element, Selectable {
 
 	@FunctionalInterface
 	public interface OnClick {
-
-		void onClick(StatusBar statusBar, int button, int mouseX, int mouseY);
+		void onClick(StatusBar statusBar, Click click);
 	}
 
 	public void loadFromJson(JsonObject object) {
@@ -444,6 +443,11 @@ public class StatusBar implements Widget, Drawable, Element, Selectable {
 			} else {
 				HudHelper.renderNineSliceColored(context, BAR_FILL, barX + 1, getY() + 2, (int) ((barWith - 2) * fill), 5, transparency(getColors()[0].getRGB()));
 			}
+		}
+
+		@Override
+		public void updateValues(float fill, float overflowFill, Object text, @Nullable Object max, @Nullable Object overflow) {
+			super.updateValues(fill, overflowFill, StatusBarTracker.isManaEstimated() ? "~" + text : text, max, overflow);
 		}
 	}
 }

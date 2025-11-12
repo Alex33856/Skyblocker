@@ -2,9 +2,6 @@ package de.hysky.skyblocker.skyblock.dungeon.secrets;
 
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.serialization.Codec;
@@ -13,12 +10,12 @@ import de.hysky.skyblocker.events.DungeonEvents;
 import de.hysky.skyblocker.utils.Constants;
 import de.hysky.skyblocker.utils.Tickable;
 import de.hysky.skyblocker.utils.render.Renderable;
+import de.hysky.skyblocker.utils.render.primitive.PrimitiveCollector;
 import de.hysky.skyblocker.utils.scheduler.Scheduler;
 import it.unimi.dsi.fastutil.ints.IntRBTreeSet;
 import it.unimi.dsi.fastutil.ints.IntSortedSet;
 import it.unimi.dsi.fastutil.ints.IntSortedSets;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
-import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderContext;
 import net.fabricmc.fabric.api.util.TriState;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -447,15 +444,14 @@ public class Room implements Tickable, Renderable {
     @SuppressWarnings("JavadocReference")
     private void roomMatched() {
         secretWaypoints = HashBasedTable.create();
-        JsonArray secretWaypointsJson = DungeonManager.getRoomWaypoints(name);
-        if (secretWaypointsJson != null) {
-            for (JsonElement waypointElement : secretWaypointsJson) {
-                JsonObject waypoint = waypointElement.getAsJsonObject();
-                String secretName = waypoint.get("secretName").getAsString();
+        List<DungeonManager.RoomWaypoint> roomWaypoints = DungeonManager.getRoomWaypoints(name);
+        if (roomWaypoints != null) {
+            for (DungeonManager.RoomWaypoint waypoint : roomWaypoints) {
+                String secretName = waypoint.secretName();
                 Matcher secretIndexMatcher = SECRET_INDEX.matcher(secretName);
                 int secretIndex = secretIndexMatcher.find() ? Integer.parseInt(secretIndexMatcher.group(1)) : 0;
                 BlockPos pos = DungeonMapUtils.relativeToActual(direction, physicalCornerPos, waypoint);
-                secretWaypoints.put(secretIndex, pos, new SecretWaypoint(secretIndex, waypoint, secretName, pos));
+                secretWaypoints.put(secretIndex, pos, new SecretWaypoint(secretIndex, waypoint.category(), secretName, pos));
             }
         }
         DungeonManager.getCustomWaypoints(name).values().forEach(this::addCustomWaypoint);
@@ -517,19 +513,19 @@ public class Room implements Tickable, Renderable {
 	}
 
     /**
-     * Calls {@link SecretWaypoint#render(WorldRenderContext)} on {@link #secretWaypoints all secret waypoints} and renders a highlight around the wither or blood door, if it exists.
+     * Calls {@link SecretWaypoint#extractRendering(PrimitiveCollector)} on {@link #secretWaypoints all secret waypoints} and renders a highlight around the wither or blood door, if it exists.
      */
     @Override
-    public void render(WorldRenderContext context) {
+    public void extractRendering(PrimitiveCollector collector) {
         for (Renderable renderable : renderables) {
-            renderable.render(context);
+            renderable.extractRendering(collector);
         }
 
         synchronized (this) {
             if (SkyblockerConfigManager.get().dungeons.secretWaypoints.enableSecretWaypoints && isMatched()) {
                 for (SecretWaypoint secretWaypoint : secretWaypoints.values()) {
                     if (secretWaypoint.shouldRender()) {
-                        secretWaypoint.render(context);
+                        secretWaypoint.extractRendering(collector);
                     }
                 }
             }
