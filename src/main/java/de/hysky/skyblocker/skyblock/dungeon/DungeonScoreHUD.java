@@ -22,12 +22,13 @@ public class DungeonScoreHUD extends HudWidget {
 	//This is 4+5 wide, needed to offset the extra width from bold numbers (3×1 wide) in S+ and the "+" (6 wide) so that it doesn't go off the screen if the score is S+ and the hud element is at the right edge of the screen
 	private static final Text extraSpace = Text.literal(" ").append(Text.literal(" ").formatted(Formatting.BOLD));
 
-	private static Text scoreText = getFormattedScoreText();
+	private static Text scoreText;
 	private static float previousScale = -1f;
 
 	public DungeonScoreHUD() {
 		super("dungeon_score");
 		Scheduler.INSTANCE.scheduleCyclic(this::updateFromScheduler, 5);
+		update();
 	}
 
 	@Override
@@ -66,9 +67,7 @@ public class DungeonScoreHUD extends HudWidget {
 
 	@Override
 	protected void renderWidget(DrawContext context, int mouseX, int mouseY, float delta) {
-		if (MinecraftClient.getInstance().currentScreen instanceof WidgetsConfigurationScreen) {
-			if (previousScale == -1) update();
-		} else if (!DungeonScore.isDungeonStarted()) return;
+		if (!(MinecraftClient.getInstance().currentScreen instanceof WidgetsConfigurationScreen) && !DungeonScore.isDungeonStarted()) return;
 		render(context, x, y);
 	}
 
