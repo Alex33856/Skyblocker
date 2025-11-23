@@ -101,6 +101,7 @@ public class Room implements Tickable, Renderable {
     protected List<Renderable> renderables = new ArrayList<>();
     private BlockPos lastChestSecret;
     private long lastChestSecretTime;
+	boolean fromWebsocket = false;
 
     public Room(@NotNull Type type, @NotNull Vector2ic... physicalPositions) {
         this.type = type;
@@ -111,6 +112,25 @@ public class Room implements Tickable, Renderable {
         roomsData = DungeonManager.ROOMS_DATA.getOrDefault("catacombs", Collections.emptyMap()).getOrDefault(shape.shape.toLowerCase(Locale.ENGLISH), Collections.emptyMap());
         possibleRooms = getPossibleRooms(segmentsX, segmentsY);
     }
+
+	// Room from WS
+	Room(@NotNull Type type, Shape shape, Direction direction, String roomName, Vector2ic... physicalPositions) {
+		this.type = type;
+		this.shape = shape;
+		fromWebsocket = true;
+		segments = Set.of(physicalPositions);
+
+		IntSortedSet segmentsX = IntSortedSets.unmodifiable(new IntRBTreeSet(segments.stream().mapToInt(Vector2ic::x).toArray()));
+		IntSortedSet segmentsY = IntSortedSets.unmodifiable(new IntRBTreeSet(segments.stream().mapToInt(Vector2ic::y).toArray()));
+		roomsData = DungeonManager.ROOMS_DATA.getOrDefault("catacombs", Collections.emptyMap()).getOrDefault(shape.shape.toLowerCase(Locale.ENGLISH), Collections.emptyMap());
+
+		this.name = roomName;
+		this.direction = direction;
+		this.physicalCornerPos = DungeonMapUtils.getPhysicalCornerPos(direction, segmentsX, segmentsY);
+		roomMatched();
+		matchState = MatchState.MATCHED;
+		DungeonEvents.ROOM_MATCHED.invoker().onRoomMatched(this);
+	}
 
     @NotNull
     public Type getType() {
@@ -668,19 +688,24 @@ public class Room implements Tickable, Renderable {
         return secretWaypoints.rowMap().size();
     }
 
-    public enum Type {
-        ENTRANCE(MapColor.DARK_GREEN.getRenderColorByte(MapColor.Brightness.HIGH)),
-        ROOM(MapColor.ORANGE.getRenderColorByte(MapColor.Brightness.LOWEST)),
-        PUZZLE(MapColor.MAGENTA.getRenderColorByte(MapColor.Brightness.HIGH)),
-        TRAP(MapColor.ORANGE.getRenderColorByte(MapColor.Brightness.HIGH)),
-        MINIBOSS(MapColor.YELLOW.getRenderColorByte(MapColor.Brightness.HIGH)),
-        FAIRY(MapColor.PINK.getRenderColorByte(MapColor.Brightness.HIGH)),
-        BLOOD(MapColor.BRIGHT_RED.getRenderColorByte(MapColor.Brightness.HIGH)),
-        UNKNOWN(MapColor.GRAY.getRenderColorByte(MapColor.Brightness.NORMAL));
-        final byte color;
+    public enum Type implements StringIdentifiable {
+        ENTRANCE(MapColor.DARK_GREEN.getRenderColorByte(MapColor.Brightness.HIGH), "Entrance"),
+        ROOM(MapColor.ORANGE.getRenderColorByte(MapColor.Brightness.LOWEST), "Room"),
+        PUZZLE(MapColor.MAGENTA.getRenderColorByte(MapColor.Brightness.HIGH), "Puzzle"),
+        TRAP(MapColor.ORANGE.getRenderColorByte(MapColor.Brightness.HIGH), "Trap"),
+        MINIBOSS(MapColor.YELLOW.getRenderColorByte(MapColor.Brightness.HIGH), "Miniboss"),
+        FAIRY(MapColor.PINK.getRenderColorByte(MapColor.Brightness.HIGH), "Fairy"),
+        BLOOD(MapColor.BRIGHT_RED.getRenderColorByte(MapColor.Brightness.HIGH), "Blood"),
+        UNKNOWN(MapColor.GRAY.getRenderColorByte(MapColor.Brightness.NORMAL), "Unknown");
 
-        Type(byte color) {
+        final byte color;
+		final String name;
+
+		public static final Codec<Type> CODEC = StringIdentifiable.createCodec(Type::values);
+
+		Type(byte color, String name) {
             this.color = color;
+			this.name = name;
         }
 
         /**
@@ -692,9 +717,14 @@ public class Room implements Tickable, Renderable {
                 default -> false;
             };
         }
-    }
 
-    public enum Shape {
+		@Override
+		public String asString() {
+			return name;
+		}
+	}
+
+    public enum Shape implements StringIdentifiable {
         ONE_BY_ONE("1x1"),
         ONE_BY_TWO("1x2"),
         ONE_BY_THREE("1x3"),
@@ -704,6 +734,7 @@ public class Room implements Tickable, Renderable {
         PUZZLE("puzzle"),
         TRAP("trap"),
 		MINIBOSS("miniboss");
+		public static final Codec<Shape> CODEC = StringIdentifiable.createCodec(Shape::values);
         final String shape;
 
         Shape(String shape) {
@@ -714,11 +745,16 @@ public class Room implements Tickable, Renderable {
         public String toString() {
             return shape;
         }
-    }
+
+		@Override
+		public String asString() {
+			return shape;
+		}
+	}
 
     public enum Direction implements StringIdentifiable {
         NW("northwest"), NE("northeast"), SW("southwest"), SE("southeast");
-        private static final Codec<Direction> CODEC = StringIdentifiable.createCodec(Direction::values);
+        public static final Codec<Direction> CODEC = StringIdentifiable.createCodec(Direction::values);
         private final String name;
 
         Direction(String name) {

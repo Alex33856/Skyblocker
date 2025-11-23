@@ -43,7 +43,7 @@ public class SecretsTracker {
 	public static void onSecretCountReceived(DungeonSecretCountMessage message) {
 		if (!Utils.isInDungeons() || CLIENT.player == null || CLIENT.world == null) return;
 
-		Entity player = CLIENT.world.getEntity(message.uuid());
+		Entity player = CLIENT.world.getPlayerByUuid(message.uuid());
 		if (player == null) {
 			LOGGER.info("[Skyblocker Secrets Tracker] Received a secret count message for a player that doesn't exist? - Message: {}", message);
 			return;
@@ -55,7 +55,7 @@ public class SecretsTracker {
 
 	private static void sendMessageForPlayer(String player, int secretCount) {
 		if (CLIENT.player == null) return;
-		CLIENT.player.sendMessage(Constants.PREFIX.get().append(Text.translatable("skyblocker.dungeons.secretsTracker.feedback", Text.literal(player).append(" (" + DungeonPlayerManager.getClassFromPlayer(player).displayName() + ")").withColor(0xf57542), "§7" + secretCount)), false);
+		CLIENT.player.sendMessage(Constants.PREFIX.get().append(Text.translatable("skyblocker.dungeons.secretsTracker.feedback", Text.literal(player).append(" (" + DungeonPlayerManager.getClassFromPlayer(player).displayName() + ")").withColor(0xF57542), "§7" + secretCount)), false);
 	}
 
 	protected static void onSecretFound() {

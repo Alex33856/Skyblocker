@@ -8,9 +8,9 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.Dynamic;
 import com.mojang.serialization.JsonOps;
 import de.hysky.skyblocker.SkyblockerMod;
+import de.hysky.skyblocker.skyblock.dungeon.secrets.DungeonWebSocket;
 import de.hysky.skyblocker.utils.Utils;
 import de.hysky.skyblocker.utils.ws.message.CrystalsWaypointMessage;
-import de.hysky.skyblocker.utils.ws.message.DungeonSecretCountMessage;
 import de.hysky.skyblocker.utils.ws.message.EggWaypointMessage;
 import de.hysky.skyblocker.utils.ws.message.Message;
 import org.slf4j.Logger;
@@ -76,7 +76,7 @@ public class WsMessageHandler {
 
 				switch (payload.service()) {
 					case Service.CRYSTAL_WAYPOINTS -> CrystalsWaypointMessage.handle(payload.type(), payload.message());
-					case Service.DUNGEON_SECRETS -> DungeonSecretCountMessage.handle(payload.type(), payload.message());
+					case Service.DUNGEON_SECRETS -> DungeonWebSocket.handleMessage(payload.type(), payload.message());
 					case Service.EGG_WAYPOINTS -> EggWaypointMessage.handle(payload.type(), payload.message());
 				}
 			}

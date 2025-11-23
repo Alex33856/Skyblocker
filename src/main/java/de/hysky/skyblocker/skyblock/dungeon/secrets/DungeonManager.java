@@ -736,6 +736,19 @@ public class DungeonManager {
 	}
 
 	/**
+	 * Adds a room that was shared over the WebSocket.
+	 */
+	protected static void addRoomFromWs(Room room) {
+		for (Vector2ic physicalPos : room.segments) {
+			rooms.put(physicalPos, room);
+		}
+	}
+
+	protected static boolean validateRoomSegmentsFromWs(List<Vector2ic> segments) {
+		return segments.stream().anyMatch(rooms::containsKey);
+	}
+
+	/**
 	 * Extracts the rendering for secret waypoints in {@link #currentRoom} if {@link #shouldProcess()} and {@link #currentRoom} is not null.
 	 */
 	private static void extractRendering(PrimitiveCollector collector) {
