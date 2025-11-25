@@ -12,18 +12,12 @@ import java.util.UUID;
 
 public record DungeonRoomMatchMessage(String type, UUID uuid, Room.Type roomType, Room.Shape shape, Room.Direction direction,
 									  String room, List<Vector2ic> pos) implements Message<DungeonRoomMatchMessage> {
-
-	public static final String TYPE = "room_match";
-
-	public DungeonRoomMatchMessage(UUID uuid, Room.Type roomType, Room.Shape shape, Room.Direction direction, String room, List<Vector2ic> pos) {
-		this(TYPE, uuid, roomType, shape, direction, room, pos);
-	}
-
 	private static final Codec<Vector2ic> VECTOR2I_CODEC = RecordCodecBuilder.create(instance -> instance.group(
 			Codec.INT.fieldOf("x").forGetter(Vector2ic::x),
 			Codec.INT.fieldOf("y").forGetter(Vector2ic::y)
 	).apply(instance, Vector2i::new));
 
+	public static final String TYPE = "room_match";
 	public static final Codec<DungeonRoomMatchMessage> CODEC = RecordCodecBuilder.create(instance -> instance.group(
 					Codec.STRING.fieldOf("type").forGetter(DungeonRoomMatchMessage::type),
 					Uuids.STRING_CODEC.fieldOf("uuid").forGetter(DungeonRoomMatchMessage::uuid),
@@ -33,6 +27,10 @@ public record DungeonRoomMatchMessage(String type, UUID uuid, Room.Type roomType
 					Codec.STRING.fieldOf("room").forGetter(DungeonRoomMatchMessage::room),
 					VECTOR2I_CODEC.listOf(1, 5).fieldOf("pos").forGetter(DungeonRoomMatchMessage::pos))
 			.apply(instance, DungeonRoomMatchMessage::new));
+
+	public DungeonRoomMatchMessage(UUID uuid, Room.Type roomType, Room.Shape shape, Room.Direction direction, String room, List<Vector2ic> pos) {
+		this(TYPE, uuid, roomType, shape, direction, room, pos);
+	}
 
 	@Override
 	public Codec<DungeonRoomMatchMessage> getCodec() {

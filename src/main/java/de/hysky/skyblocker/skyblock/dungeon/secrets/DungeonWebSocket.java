@@ -8,7 +8,8 @@ import de.hysky.skyblocker.utils.ws.Service;
 import de.hysky.skyblocker.utils.ws.Type;
 import de.hysky.skyblocker.utils.ws.WsStateManager;
 import de.hysky.skyblocker.utils.ws.message.DungeonRoomMatchMessage;
-import de.hysky.skyblocker.utils.ws.message.DungeonSecretCountMessage;
+import de.hysky.skyblocker.utils.ws.message.DungeonRoomSecretCountMessage;
+import de.hysky.skyblocker.utils.ws.message.DungeonRunSecretCountMessage;
 
 import java.util.Optional;
 
@@ -30,8 +31,10 @@ public class DungeonWebSocket {
 			if (message.get("type").asString().isError()) return;
 			String messageType = message.get("type").asString().getOrThrow();
 			switch (messageType) {
+				case DungeonRunSecretCountMessage.TYPE -> RenderHelper.runOnRenderThread(() -> DungeonRunSecretCountMessage.handle(message));
+				// Secret Sync messages
 				case DungeonRoomMatchMessage.TYPE -> RenderHelper.runOnRenderThread(() -> SecretSync.handleRoomMatch(DungeonRoomMatchMessage.CODEC.parse(message).getOrThrow()));
-				case DungeonSecretCountMessage.TYPE -> RenderHelper.runOnRenderThread(() -> DungeonSecretCountMessage.handle(message));
+				case DungeonRoomSecretCountMessage.TYPE -> RenderHelper.runOnRenderThread(() -> SecretSync.handleSecretCountUpdate(DungeonRoomSecretCountMessage.CODEC.parse(message).getOrThrow()));
 			}
 		}
 	}

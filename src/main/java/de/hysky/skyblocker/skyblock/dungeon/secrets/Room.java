@@ -62,6 +62,10 @@ public class Room implements Tickable, Renderable {
 
 	public boolean whiteChecked = false;
 
+	protected int secretsFound = 0;
+
+	public boolean secretCountOutdated = true;
+
     /**
      * The shape of the room. See {@link #determineShape(IntSortedSet, IntSortedSet)}.
      */
@@ -579,21 +583,16 @@ public class Room implements Tickable, Renderable {
 						SecretsTracker.onChestLocked();
 					});
         }
+		if (secretCountOutdated) updateSecretCount(message);
     }
 
-    /**
-     * Checks if the number of found secrets is equals or greater than the total number of secrets in the room.
-     *
-     * @param message the message to check in
-     * @return whether the number of found secrets is equals or greater than the total number of secrets in the room
-     */
-    protected static boolean isAllSecretsFound(String message) {
-        Matcher matcher = SECRETS.matcher(message);
-        if (matcher.find()) {
-            return Integer.parseInt(matcher.group(1)) >= Integer.parseInt(matcher.group(2));
-        }
-        return false;
-    }
+	protected void updateSecretCount(String message) {
+		Matcher matcher = SECRETS.matcher(message);
+		if (!matcher.find()) return;
+		secretsFound = Integer.parseInt(matcher.group(1));
+		secretCountOutdated = false;
+		DungeonEvents.SECRET_COUNT_UPDATED.invoker().onSecretCountUpdate(this, false);
+	}
 
     /**
      * Marks the secret at the interaction position as found when the player interacts with a chest, player head, or lever
@@ -662,8 +661,10 @@ public class Room implements Tickable, Renderable {
      * @param args           the args for the {@link org.slf4j.Logger#info(String, Object...) Logger#info(String, Object...)} call
      */
     private void markSecretsAndLogInfo(SecretWaypoint secretWaypoint, boolean found, String msg, Object... args) {
-		if (found)
-			SecretsTracker.onSecretFound();
+		if (found) {
+			DungeonEvents.SECRET_FOUND.invoker().onSecretFound(this, secretWaypoint);
+			secretCountOutdated = true;
+		}
         markSecrets(secretWaypoint.secretIndex, found);
         DungeonManager.LOGGER.info(msg, args);
     }
@@ -687,6 +688,10 @@ public class Room implements Tickable, Renderable {
     protected int getSecretCount() {
         return secretWaypoints.rowMap().size();
     }
+
+	public int getFoundSecretCount() {
+		return secretsFound;
+	}
 
     public enum Type implements StringIdentifiable {
         ENTRANCE(MapColor.DARK_GREEN.getRenderColorByte(MapColor.Brightness.HIGH), "Entrance"),

@@ -6,7 +6,7 @@ import de.hysky.skyblocker.utils.Constants;
 import de.hysky.skyblocker.utils.Utils;
 import de.hysky.skyblocker.utils.ws.Service;
 import de.hysky.skyblocker.utils.ws.WsMessageHandler;
-import de.hysky.skyblocker.utils.ws.message.DungeonSecretCountMessage;
+import de.hysky.skyblocker.utils.ws.message.DungeonRunSecretCountMessage;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.Entity;
 import net.minecraft.text.Text;
@@ -27,6 +27,7 @@ public class SecretsTracker {
 	public static void init() {
 		DungeonEvents.DUNGEON_STARTED.register(SecretsTracker::reset);
 		DungeonEvents.DUNGEON_ENDED.register(SecretsTracker::sendSecretCount);
+		DungeonEvents.SECRET_FOUND.register(SecretsTracker::onSecretFound);
 	}
 
 	private static void reset() {
@@ -37,10 +38,10 @@ public class SecretsTracker {
 	private static void sendSecretCount() {
 		if (hasSent || CLIENT.player == null) return;
 		sendMessageForPlayer(CLIENT.getSession().getUsername(), secretsFound);
-		WsMessageHandler.sendServerMessage(Service.DUNGEON_SECRETS, new DungeonSecretCountMessage(CLIENT.player.getUuid(), secretsFound));
+		WsMessageHandler.sendServerMessage(Service.DUNGEON_SECRETS, new DungeonRunSecretCountMessage(CLIENT.player.getUuid(), secretsFound));
 	}
 
-	public static void onSecretCountReceived(DungeonSecretCountMessage message) {
+	public static void onSecretCountReceived(DungeonRunSecretCountMessage message) {
 		if (!Utils.isInDungeons() || CLIENT.player == null || CLIENT.world == null) return;
 
 		Entity player = CLIENT.world.getPlayerByUuid(message.uuid());
@@ -58,7 +59,7 @@ public class SecretsTracker {
 		CLIENT.player.sendMessage(Constants.PREFIX.get().append(Text.translatable("skyblocker.dungeons.secretsTracker.feedback", Text.literal(player).append(" (" + DungeonPlayerManager.getClassFromPlayer(player).displayName() + ")").withColor(0xF57542), "§7" + secretCount)), false);
 	}
 
-	protected static void onSecretFound() {
+	protected static void onSecretFound(Room room, SecretWaypoint secretWaypoint) {
 		secretsFound += 1;
 	}
 

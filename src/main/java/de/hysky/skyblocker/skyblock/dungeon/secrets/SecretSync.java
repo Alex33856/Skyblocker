@@ -6,11 +6,15 @@ import de.hysky.skyblocker.events.DungeonEvents;
 import de.hysky.skyblocker.utils.ws.Service;
 import de.hysky.skyblocker.utils.ws.WsMessageHandler;
 import de.hysky.skyblocker.utils.ws.message.DungeonRoomMatchMessage;
+import de.hysky.skyblocker.utils.ws.message.DungeonRoomSecretCountMessage;
+import de.hysky.skyblocker.utils.ws.message.Message;
 import net.minecraft.client.MinecraftClient;
 import org.joml.Vector2ic;
 import org.slf4j.Logger;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.UUID;
 
 public class SecretSync {
 	private static final MinecraftClient CLIENT = MinecraftClient.getInstance();
@@ -19,6 +23,14 @@ public class SecretSync {
 	@Init
 	public static void init() {
 		DungeonEvents.ROOM_MATCHED.register(SecretSync::syncRoomMatch);
+		DungeonEvents.SECRET_COUNT_UPDATED.register(SecretSync::syncSecretCount);
+	}
+
+	public static boolean checkUUID(UUID uuid, Message<?> msg) {
+		if (CLIENT.world == null) return false;
+		if (CLIENT.world.getPlayerByUuid(uuid) != null) return true;
+		LOGGER.error("[Skyblocker Dungeon Secret Sync] Received a message from a player not in the Dungeons run, msg: {}", msg);
+		return false;
 	}
 
 	public static void syncRoomMatch(Room room) {
@@ -28,17 +40,14 @@ public class SecretSync {
 	}
 
 	public static void handleRoomMatch(DungeonRoomMatchMessage msg) {
+		if (!checkUUID(msg.uuid(), msg)) return;
 		if (DungeonManager.getRoomMetadata(msg.room()) == null) {
 			LOGGER.error("[Skyblocker Dungeons Secret Sync] Received an invalid room over the websocket, msg: {}", msg);
 			return;
 		}
 
-		MinecraftClient client = MinecraftClient.getInstance();
-		if (client.world == null) return;
-		if (client.world.getPlayerByUuid(msg.uuid()) == null) {
-			LOGGER.error("[Skyblocker Dungeon Secret Sync] Received a message from a player not in the Dungeons run, msg: {}", msg);
-			return;
-		}
+		// just in case!
+		if (DungeonManager.getRoomsStream().count() > 36) return;
 
 		// Check if we already have this room
 		if (!DungeonManager.validateRoomSegmentsFromWs(msg.pos())) return;
@@ -46,5 +55,23 @@ public class SecretSync {
 		// Make the room and add it
 		Room newRoom = new Room(msg.roomType(), msg.shape(), msg.direction(), msg.room(), msg.pos().toArray(Vector2ic[]::new));
 		DungeonManager.addRoomFromWs(newRoom);
+	}
+
+	/**
+	 * Syncs the secret count, processed immediately.
+	 */
+	public static void syncSecretCount(Room room, boolean fromWS) {
+		if (CLIENT.player == null || fromWS) return;
+		WsMessageHandler.sendServerMessage(Service.DUNGEON_SECRETS, new DungeonRoomSecretCountMessage(CLIENT.player.getUuid(), room.getName(), room.getFoundSecretCount()));
+	}
+
+	public static void handleSecretCountUpdate(DungeonRoomSecretCountMessage msg) {
+		if (!checkUUID(msg.uuid(), msg)) return;
+		Room room = DungeonManager.getRoomsStream().filter(rm -> Objects.equals(rm.getName(), msg.roomName())).findAny().orElse(null);
+		if (room == null || room.secretsFound >= msg.secretCount() || msg.secretCount() > room.getSecretCount()) return;
+
+		room.secretsFound = msg.secretCount();
+		room.secretCountOutdated = false;
+		DungeonEvents.SECRET_COUNT_UPDATED.invoker().onSecretCountUpdate(room, true);
 	}
 }
