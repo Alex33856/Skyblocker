@@ -669,6 +669,17 @@ public class Room implements Tickable, Renderable {
         DungeonManager.LOGGER.info(msg, args);
     }
 
+	protected int getIndexByWaypointHash(int waypointHash) {
+		for (int i = 0; i < getSecretCount(); i++) {
+			if (!secretWaypoints.containsRow(i)) continue;
+			for (SecretWaypoint waypoint : secretWaypoints.row(i).values()) {
+				if (waypoint == null || !waypoint.isEnabled()) continue;
+				if (waypoint.hashCode() == waypointHash) return i;
+			}
+		}
+		return -1;
+	}
+
     protected boolean markSecrets(int secretIndex, boolean found) {
         Map<BlockPos, SecretWaypoint> secret = secretWaypoints.row(secretIndex);
         if (secret.isEmpty()) {

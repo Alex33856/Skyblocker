@@ -7,6 +7,7 @@ import de.hysky.skyblocker.utils.render.RenderHelper;
 import de.hysky.skyblocker.utils.ws.Service;
 import de.hysky.skyblocker.utils.ws.Type;
 import de.hysky.skyblocker.utils.ws.WsStateManager;
+import de.hysky.skyblocker.utils.ws.message.DungeonRoomHideWaypointMessage;
 import de.hysky.skyblocker.utils.ws.message.DungeonRoomMatchMessage;
 import de.hysky.skyblocker.utils.ws.message.DungeonRoomSecretCountMessage;
 import de.hysky.skyblocker.utils.ws.message.DungeonRunSecretCountMessage;
@@ -35,6 +36,7 @@ public class DungeonWebSocket {
 				// Secret Sync messages
 				case DungeonRoomMatchMessage.TYPE -> RenderHelper.runOnRenderThread(() -> SecretSync.handleRoomMatch(DungeonRoomMatchMessage.CODEC.parse(message).getOrThrow()));
 				case DungeonRoomSecretCountMessage.TYPE -> RenderHelper.runOnRenderThread(() -> SecretSync.handleSecretCountUpdate(DungeonRoomSecretCountMessage.CODEC.parse(message).getOrThrow()));
+				case DungeonRoomHideWaypointMessage.TYPE -> RenderHelper.runOnRenderThread(() -> SecretSync.handleHideWaypoint(DungeonRoomHideWaypointMessage.CODEC.parse(message).getOrThrow()));
 			}
 		}
 	}
