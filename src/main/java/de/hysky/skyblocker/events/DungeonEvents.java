@@ -27,7 +27,7 @@ public class DungeonEvents {
 	});
 
 	/**
-	 * Called after the dungeons run ends and the score is being printed in chat.
+	 * Called after the dungeons run ends and the team score is being sent in chat.
 	 */
 	public static final Event<DungeonEnded> DUNGEON_ENDED = EventFactory.createArrayBacked(DungeonEnded.class, callbacks -> () -> {
 		for (DungeonEnded callback : callbacks) {
