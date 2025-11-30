@@ -7,6 +7,7 @@ import de.hysky.skyblocker.config.SkyblockerConfigManager;
 import de.hysky.skyblocker.config.configs.DungeonsConfig;
 import de.hysky.skyblocker.events.DungeonEvents;
 import de.hysky.skyblocker.skyblock.dungeon.secrets.DungeonManager;
+import de.hysky.skyblocker.skyblock.dungeon.secrets.SecretSync;
 import de.hysky.skyblocker.skyblock.tabhud.util.PlayerListManager;
 import de.hysky.skyblocker.utils.Constants;
 import de.hysky.skyblocker.utils.ItemUtils;
@@ -230,6 +231,7 @@ public class DungeonScore {
 		if (mimicKilled) return;
 		if (!isEntityMimic(entity)) return;
 		if (MIMIC_MESSAGE_CONFIG.get().sendMimicMessage) MessageScheduler.INSTANCE.sendMessageAfterCooldown("/pc " + MIMIC_MESSAGE, true);
+		SecretSync.syncMimicKilled();
 		mimicKilled = true;
 	}
 
@@ -237,10 +239,11 @@ public class DungeonScore {
 		mimicKilled = true;
 	}
 
-	private static void onPrinceKill(boolean fromHypixel) {
+	public static void onPrinceKill(boolean fromHypixel) {
 		if (princeKilled) return;
 		//Ensure that we don't send a prince kill message if a teammate does
 		if (PRINCE_MESSAGE_CONFIG.get().sendPrinceMessage && fromHypixel) MessageScheduler.INSTANCE.sendMessageAfterCooldown("/pc " + PRINCE_MESSAGE, true);
+		SecretSync.syncPrinceKilled();
 		princeKilled = true;
 	}
 

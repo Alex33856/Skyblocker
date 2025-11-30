@@ -3,19 +3,16 @@ package de.hysky.skyblocker.skyblock.dungeon.secrets;
 import com.mojang.logging.LogUtils;
 import de.hysky.skyblocker.annotations.Init;
 import de.hysky.skyblocker.events.DungeonEvents;
+import de.hysky.skyblocker.skyblock.dungeon.DungeonScore;
 import de.hysky.skyblocker.utils.ws.Service;
 import de.hysky.skyblocker.utils.ws.WsMessageHandler;
-import de.hysky.skyblocker.utils.ws.message.DungeonRoomHideWaypointMessage;
-import de.hysky.skyblocker.utils.ws.message.DungeonRoomMatchMessage;
-import de.hysky.skyblocker.utils.ws.message.DungeonRoomSecretCountMessage;
-import de.hysky.skyblocker.utils.ws.message.Message;
+import de.hysky.skyblocker.utils.ws.message.*;
 import net.minecraft.client.MinecraftClient;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Vector2ic;
 import org.slf4j.Logger;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.UUID;
 
 public class SecretSync {
@@ -98,5 +95,27 @@ public class SecretSync {
 		int index = room.getIndexByWaypointHash(msg.waypointHash());
 		if (index == -1) return;
 		room.markSecrets(index, true);
+	}
+
+	public static void syncMimicKilled() {
+		if (CLIENT.player == null) return;
+		WsMessageHandler.sendServerMessage(Service.DUNGEON_SECRETS,
+				new DungeonMimicKilledMessage(CLIENT.player.getUuid()));
+	}
+
+	public static void handleMimicKilled(DungeonMimicKilledMessage msg) {
+		if (!checkUUID(msg.uuid(), msg)) return;
+		DungeonScore.onMimicKill();
+	}
+
+	public static void syncPrinceKilled() {
+		if (CLIENT.player == null) return;
+		WsMessageHandler.sendServerMessage(Service.DUNGEON_SECRETS,
+				new DungeonPrinceKilledMessage(CLIENT.player.getUuid()));
+	}
+
+	public static void handlePrinceKilled(DungeonPrinceKilledMessage msg) {
+		if (!checkUUID(msg.uuid(), msg)) return;
+		DungeonScore.onPrinceKill(false);
 	}
 }
