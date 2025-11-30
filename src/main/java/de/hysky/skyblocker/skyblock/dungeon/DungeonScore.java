@@ -78,7 +78,7 @@ public class DungeonScore {
 	private static int score;
 
 	@Init
-    public static void init() {
+	public static void init() {
 		Scheduler.INSTANCE.scheduleCyclic(DungeonScore::tick, 20);
 		ClientPlayConnectionEvents.JOIN.register((handler, sender, client) -> reset());
 		DungeonEvents.DUNGEON_STARTED.register(DungeonScore::onDungeonStart);
@@ -242,8 +242,10 @@ public class DungeonScore {
 	public static void onPrinceKill(boolean fromHypixel) {
 		if (princeKilled) return;
 		//Ensure that we don't send a prince kill message if a teammate does
-		if (PRINCE_MESSAGE_CONFIG.get().sendPrinceMessage && fromHypixel) MessageScheduler.INSTANCE.sendMessageAfterCooldown("/pc " + PRINCE_MESSAGE, true);
-		SecretSync.syncPrinceKilled();
+		if (fromHypixel) {
+			if (PRINCE_MESSAGE_CONFIG.get().sendPrinceMessage) MessageScheduler.INSTANCE.sendMessageAfterCooldown("/pc " + PRINCE_MESSAGE, true);
+			SecretSync.syncPrinceKilled();
+		}
 		princeKilled = true;
 	}
 
