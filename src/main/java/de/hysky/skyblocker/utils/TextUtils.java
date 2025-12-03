@@ -153,6 +153,7 @@ public final class TextUtils {
 		String[] split = string.toLowerCase(Locale.ENGLISH).split(" ");
 
 		for (int i = 0; i < split.length; i++) {
+			if (split[i].isEmpty()) continue;
 			split[i] = Character.toUpperCase(split[i].charAt(0)) + split[i].substring(1);
 		}
 
