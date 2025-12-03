@@ -2,7 +2,7 @@ package de.hysky.skyblocker.skyblock.item.wikilookup;
 
 import java.util.function.Predicate;
 
-import org.apache.commons.text.WordUtils;
+import de.hysky.skyblocker.utils.TextUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import com.google.common.collect.Iterables;
@@ -35,7 +35,7 @@ public class EnchantmentBookItemLookup implements WikiLookup {
 		String firstEnchantment = Iterables.getFirst(enchantments.getKeys(), null)
 				.replace("ultimate_", "") // Stripped out ultimate prefix
 				.replace("_", " ").trim();
-		String enchantment = REPLACING_FUNCTION.apply(WordUtils.capitalizeFully(firstEnchantment + " enchantment"));
+		String enchantment = REPLACING_FUNCTION.apply(TextUtils.titleCase(firstEnchantment + " enchantment"));
 		WikiLookupManager.openWikiLinkName(enchantment, player, useOfficial);
 	}
 

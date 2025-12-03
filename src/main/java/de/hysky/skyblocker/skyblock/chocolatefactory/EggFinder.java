@@ -32,7 +32,6 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.StringIdentifiable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
-import org.apache.commons.text.WordUtils;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -252,7 +251,7 @@ public class EggFinder {
 
 		@Override
 		public String toString() {
-			return WordUtils.capitalizeFully(this.name());
+			return TextUtils.titleCase(this.name());
 		}
 
 		@Override

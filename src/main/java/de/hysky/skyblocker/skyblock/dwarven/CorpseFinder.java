@@ -11,6 +11,7 @@ import de.hysky.skyblocker.utils.ColorUtils;
 import de.hysky.skyblocker.utils.Constants;
 import de.hysky.skyblocker.utils.Location;
 import de.hysky.skyblocker.utils.PosUtils;
+import de.hysky.skyblocker.utils.TextUtils;
 import de.hysky.skyblocker.utils.command.argumenttypes.blockpos.ClientBlockPosArgumentType;
 import de.hysky.skyblocker.utils.render.WorldRenderExtractionCallback;
 import de.hysky.skyblocker.utils.render.primitive.PrimitiveCollector;
@@ -31,7 +32,6 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
 import org.apache.commons.lang3.EnumUtils;
-import org.apache.commons.text.WordUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -182,7 +182,7 @@ public class CorpseFinder {
 		MinecraftClient.getInstance().player.sendMessage(
 				Constants.PREFIX.get()
 						.append("Found a ")
-						.append(Text.literal(WordUtils.capitalizeFully(corpse.corpseType.asString()) + " Corpse")
+						.append(Text.literal(TextUtils.titleCase(corpse.corpseType.asString()) + " Corpse")
 								.withColor(corpse.corpseType.color.getColorValue()))
 						.append(" at " + corpse.entity.getBlockPos().up().toShortString() + "!")
 						.styled(style -> style.withClickEvent(new ClickEvent.RunCommand("/skyblocker corpseHelper shareLocation " + PosUtils.toSpaceSeparatedString(corpse.waypoint.pos) + " " + corpse.corpseType.toString().toLowerCase(Locale.ENGLISH)))
@@ -190,7 +190,7 @@ public class CorpseFinder {
 	}
 
 	private static void shareLocation(BlockPos pos, CorpseType corpseType) {
-		MessageScheduler.INSTANCE.sendMessageAfterCooldown("/pc " + toSkyhanniFormat(pos) + " | (" + WordUtils.capitalizeFully(corpseType.asString()) + " Corpse)", true);
+		MessageScheduler.INSTANCE.sendMessageAfterCooldown("/pc " + toSkyhanniFormat(pos) + " | (" + TextUtils.titleCase(corpseType.asString()) + " Corpse)", true);
 	}
 
 	@SuppressWarnings("DataFlowIssue")

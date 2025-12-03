@@ -8,7 +8,7 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.function.Function;
 
-import org.apache.commons.text.WordUtils;
+import de.hysky.skyblocker.utils.TextUtils;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 
@@ -67,7 +67,7 @@ public class CustomAnimatedHelmetTextures {
 	 * Formats the id of an animated head into a user-friendly name. This is also what NEU does as far as I know.
 	 */
 	public static String formatName(String id) {
-		return WordUtils.capitalizeFully(id.replace('_', ' '));
+		return TextUtils.titleCase(id.replace('_', ' '));
 	}
 
 	@Nullable

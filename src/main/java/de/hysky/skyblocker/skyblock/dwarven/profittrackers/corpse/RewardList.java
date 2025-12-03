@@ -1,6 +1,7 @@
 package de.hysky.skyblocker.skyblock.dwarven.profittrackers.corpse;
 
 import de.hysky.skyblocker.skyblock.dwarven.CorpseType;
+import de.hysky.skyblocker.utils.TextUtils;
 import de.hysky.skyblocker.utils.render.HudHelper;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import it.unimi.dsi.fastutil.objects.ObjectIterator;
@@ -14,7 +15,6 @@ import net.minecraft.client.gui.widget.ElementListWidget;
 import net.minecraft.client.gui.widget.TextWidget;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
-import org.apache.commons.text.WordUtils;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -181,7 +181,7 @@ public class RewardList extends ElementListWidget<RewardList.AbstractEntry> {
 
 		// For the keys
 		private MultiEntry(CorpseType corpseType, int amount) {
-			this.itemName = new TextWidget(Text.literal(WordUtils.capitalizeFully(corpseType.name()) + " Corpse Key Cost").formatted(corpseType.color), MinecraftClient.getInstance().textRenderer)/*.alignLeft()*/;
+			this.itemName = new TextWidget(Text.literal(TextUtils.titleCase(corpseType.name()) + " Corpse Key Cost").formatted(corpseType.color), MinecraftClient.getInstance().textRenderer)/*.alignLeft()*/;
 			this.amount = new TextWidget(Text.literal("x" + amount).formatted(Formatting.AQUA), MinecraftClient.getInstance().textRenderer)/*.alignCenter()*/;
 			double pricePerKey = corpseType.getKeyPrice();
 			// Gotta make do with weird formatting until we have actual formatters

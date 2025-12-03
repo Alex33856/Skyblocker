@@ -2,6 +2,7 @@ package de.hysky.skyblocker.skyblock.dwarven.profittrackers.corpse;
 
 import de.hysky.skyblocker.skyblock.dwarven.CorpseType;
 import de.hysky.skyblocker.skyblock.itemlist.ItemRepository;
+import de.hysky.skyblocker.utils.TextUtils;
 import de.hysky.skyblocker.utils.render.HudHelper;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
@@ -13,7 +14,6 @@ import net.minecraft.client.gui.widget.TextWidget;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
-import org.apache.commons.text.WordUtils;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,7 +44,7 @@ public class CorpseList extends ElementListWidget<CorpseList.AbstractEntry> {
 		for (int i = 0; i < lootList.size(); i++) {
 			CorpseLoot loot = lootList.get(i);
 			CorpseType type = loot.corpseType();
-			addEntry(new CorpseList.SingleEntry(Text.literal(WordUtils.capitalizeFully(type.name()) + " Corpse").formatted(type.color)));
+			addEntry(new CorpseList.SingleEntry(Text.literal(TextUtils.titleCase(type.name()) + " Corpse").formatted(type.color)));
 			//TODO: Make this use the Formatters class instead when it's added
 			addEntry(new CorpseList.SingleEntry(Text.literal(DateTimeFormatter.ISO_LOCAL_DATE_TIME.format(LocalDateTime.ofInstant(loot.timestamp(), ZoneId.systemDefault()))).formatted(Formatting.LIGHT_PURPLE)));
 
