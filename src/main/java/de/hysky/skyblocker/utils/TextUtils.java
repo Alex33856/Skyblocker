@@ -5,6 +5,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -146,5 +147,15 @@ public final class TextUtils {
 		}
 
 		return List.of();
+	}
+
+	public static String titleCase(String string) {
+		String[] split = string.toLowerCase(Locale.ENGLISH).split(" ");
+
+		for (int i = 0; i < split.length; i++) {
+			split[i] = Character.toUpperCase(split[i].charAt(0)) + split[i].substring(1);
+		}
+
+		return String.join(" ", split);
 	}
 }
