@@ -7,10 +7,14 @@ public class TextUtilsTest {
 	@Test
 	void testTitleCase() {
 		Assertions.assertEquals("Hello World", TextUtils.titleCase("hello world"));
+		Assertions.assertEquals("Hello World", TextUtils.titleCase("Hello World"));
 		Assertions.assertEquals("Hello World", TextUtils.titleCase("HELLO WORLD"));
 		Assertions.assertEquals("Aaaaaaaaa", TextUtils.titleCase("AaAaAaAaA"));
 
 		Assertions.assertEquals("", TextUtils.titleCase(""));
+		Assertions.assertEquals("   ", TextUtils.titleCase("   "));
 		Assertions.assertEquals("Whitespace   Between", TextUtils.titleCase("whitespace   between"));
+
+		Assertions.assertEquals("123", TextUtils.titleCase("123"));
 	}
 }

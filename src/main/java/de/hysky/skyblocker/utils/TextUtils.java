@@ -151,6 +151,7 @@ public final class TextUtils {
 
 	public static String titleCase(String string) {
 		String[] split = string.toLowerCase(Locale.ENGLISH).split(" ");
+		if (split.length == 0) return string;
 
 		for (int i = 0; i < split.length; i++) {
 			if (split[i].isEmpty()) continue;
