@@ -51,7 +51,14 @@ public abstract class InventoryScreenMixin extends AbstractContainerScreen<Inven
 		return Utils.isOnSkyblock() && SkyblockerConfigManager.get().uiAndVisuals.showEquipmentInInventory ? x + 21 : x;
 	}
 
+	//? if >1.21.10 {
 	@WrapWithCondition(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screens/inventory/EffectsInInventory;render(Lnet/minecraft/client/gui/GuiGraphics;II)V"))
+	//? } else {
+	/*@WrapWithCondition(method = "render", at = {
+			@At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screens/inventory/EffectsInInventory;renderEffects(Lnet/minecraft/client/gui/GuiGraphics;II)V"),
+			@At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screens/inventory/EffectsInInventory;renderTooltip(Lnet/minecraft/client/gui/GuiGraphics;II)V")
+	}, require = 2)
+	*///? }
 	private boolean skyblocker$dontDrawStatusEffects(EffectsInInventory statusEffectsDisplay, GuiGraphics context, int mouseX, int mouseY) {
 		return !(Utils.isOnSkyblock() && SkyblockerConfigManager.get().uiAndVisuals.hideStatusEffectOverlay || Utils.isInGarden() && SkyblockerConfigManager.get().farming.garden.gardenPlotsWidget);
 	}

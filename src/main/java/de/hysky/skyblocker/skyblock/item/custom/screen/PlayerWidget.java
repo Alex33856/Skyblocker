@@ -1,20 +1,25 @@
 package de.hysky.skyblocker.skyblock.item.custom.screen;
 
 import de.hysky.skyblocker.SkyblockerMod;
-import de.hysky.skyblocker.mixins.accessors.InventoryScreenInvoker;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.renderer.RenderPipelines;
-import net.minecraft.client.renderer.entity.state.EntityRenderState;
 import net.minecraft.client.sounds.SoundManager;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.Mth;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
+
+//? if >1.21.10 {
+import de.hysky.skyblocker.mixins.accessors.InventoryScreenInvoker;
+import net.minecraft.client.renderer.entity.state.EntityRenderState;
+//? } else {
+/*import net.minecraft.client.gui.screens.inventory.InventoryScreen;
+*///? }
 
 public class PlayerWidget extends AbstractWidget {
 	private static final Identifier INNER_SPACE_TEXTURE = SkyblockerMod.id("menu_inner_space");
@@ -45,8 +50,12 @@ public class PlayerWidget extends AbstractWidget {
 		Vector3f translation = new Vector3f(0, player.getBbHeight() / 2f + 0.0625f, 0);
 		Quaternionf rotation = new Quaternionf().rotationXYZ(-xRotation * Mth.DEG_TO_RAD, -yRotation * Mth.DEG_TO_RAD, FLIP_ROTATION);
 
+		//? if >1.21.10 {
 		EntityRenderState renderState = InventoryScreenInvoker.invokeExtractRenderState(this.player);
 		context.submitEntityRenderState(renderState, size, translation, rotation, null, getX(), getY(), this.getRight(), this.getBottom());
+		//? } else {
+		/*InventoryScreen.renderEntityInInventory(context, getX(), getY(), this.getRight(), this.getBottom(), size, translation, rotation, null, player);
+		*///? }
 	}
 
 	@Override

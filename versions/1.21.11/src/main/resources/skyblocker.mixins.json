@@ -71,7 +71,7 @@
     "accessors.EntityRenderDispatcherAccessor",
     "accessors.FontAccessor",
     "accessors.FrustumInvoker",
-	"accessors.GuiGraphicsInvoker",
+    "accessors.GuiGraphicsInvoker",
     "accessors.GuiInvoker",
     "accessors.InventoryScreenInvoker",
     "accessors.MapItemSavedDataAccessor",

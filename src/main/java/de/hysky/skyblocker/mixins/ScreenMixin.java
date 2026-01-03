@@ -18,7 +18,12 @@ public class ScreenMixin {
 	@Shadow
 	protected Minecraft minecraft;
 
+	//? if >1.21.10 {
 	@Inject(method = "init(II)V", at = @At("TAIL"))
+	//? } else {
+	/*
+	@Inject(method = "init(Lnet/minecraft/client/Minecraft;II)V", at = @At("TAIL"))
+	*///? }
 	private void skyblocker$hideCursor(CallbackInfo ci) {
 		Object instance = this;
 
