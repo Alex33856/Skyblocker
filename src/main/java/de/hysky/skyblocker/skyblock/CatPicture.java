@@ -82,7 +82,7 @@ public class CatPicture {
 		//? if >1.21.10 {
 		commandQueue.submitCustomGeometry(matrices, RenderTypes.text(TEXTURE), (matricesEntry, buffer) -> {
 		//?} else {
-			/*commandQueue.submitCustomGeometry(matrices, RenderType.text(TEXTURE), (matricesEntry, buffer) -> {
+		/*commandQueue.submitCustomGeometry(matrices, RenderType.text(TEXTURE), (matricesEntry, buffer) -> {
 		*///?}
 			float z = 1F - 1 / 16f - 1 / 2048f;
 			buffer.addVertex(matricesEntry, 0.0F, 1, z).setColor(CommonColors.WHITE).setUv(0.0F, 1.0F).setLight(LightTexture.FULL_BRIGHT);

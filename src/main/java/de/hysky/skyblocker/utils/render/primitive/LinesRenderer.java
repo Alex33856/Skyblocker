@@ -35,7 +35,7 @@ public final class LinesRenderer implements PrimitiveRenderer<LinesRenderState> 
 			buffer.addVertex(positionMatrix, (float) points[i].x(), (float) points[i].y(), (float) points[i].z())
 			.setColor(state.colourComponents[0], state.colourComponents[1], state.colourComponents[2], state.alpha)
 			.setNormal(normalVec.x(), normalVec.y(), normalVec.z())
-			/*? if >1.21.10 {*/.setLineWidth(state.lineWidth);/*?} else {*//*; *//*?}*/
+			/*? if >1.21.10 {*/.setLineWidth(state.lineWidth); /*?} else {*//*; *//*?}*/
 		}
 	}
 }
