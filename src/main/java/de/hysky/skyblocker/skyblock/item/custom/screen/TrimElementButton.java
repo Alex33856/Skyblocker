@@ -14,7 +14,6 @@ import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.client.input.InputWithModifiers;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelLayers;
-import net.minecraft.client.model.player.PlayerModel;
 import net.minecraft.client.renderer.entity.ArmorModelSet;
 import net.minecraft.client.renderer.entity.layers.EquipmentLayerRenderer;
 import net.minecraft.client.renderer.entity.state.AvatarRenderState;
@@ -38,6 +37,12 @@ import net.minecraft.world.item.equipment.trim.TrimMaterial;
 import net.minecraft.world.item.equipment.trim.TrimMaterials;
 import net.minecraft.world.item.equipment.trim.TrimPattern;
 import org.jspecify.annotations.Nullable;
+
+//? if >1.21.10 {
+import net.minecraft.client.model.player.PlayerModel;
+//? } else {
+/*import net.minecraft.client.model.PlayerModel;
+*///? }
 
 public abstract sealed class TrimElementButton extends AbstractButton permits TrimElementButton.Pattern, TrimElementButton.Material {
 	private static final ItemStack BARRIER = new ItemStack(Items.BARRIER);
@@ -63,8 +68,12 @@ public abstract sealed class TrimElementButton extends AbstractButton permits Tr
 	}
 
 	@Override
+	//? if >1.21.10 {
 	public void renderContents(GuiGraphics context, int mouseX, int mouseY, float deltaTicks) {
 		this.renderDefaultSprite(context);
+	//? } else {
+	/* public void renderString(GuiGraphics context, net.minecraft.client.gui.Font textRenderer, int color) {
+	*///? }
 		draw(context);
 	}
 

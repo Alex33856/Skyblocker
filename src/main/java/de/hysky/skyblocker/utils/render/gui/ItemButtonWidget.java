@@ -1,6 +1,7 @@
 package de.hysky.skyblocker.utils.render.gui;
 
 import java.time.Duration;
+
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.Tooltip;
@@ -27,8 +28,16 @@ public class ItemButtonWidget extends Button {
 	}
 
 	@Override
+	//? if <1.21.11 {
+	/*public void renderString(GuiGraphics context, net.minecraft.client.gui.Font textRenderer, int color) {}
+
+	@Override
+	protected void renderWidget(GuiGraphics context, int mouseX, int mouseY, float delta) {
+		super.renderWidget(context, mouseX, mouseY, delta);
+	*///? } else {
 	protected void renderContents(GuiGraphics context, int mouseX, int mouseY, float delta) {
 		this.renderDefaultSprite(context);
+	//? }
 		context.renderItem(this.item, getX() + getWidth() / 2 - 8, getY() + getHeight() / 2 - 8);
 	}
 }

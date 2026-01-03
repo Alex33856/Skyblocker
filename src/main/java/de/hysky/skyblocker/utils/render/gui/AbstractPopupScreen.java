@@ -52,7 +52,7 @@ public class AbstractPopupScreen extends Screen {
 
 	@Override
 	protected void repositionElements() {
-		this.backgroundScreen.resize(this.width, this.height);
+		this.backgroundScreen.resize(/*? if <1.21.11 {*//*this.minecraft,*//*? }*/ this.width, this.height);
 	}
 
 	@Override

@@ -155,7 +155,7 @@ public class SkyblockInventoryScreen extends InventoryScreen implements HoveredI
 
 			if (hovered) context.blitSprite(RenderPipelines.GUI_TEXTURED, AbstractContainerScreenAccessor.getSLOT_HIGHLIGHT_BACK_SPRITE(), equipmentSlot.x - 4, equipmentSlot.y - 4, 24, 24);
 
-			renderSlot(context, equipmentSlot, mouseX, mouseY);
+			renderSlot(context, equipmentSlot /*? if >1.21.10 {*/, mouseX, mouseY /*? }*/);
 
 			if (hovered) context.blitSprite(RenderPipelines.GUI_TEXTURED, AbstractContainerScreenAccessor.getSLOT_HIGHLIGHT_FRONT_SPRITE(), equipmentSlot.x - 4, equipmentSlot.y - 4, 24, 24);
 		}
@@ -198,8 +198,8 @@ public class SkyblockInventoryScreen extends InventoryScreen implements HoveredI
 	}
 
 	@Override
-	protected void renderSlot(GuiGraphics context, Slot slot, int mouseX, int mouseY) {
-		super.renderSlot(context, slot, mouseX, mouseY);
+	protected void renderSlot(GuiGraphics context, Slot slot/*? if >1.21.10 {*/, int mouseX, int mouseY/*? }*/) {
+		super.renderSlot(context, slot/*? if >1.21.10 {*/, mouseX, mouseY/*? }*/);
 		if (slot instanceof EquipmentSlot && !slot.hasItem()) {
 			context.blitSprite(RenderPipelines.GUI_TEXTURED, EMPTY_SLOT, slot.x, slot.y, 16, 16);
 		}

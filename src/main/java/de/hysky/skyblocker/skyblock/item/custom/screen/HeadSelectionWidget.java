@@ -325,7 +325,13 @@ public class HeadSelectionWidget extends AbstractContainerWidget {
 			if (this.isHovered()) {
 				context.fill(getX(), getY(), getX() + getWidth(), getY() + getHeight(), 0x20FFFFFF);
 			}
+			//? if >1.21.10 {
 			this.handleCursor(context);
+			//? } else {
+			/*if (this.isHovered()) {
+				context.requestCursor(com.mojang.blaze3d.platform.cursor.CursorTypes.POINTING_HAND);
+			}
+			*///? }
 		}
 
 		@Override

@@ -19,8 +19,14 @@ public class CategoryTabWidget extends SideTabButtonWidget {
 	}
 
 	@Override
+	//? if >1.21.10 {
 	public void renderContents(GuiGraphics context, int mouseX, int mouseY, float delta) {
 		super.renderContents(context, mouseX, mouseY, delta);
+	//? } else {
+	/*public void renderWidget(GuiGraphics context, int mouseX, int mouseY, float delta) {
+		super.renderWidget(context, mouseX, mouseY, delta);
+	*///? }
+
 
 		if (isMouseOver(mouseX, mouseY)) {
 			context.setComponentTooltipForNextFrame(Minecraft.getInstance().font, icon.getTooltipLines(TooltipContext.EMPTY, Minecraft.getInstance().player, TooltipFlag.NORMAL), mouseX, mouseY);
@@ -33,7 +39,12 @@ public class CategoryTabWidget extends SideTabButtonWidget {
 
 	@Override
 	public void onClick(MouseButtonEvent click, boolean doubled) {
-		if (this.selected || slotId == -1) return;
+		//? if >1.21.10 {
+		if (this.selected) return;
+		//? } else {
+		/*if (isStateTriggered()) return;
+		*///? }
+		if (slotId == -1) return;
 		super.onClick(click, doubled);
 		slotClick.click(slotId);
 	}

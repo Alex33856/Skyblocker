@@ -1,5 +1,7 @@
 package de.hysky.skyblocker.utils.render;
 
+import com.mojang.blaze3d.textures.GpuTextureView;
+import net.minecraft.client.gui.render.TextureSetup;
 import org.jspecify.annotations.Nullable;
 
 import com.mojang.blaze3d.systems.RenderSystem;

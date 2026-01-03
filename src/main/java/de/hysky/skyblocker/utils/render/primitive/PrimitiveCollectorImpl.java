@@ -302,7 +302,7 @@ public final class PrimitiveCollectorImpl implements PrimitiveCollector {
 
 		Font textRenderer = CLIENT.font;
 		float xOffset = -textRenderer.width(text) / 2f;
-		Font.PreparedText glyphs = textRenderer.prepareText(text, xOffset, yOffset, CommonColors.WHITE, false, false, 0);
+		Font.PreparedText glyphs = textRenderer.prepareText(text, xOffset, yOffset, CommonColors.WHITE, false /*? if >1.21.10 {*/, false /*? }*/, 0);
 
 		TextRenderState state = new TextRenderState();
 		state.glyphs = glyphs;

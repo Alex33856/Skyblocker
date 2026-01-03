@@ -13,13 +13,16 @@ import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.fabricmc.fabric.api.client.screen.v1.ScreenEvents;
 import net.fabricmc.fabric.api.client.screen.v1.ScreenMouseEvents;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.ActiveTextCollector;
 import net.minecraft.client.gui.screens.ChatScreen;
 import net.minecraft.network.chat.ClickEvent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+//? if >1.21.10 {
+import net.minecraft.client.gui.ActiveTextCollector;
+//? }
 
 public class ConfirmationPromptHelper {
 	public static final Logger LOGGER = LoggerFactory.getLogger(ConfirmationPromptHelper.class);
@@ -51,6 +54,7 @@ public class ConfirmationPromptHelper {
 					if (hasCommand()) {
 						Minecraft client = Minecraft.getInstance();
 						if (client.screen instanceof ChatScreen) {	// Ignore clicks on other interactive elements
+							//? if >1.21.10 {
 							ActiveTextCollector.ClickableStyleFinder clickHandler = new ActiveTextCollector.ClickableStyleFinder(screen.getFont(), (int) click.x(), (int) click.y())
 									.includeInsertions(false);
 							Style clickedStyle = clickHandler.result();
@@ -58,6 +62,12 @@ public class ConfirmationPromptHelper {
 							if (clickedStyle != null && clickedStyle.getClickEvent() != null) {	// clicking on some prompts invalidates first prompt but not in all cases, so I decided not to nullify command
 								return;
 							}
+							//? } else {
+							/*Style style = client.gui.getChat().getClickedComponentStyleAt(click.x(), click.y());
+							if (style != null && style.getClickEvent() != null) {	// clicking on some prompts invalidates first prompt but not in all cases, so I decided not to nullify command
+								return;
+							}
+							*///? }
 						}
 
 						MessageScheduler.INSTANCE.sendMessageAfterCooldown(command, true);

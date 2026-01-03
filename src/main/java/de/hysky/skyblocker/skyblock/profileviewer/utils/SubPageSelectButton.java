@@ -1,6 +1,7 @@
 package de.hysky.skyblocker.skyblock.profileviewer.utils;
 
 import java.awt.Color;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractWidget;
@@ -41,7 +42,13 @@ public class SubPageSelectButton extends AbstractWidget {
 			if (lore != null) context.setComponentTooltipForNextFrame(Minecraft.getInstance().font, lore.lines(), mouseX, mouseY + 10);
 		}
 
+		//? if >1.21.10 {
 		this.handleCursor(context);
+		//? } else {
+		/*if (this.isHovered()) {
+			context.requestCursor(com.mojang.blaze3d.platform.cursor.CursorTypes.POINTING_HAND);
+		}
+		*///? }
 	}
 
 	@Override

@@ -208,7 +208,11 @@ public class LeapOverlay extends Screen implements ContainerListener {
 		}
 
 		@Override
+		//? if >1.21.10 {
 		protected void renderContents(GuiGraphics context, int mouseX, int mouseY, float delta) {
+		//? } else {
+		/*protected void renderWidget(GuiGraphics context, int mouseX, int mouseY, float delta) {
+		*///? }
 			Identifier texture = this.isHoveredOrFocused() || reference.uuid().equals(LeapOverlay.this.hovered) ? BUTTON_HIGHLIGHTED : BUTTON;
 			context.blitSprite(RenderPipelines.GUI_TEXTURED, texture, this.getX(), this.getY(), this.getWidth(), this.getHeight());
 

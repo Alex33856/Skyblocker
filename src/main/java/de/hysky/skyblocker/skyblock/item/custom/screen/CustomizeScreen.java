@@ -229,7 +229,13 @@ public class CustomizeScreen extends Screen {
 		@Override
 		protected void renderWidget(GuiGraphics context, int mouseX, int mouseY, float delta) {
 			context.blitSprite(RenderPipelines.GUI_TEXTURED, TEXTURE, getX(), getY(), getWidth(), getHeight(), isHovered() ? 0xFFFAFA96 : 0x80FFFFFF);
+			//? if >1.21.10 {
 			this.handleCursor(context);
+			//? } else {
+			/*if (this.isHovered()) {
+				context.requestCursor(com.mojang.blaze3d.platform.cursor.CursorTypes.POINTING_HAND);
+			}
+			*///? }
 		}
 
 		@Override

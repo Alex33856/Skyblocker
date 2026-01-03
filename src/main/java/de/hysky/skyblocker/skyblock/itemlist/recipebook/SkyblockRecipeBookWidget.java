@@ -248,9 +248,13 @@ public class SkyblockRecipeBookWidget extends RecipeBookComponent<NoopRecipeScre
 	 * No-op as we don't use the button.
 	 */
 	@Override
+	//? if >1.21.10 {
 	protected @Nullable WidgetSprites getFilterButtonTextures() {
 		return null;
 	}
+	//? } else {
+	/*protected void initFilterButtonTextures() {}
+	*///? }
 
 	/**
 	 * No-op.

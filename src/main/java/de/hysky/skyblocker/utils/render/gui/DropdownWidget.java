@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.function.Consumer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.GuiGraphics.HoveredTextEffects;
 import net.minecraft.client.gui.components.AbstractContainerWidget;
 import net.minecraft.client.gui.components.ContainerObjectSelectionList;
 import net.minecraft.client.gui.components.events.GuiEventListener;
@@ -16,6 +15,10 @@ import net.minecraft.network.chat.Style;
 import net.minecraft.util.CommonColors;
 import com.mojang.blaze3d.platform.cursor.CursorTypes;
 import de.hysky.skyblocker.utils.render.HudHelper;
+
+//? if >1.21.10 {
+import net.minecraft.client.gui.GuiGraphics.HoveredTextEffects;
+//? }
 
 public class DropdownWidget<T> extends AbstractContainerWidget {
 	private static final Minecraft client = Minecraft.getInstance();
@@ -248,8 +251,12 @@ public class DropdownWidget<T> extends AbstractContainerWidget {
 
 		@Override
 		public void renderContent(GuiGraphics context, int mouseX, int mouseY, boolean hovered, float deltaTicks) {
-			// drawScrollableText does some weird stuff with the y value, so we put startY = y and endY = y + 11 which makes the text render on the same line as the tick mark below (y + 2).
+			//? if >1.21.10 {
 			context.textRenderer(HoveredTextEffects.NONE).acceptScrollingWithDefaultCenter(Component.literal(entry.toString()).withStyle(Style.EMPTY.withUnderlined(hovered)), this.getX() + 10, this.getX() + this.getWidth(), this.getY(), this.getY() + 11);
+			//? } else {
+			/*// drawScrollableText does some weird stuff with the y value, so we put startY = y and endY = y + 11 which makes the text render on the same line as the tick mark below (y + 2).
+			renderScrollingString(context, client.font, Component.literal(entry.toString()).withStyle(Style.EMPTY.withUnderlined(hovered)), this.getX() + 10, this.getY(), this.getX() + this.getWidth(), this.getY() + 11, -1);
+			*///? }
 			if (selected == this.entry) {
 				context.drawString(client.font, "✔", this.getX() + 1, this.getY() + 2, 0xFFFFFFFF);
 			}

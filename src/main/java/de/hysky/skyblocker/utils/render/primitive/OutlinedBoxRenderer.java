@@ -8,6 +8,12 @@ import de.hysky.skyblocker.utils.render.state.OutlinedBoxRenderState;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.renderer.state.CameraRenderState;
 
+//? if <1.21.11 {
+/*import com.mojang.blaze3d.vertex.PoseStack;
+import de.hysky.skyblocker.utils.render.MatrixHelper;
+import net.minecraft.client.renderer.ShapeRenderer;
+*///? }
+
 public final class OutlinedBoxRenderer implements PrimitiveRenderer<OutlinedBoxRenderState> {
 	protected static final OutlinedBoxRenderer INSTANCE = new OutlinedBoxRenderer();
 
@@ -15,9 +21,14 @@ public final class OutlinedBoxRenderer implements PrimitiveRenderer<OutlinedBoxR
 
 	@Override
 	public void submitPrimitives(OutlinedBoxRenderState state, CameraRenderState cameraState) {
-		BufferBuilder buffer = Renderer.getBuffer(state.throughWalls ? SkyblockerRenderPipelines.LINES_THROUGH_WALLS : RenderPipelines.LINES);
+		BufferBuilder buffer = Renderer.getBuffer(state.throughWalls ? SkyblockerRenderPipelines.LINES_THROUGH_WALLS : RenderPipelines.LINES/*? if <1.21.11 {*//*, state.lineWidth*//*?}*/);
 		Matrix4f positionMatrix = new Matrix4f()
 				.translate((float) -cameraState.pos.x, (float) -cameraState.pos.y, (float) -cameraState.pos.z);
+		//? if <1.21.11 {
+		/*PoseStack matrices = MatrixHelper.toStack(positionMatrix);
+
+		ShapeRenderer.renderLineBox(matrices.last(), buffer, state.minX, state.minY, state.minZ, state.maxX, state.maxY, state.maxZ, state.colourComponents[0], state.colourComponents[1], state.colourComponents[2], state.alpha);
+		*///? } else {
 		float minX = (float) state.minX;
 		float minY = (float) state.minY;
 		float minZ = (float) state.minZ;
@@ -53,5 +64,6 @@ public final class OutlinedBoxRenderer implements PrimitiveRenderer<OutlinedBoxR
 		buffer.addVertex(positionMatrix, maxX, maxY, maxZ).setColor(red, green, blue, alpha).setNormal(0.0f, 1.0f, 0.0f).setLineWidth(state.lineWidth);
 		buffer.addVertex(positionMatrix, maxX, maxY, minZ).setColor(red, green, blue, alpha).setNormal(0.0f, 0.0f, 1.0f).setLineWidth(state.lineWidth);
 		buffer.addVertex(positionMatrix, maxX, maxY, maxZ).setColor(red, green, blue, alpha).setNormal(0.0f, 0.0f, 1.0f).setLineWidth(state.lineWidth);
+		//? }
 	}
 }

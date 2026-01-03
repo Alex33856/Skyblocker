@@ -378,10 +378,12 @@ public class CustomizeNameWidget extends AbstractContainerWidget {
 		@Override
 		protected void updateWidgetNarration(NarrationElementOutput builder) {}
 
+		//? if >1.21.10 {
 		@Override
 		protected void renderContents(GuiGraphics context, int mouseX, int mouseY, float deltaTicks) {
 			this.renderDefaultSprite(context);
 		}
+		//? }
 	}
 
 	private class ColorButton extends AbstractButton {
@@ -401,8 +403,12 @@ public class CustomizeNameWidget extends AbstractContainerWidget {
 		}
 
 		@Override
+		//? if >1.21.10 {
 		public void renderContents(GuiGraphics context, int mouseX, int mouseY, float deltaTicks) {
 			this.renderDefaultSprite(context);
+		//? } else {
+			/* public void renderString(GuiGraphics context, net.minecraft.client.gui.Font textRenderer, int color) {
+		*///? }
 			context.fill(getX() + 2, getY() + 2, getRight() - 2, getBottom() - 2, intColor);
 		}
 
@@ -452,11 +458,13 @@ public class CustomizeNameWidget extends AbstractContainerWidget {
 
 			context.drawString(textRenderer, text, textX, textY, -1, false);
 
+		//? if >1.21.10 {
 			this.handleCursor(context);
 		}
 
 		@Override
 		protected void handleCursor(GuiGraphics context) {
+		//? }
 			if (this.isHovered()) {
 				context.requestCursor(CursorTypes.IBEAM);
 			}

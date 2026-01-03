@@ -2,8 +2,6 @@ package de.hysky.skyblocker.utils.render.primitive;
 
 import org.joml.Matrix4f;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.textures.FilterMode;
 import com.mojang.blaze3d.vertex.BufferBuilder;
 import de.hysky.skyblocker.utils.render.Renderer;
 import de.hysky.skyblocker.utils.render.SkyblockerRenderPipelines;
@@ -12,6 +10,11 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.render.TextureSetup;
 import net.minecraft.client.renderer.state.CameraRenderState;
 
+//? if >1.21.10 {
+import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.textures.FilterMode;
+//? }
+
 public final class TexturedQuadRenderer implements PrimitiveRenderer<TexturedQuadRenderState> {
 	protected static final TexturedQuadRenderer INSTANCE = new TexturedQuadRenderer();
 
@@ -19,7 +22,7 @@ public final class TexturedQuadRenderer implements PrimitiveRenderer<TexturedQua
 
 	@Override
 	public void submitPrimitives(TexturedQuadRenderState state, CameraRenderState cameraState) {
-		TextureSetup textureSetup = TextureSetup.singleTexture(Minecraft.getInstance().getTextureManager().getTexture(state.texture).getTextureView(), RenderSystem.getSamplerCache().getClampToEdge(FilterMode.NEAREST));
+		TextureSetup textureSetup = TextureSetup.singleTexture(Minecraft.getInstance().getTextureManager().getTexture(state.texture).getTextureView()/*? if >1.21.10 {*/, RenderSystem.getSamplerCache().getClampToEdge(FilterMode.NEAREST)/*? }*/);
 		BufferBuilder buffer = Renderer.getBuffer(state.throughWalls ? SkyblockerRenderPipelines.TEXTURE_THROUGH_WALLS : SkyblockerRenderPipelines.TEXTURE, textureSetup);
 		Matrix4f positionMatrix = new Matrix4f()
 				.translate((float) (state.pos.x() - cameraState.pos.x()), (float) (state.pos.y() - cameraState.pos.y()), (float) (state.pos.z() - cameraState.pos.z()))

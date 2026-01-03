@@ -17,7 +17,7 @@ import net.fabricmc.fabric.api.client.rendering.v1.world.WorldTerrainRenderConte
  * Creates a pool of {@code GpuTexture}s and {@code GpuTextureView}s, useful if you are blitting textures or copying them.
  * Textures are automatically closed if they aren't used for a frame.
  */
-public record TexturePool(String name, int size, @GpuTexture.Usage int usage, TextureFormat format, @Nullable GpuTexture[] textures, @Nullable GpuTextureView[] textureViews, boolean[] usedSlots) implements AutoCloseable {
+public record TexturePool(String name, int size, /*? if >1.21.10 {*//*@GpuTexture.Usage*//*? }*/ int usage, TextureFormat format, @Nullable GpuTexture[] textures, @Nullable GpuTextureView[] textureViews, boolean[] usedSlots) implements AutoCloseable {
 
 	public TexturePool {
 		WorldRenderEvents.START_MAIN.register(this::clearUnusedTextures);
@@ -27,7 +27,7 @@ public record TexturePool(String name, int size, @GpuTexture.Usage int usage, Te
 	 * Creates a new texture pool, the size is recommended to be double the amount of slots that you
 	 * expect you will need in a single frame case the texture sizes do not match.
 	 */
-	public static TexturePool create(String name, int size, @GpuTexture.Usage int usage, TextureFormat format) {
+	public static TexturePool create(String name, int size, /*? if >1.21.10 {*//*@GpuTexture.Usage*//*? }*/ int usage, TextureFormat format) {
 		return new TexturePool(name, size, usage, format, new GpuTexture[size], new GpuTextureView[size], new boolean[size]);
 	}
 

@@ -41,7 +41,13 @@ public class ProfileViewerNavButton extends AbstractWidget {
 	protected void renderWidget(GuiGraphics context, int mouseX, int mouseY, float delta) {
 		context.blitSprite(RenderPipelines.GUI_TEXTURED, toggled ? BUTTON_TEXTURES_TOGGLED : BUTTON_TEXTURES, this.getX(), this.getY(), this.width, this.height - ((this.toggled) ? 0 : 4));
 		context.renderItem(this.icon, this.getX() + 6, this.getY() + (this.toggled ? 7 : 9));
+		//? if >1.21.10 {
 		this.handleCursor(context);
+		//? } else {
+		/*if (this.isHovered()) {
+			context.requestCursor(com.mojang.blaze3d.platform.cursor.CursorTypes.POINTING_HAND);
+		}
+		*///? }
 	}
 
 	@Override

@@ -1,13 +1,16 @@
 package de.hysky.skyblocker.skyblock.shortcut;
 
 import com.mojang.blaze3d.platform.InputConstants;
-import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.GuiGraphics.HoveredTextEffects;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.input.InputWithModifiers;
 import net.minecraft.client.input.KeyEvent;
 import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.network.chat.Component;
+
+//? if >1.21.10 {
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphics.HoveredTextEffects;
+//? }
 
 public class KeybindWidget extends Button {
 	private final ShortcutKeyBinding keyBinding;
@@ -77,9 +80,11 @@ public class KeybindWidget extends Button {
 		return super.keyPressed(input);
 	}
 
+	//? if >1.21.10 {
 	@Override
 	protected void renderContents(GuiGraphics context, int mouseX, int mouseY, float deltaTicks) {
 		this.renderDefaultSprite(context);
 		this.renderDefaultLabel(context.textRenderer(HoveredTextEffects.NONE));
 	}
+	//? }
 }

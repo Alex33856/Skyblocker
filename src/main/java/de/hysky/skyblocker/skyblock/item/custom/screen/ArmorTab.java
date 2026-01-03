@@ -8,10 +8,8 @@ import java.time.Duration;
 import java.util.List;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.ActiveTextCollector;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.GuiGraphics.HoveredTextEffects;
 import net.minecraft.client.gui.components.AbstractContainerWidget;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.StringWidget;
@@ -33,6 +31,11 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+
+//? if >1.21.10 {
+import net.minecraft.client.gui.ActiveTextCollector;
+import net.minecraft.client.gui.GuiGraphics.HoveredTextEffects;
+//? }
 
 import static de.hysky.skyblocker.skyblock.item.custom.screen.CustomizeScreen.CLIENT;
 
@@ -203,7 +206,13 @@ public class ArmorTab extends GridLayoutTab implements Closeable {
 				}
 			}
 			context.blitSprite(RenderPipelines.GUI_TEXTURED, HOTBAR_SELECTION_TEXTURE, getX() + selectedSlot * 20, getY(), 24, 24);
+			//? if >1.21.10 {
 			this.handleCursor(context);
+			//? } else {
+			/*if (this.isHovered()) {
+				context.requestCursor(this.isActive() ? com.mojang.blaze3d.platform.cursor.CursorTypes.POINTING_HAND : com.mojang.blaze3d.platform.cursor.CursorTypes.NOT_ALLOWED);
+			}
+			*///? }
 		}
 
 		@Override
@@ -294,14 +303,21 @@ public class ArmorTab extends GridLayoutTab implements Closeable {
 					getWidth(),
 					getHeight()
 			);
+		//? if > 1.21.10 {
 			this.field.render(context, mouseX, mouseY, deltaTicks);
 			this.drawLabel(context.textRenderer(HoveredTextEffects.NONE));
 		}
 
 		private void drawLabel(ActiveTextCollector drawer) {
+		//?}
 			int padding = 5;
 			int startY = getY() + padding;
+			//? if > 1.21.10 {
 			drawer.acceptScrollingWithDefaultCenter(text, getX() + padding, getRight() - padding, startY, startY + 9);
+			//? } else {
+			/* renderScrollingString(context, CLIENT.font, text, getX() + padding, startY, getRight() - padding, startY + 9, -1);
+			field.render(context, mouseX, mouseY, deltaTicks);
+			*///? }
 		}
 
 		@Override

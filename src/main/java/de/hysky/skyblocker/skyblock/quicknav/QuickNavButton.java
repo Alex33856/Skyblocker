@@ -67,9 +67,15 @@ public class QuickNavButton extends AbstractWidget {
 		this.renderInFront = renderInFront;
 	}
 
+	//? if >1.21.10 {
 	public float getAlpha() {
 		return alpha / 255f;
 	}
+	//? } else {
+	/*public int getAlpha() {
+		return alpha;
+	}
+	*///? }
 
 	/**
 	 * Constructs a new QuickNavButton with the given parameters.
@@ -187,7 +193,13 @@ public class QuickNavButton extends AbstractWidget {
 		int yOffset = this.index < 7 ? 1 : -1;
 		context.renderItem(this.icon, this.getX() + 5, this.getY() + 8 + yOffset);
 
+		//? if >1.21.10 {
 		this.handleCursor(context);
+		//? } else {
+		/*if (this.isHovered()) {
+			context.requestCursor(com.mojang.blaze3d.platform.cursor.CursorTypes.POINTING_HAND);
+		}
+		*///? }
 	}
 
 	@Override

@@ -4,8 +4,6 @@ import de.hysky.skyblocker.compatibility.CaxtonCompatibility;
 import org.joml.Matrix4f;
 
 import com.mojang.blaze3d.pipeline.RenderPipeline;
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.textures.FilterMode;
 import com.mojang.blaze3d.vertex.BufferBuilder;
 import de.hysky.skyblocker.utils.render.Renderer;
 import de.hysky.skyblocker.utils.render.state.TextRenderState;
@@ -15,6 +13,11 @@ import net.minecraft.client.gui.render.TextureSetup;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.client.renderer.state.CameraRenderState;
+
+//? if >1.21.10 {
+import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.textures.FilterMode;
+//? }
 
 public final class TextPrimitiveRenderer implements PrimitiveRenderer<TextRenderState> {
 	protected static final TextPrimitiveRenderer INSTANCE = new TextPrimitiveRenderer();
@@ -33,7 +36,7 @@ public final class TextPrimitiveRenderer implements PrimitiveRenderer<TextRender
 
 		state.glyphs.visit(new Font.GlyphVisitor() {
 			@Override
-			public void acceptGlyph(TextRenderable.Styled glyph) {
+			public void acceptGlyph(TextRenderable/*? if >1.21.10 {*/.Styled/*? }*/ glyph) {
 				this.draw(glyph);
 			}
 
@@ -43,7 +46,7 @@ public final class TextPrimitiveRenderer implements PrimitiveRenderer<TextRender
 			}
 
 			private void draw(TextRenderable glyph) {
-				TextureSetup textureSetup = TextureSetup.singleTextureWithLightmap(glyph.textureView(), RenderSystem.getSamplerCache().getClampToEdge(FilterMode.NEAREST));
+				TextureSetup textureSetup = TextureSetup.singleTextureWithLightmap(glyph.textureView()/*? if >1.21.10 {*/, RenderSystem.getSamplerCache().getClampToEdge(FilterMode.NEAREST)/*? }*/);
 				BufferBuilder buffer = Renderer.getBuffer(pipeline, textureSetup);
 
 				glyph.render(positionMatrix, buffer, LightTexture.FULL_BRIGHT, false);

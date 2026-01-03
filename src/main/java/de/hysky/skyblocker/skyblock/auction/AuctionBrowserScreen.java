@@ -176,11 +176,11 @@ public class AuctionBrowserScreen extends AbstractCustomHypixelGUI<AuctionHouseS
 	}
 
 	@Override
-	protected void renderSlot(GuiGraphics context, Slot slot, int mouseX, int mouseY) {
+	protected void renderSlot(GuiGraphics context, Slot slot/*?if >1.21.10 {*/, int mouseX, int mouseY/*? }*/) {
 		if (SkyblockerConfigManager.get().uiAndVisuals.fancyAuctionHouse.highlightCheapBIN && slot.hasItem() && isSlotHighlighted.getOrDefault(slot.index, false)) {
 			HudHelper.drawBorder(context, slot.x, slot.y, 16, 16, new Color(0, 255, 0, 100).getRGB());
 		}
-		super.renderSlot(context, slot, mouseX, mouseY);
+		super.renderSlot(context, slot/*? if >1.21.10 {*/, mouseX, mouseY/*? }*/);
 	}
 
 	@Override
@@ -282,12 +282,26 @@ public class AuctionBrowserScreen extends AbstractCustomHypixelGUI<AuctionHouseS
 					for (int j = tooltipDefault.size() - 1; j >= 0; j--) {
 						String lowerCase = tooltipDefault.get(j).toLowerCase(Locale.ENGLISH);
 						if (lowerCase.contains("currently")) {
+							//? if >1.21.10 {
 							categoryTabWidget.select();
+							//? } else {
+							/*categoryTabWidget.setStateTriggered(true);
+							*///? }
 							break;
 						} else if (lowerCase.contains("click")) {
+							//? if >1.21.10 {
 							categoryTabWidget.unselect();
+							//? } else {
+							/*categoryTabWidget.setStateTriggered(false);
+							 *///? }
 							break;
-						} else categoryTabWidget.unselect();
+						} else {
+							//? if >1.21.10 {
+							categoryTabWidget.select();
+							//? } else {
+							/*categoryTabWidget.setStateTriggered(true);
+							 *///? }
+						}
 					}
 				} else if (slotId > 9 && slotId < (handler.getRowCount() - 1) * 9 && slotId % 9 > 1 && slotId % 9 < 8) {
 					if (!SkyblockerConfigManager.get().uiAndVisuals.fancyAuctionHouse.highlightCheapBIN) return;
@@ -363,14 +377,18 @@ public class AuctionBrowserScreen extends AbstractCustomHypixelGUI<AuctionHouseS
 
 	private static class ScaledTextButtonWidget extends Button {
 
-		protected ScaledTextButtonWidget(int x, int y, int width, int height, net.minecraft.network.chat.Component message, OnPress onPress) {
+		protected ScaledTextButtonWidget(int x, int y, int width, int height, Component message, OnPress onPress) {
 			super(x, y, width, height, message, onPress, Supplier::get);
 		}
 
 		// Code taken mostly from YACL by isxander. Love you <3
 		@Override
+		//? if >1.21.10 {
 		public void renderContents(GuiGraphics context, int mouseX, int mouseY, float deltaTicks) {
 			this.renderDefaultSprite(context);
+		//? } else {
+		/*public void renderString(GuiGraphics context, Font textRenderer, int color) {
+		*///? }
 			Font font = Minecraft.getInstance().font;
 			Matrix3x2fStack matrices = context.pose();
 			float textScale = 2.f;

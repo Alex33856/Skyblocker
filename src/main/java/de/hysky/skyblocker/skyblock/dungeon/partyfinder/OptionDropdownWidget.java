@@ -6,7 +6,6 @@ import org.jspecify.annotations.Nullable;
 import java.util.List;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.GuiGraphics.HoveredTextEffects;
 import net.minecraft.client.gui.components.AbstractSelectionList;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.client.input.MouseButtonEvent;
@@ -15,6 +14,12 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Style;
 import net.minecraft.util.CommonColors;
 import net.minecraft.world.item.ItemStack;
+
+//? if >1.21.10 {
+import net.minecraft.client.gui.GuiGraphics.HoveredTextEffects;
+//? } else {
+import net.minecraft.client.gui.components.AbstractWidget;
+//? }
 
 public class OptionDropdownWidget extends AbstractSelectionList<OptionDropdownWidget.AbstractEntry> {
 	private static final int CLOSED_HEIGHT = 35;
@@ -189,7 +194,11 @@ public class OptionDropdownWidget extends AbstractSelectionList<OptionDropdownWi
 			if (PartyFinderScreen.DEBUG) context.drawString(minecraft.font, String.valueOf(optionSlotId), this.getX() + 8, this.getY(), CommonColors.RED, true);
 			MutableComponent text = Component.literal(message).withStyle(Style.EMPTY.withUnderlined(hovered));
 			if (minecraft.font.width(text) >= this.getWidth() - 14) {
+				//? if >1.21.10 {
 				context.textRenderer(HoveredTextEffects.NONE).acceptScrollingWithDefaultCenter(text, this.getX() + 14, this.getX() + this.getWidth(), getY() + 3, this.getY() + 3 + minecraft.font.lineHeight);
+				//? } else {
+				/*AbstractWidget.renderScrollingString(context, minecraft.font, text, this.getX() + 14, getY() + 3, this.getX() + this.getWidth(), this.getY() + 3 + minecraft.font.lineHeight, CommonColors.WHITE);
+				*///? }
 			} else {
 				context.drawString(minecraft.font, text, this.getX() + 14, this.getY() + 3, CommonColors.WHITE, false);
 			}
