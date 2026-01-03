@@ -34,10 +34,10 @@ public class ItemButtonWidget extends Button {
 	@Override
 	protected void renderWidget(GuiGraphics context, int mouseX, int mouseY, float delta) {
 		super.renderWidget(context, mouseX, mouseY, delta);
-	*///? } else {
+	*///?} else {
 	protected void renderContents(GuiGraphics context, int mouseX, int mouseY, float delta) {
 		this.renderDefaultSprite(context);
-	//? }
+	//?}
 		context.renderItem(this.item, getX() + getWidth() / 2 - 8, getY() + getHeight() / 2 - 8);
 	}
 }

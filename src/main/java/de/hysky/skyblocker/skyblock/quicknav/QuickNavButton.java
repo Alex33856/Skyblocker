@@ -71,11 +71,11 @@ public class QuickNavButton extends AbstractWidget {
 	public float getAlpha() {
 		return alpha / 255f;
 	}
-	//? } else {
+	//?} else {
 	/*public int getAlpha() {
 		return alpha;
 	}
-	*///? }
+	*///?}
 
 	/**
 	 * Constructs a new QuickNavButton with the given parameters.
@@ -195,11 +195,11 @@ public class QuickNavButton extends AbstractWidget {
 
 		//? if >1.21.10 {
 		this.handleCursor(context);
-		//? } else {
+		//?} else {
 		/*if (this.isHovered()) {
 			context.requestCursor(com.mojang.blaze3d.platform.cursor.CursorTypes.POINTING_HAND);
 		}
-		*///? }
+		*///?}
 	}
 
 	@Override

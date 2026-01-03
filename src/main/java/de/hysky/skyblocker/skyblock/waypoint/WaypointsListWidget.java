@@ -584,9 +584,9 @@ public class WaypointsListWidget extends ContainerObjectSelectionList<WaypointsL
 		@Override
 		//? if >1.21.10 {
 		protected void renderContents(GuiGraphics context, int mouseX, int mouseY, float deltaTicks) {
-		//? } else {
+		//?} else {
 		/*protected void renderWidget(GuiGraphics context, int mouseX, int mouseY, float deltaTicks) {
-		 *///? }
+		*///?}
 			int padding = 1;
 			context.fill(getX() + padding, getY() + padding, getRight() - padding, getBottom() - padding, isHovered() ? CommonColors.WHITE : CommonColors.BLACK);
 			context.fill(getX() + padding + 1, getY() + padding + 1, getRight() - padding - 1, getBottom() - padding - 1, this.color);

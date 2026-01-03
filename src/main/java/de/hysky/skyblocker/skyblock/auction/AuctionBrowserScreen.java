@@ -176,11 +176,11 @@ public class AuctionBrowserScreen extends AbstractCustomHypixelGUI<AuctionHouseS
 	}
 
 	@Override
-	protected void renderSlot(GuiGraphics context, Slot slot/*?if >1.21.10 {*/, int mouseX, int mouseY/*? }*/) {
+	protected void renderSlot(GuiGraphics context, Slot slot/*? if >1.21.10 {*/, int mouseX, int mouseY/*?}*/) {
 		if (SkyblockerConfigManager.get().uiAndVisuals.fancyAuctionHouse.highlightCheapBIN && slot.hasItem() && isSlotHighlighted.getOrDefault(slot.index, false)) {
 			HudHelper.drawBorder(context, slot.x, slot.y, 16, 16, new Color(0, 255, 0, 100).getRGB());
 		}
-		super.renderSlot(context, slot/*? if >1.21.10 {*/, mouseX, mouseY/*? }*/);
+		super.renderSlot(context, slot/*? if >1.21.10 {*/, mouseX, mouseY/*?}*/);
 	}
 
 	@Override
@@ -284,23 +284,23 @@ public class AuctionBrowserScreen extends AbstractCustomHypixelGUI<AuctionHouseS
 						if (lowerCase.contains("currently")) {
 							//? if >1.21.10 {
 							categoryTabWidget.select();
-							//? } else {
+							//?} else {
 							/*categoryTabWidget.setStateTriggered(true);
-							*///? }
+							*///?}
 							break;
 						} else if (lowerCase.contains("click")) {
 							//? if >1.21.10 {
 							categoryTabWidget.unselect();
-							//? } else {
+							//?} else {
 							/*categoryTabWidget.setStateTriggered(false);
-							 *///? }
+							*///?}
 							break;
 						} else {
 							//? if >1.21.10 {
 							categoryTabWidget.select();
-							//? } else {
+							//?} else {
 							/*categoryTabWidget.setStateTriggered(true);
-							 *///? }
+							*///?}
 						}
 					}
 				} else if (slotId > 9 && slotId < (handler.getRowCount() - 1) * 9 && slotId % 9 > 1 && slotId % 9 < 8) {
@@ -386,9 +386,9 @@ public class AuctionBrowserScreen extends AbstractCustomHypixelGUI<AuctionHouseS
 		//? if >1.21.10 {
 		public void renderContents(GuiGraphics context, int mouseX, int mouseY, float deltaTicks) {
 			this.renderDefaultSprite(context);
-		//? } else {
+		//?} else {
 		/*public void renderString(GuiGraphics context, Font textRenderer, int color) {
-		*///? }
+		*///?}
 			Font font = Minecraft.getInstance().font;
 			Matrix3x2fStack matrices = context.pose();
 			float textScale = 2.f;

@@ -18,16 +18,15 @@ import net.minecraft.client.renderer.state.CameraRenderState;
 //? if >1.21.10 {
 import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.client.renderer.texture.TextureAtlas;
-//? } else {
-/*import de.hysky.skyblocker.utils.render.RenderHelper;
-import net.fabricmc.loader.api.FabricLoader;
+//?} else {
+/*import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
-*///? }
+*///?}
 
 public final class BlockHologramRenderer implements PrimitiveRenderer<BlockHologramRenderState> {
 	protected static final BlockHologramRenderer INSTANCE = new BlockHologramRenderer();
 	private static final Minecraft CLIENT = Minecraft.getInstance();
-	/*? if <1.21.11 {*//* private static final boolean SODIUM_LOADED = FabricLoader.getInstance().isModLoaded("sodium");*//*? }*/
+	/*? if <1.21.11 {*/ /*private static final boolean SODIUM_LOADED = FabricLoader.getInstance().isModLoaded("sodium"); *//*?}*/
 
 	private BlockHologramRenderer() {}
 
@@ -42,9 +41,9 @@ public final class BlockHologramRenderer implements PrimitiveRenderer<BlockHolog
 		@SuppressWarnings("deprecation")
 		MultiBufferSource bufferSource = _type -> Renderer.getBuffer(RenderPipelines.TRANSLUCENT_MOVING_BLOCK, TextureSetup.singleTextureWithLightmap(CLIENT.getTextureManager().getTexture(TextureAtlas.LOCATION_BLOCKS).getTextureView(), RenderTypes.MOVING_BLOCK_SAMPLER.get()), true);
 		CLIENT.getBlockRenderer().getModelRenderer().render(CLIENT.level, model, state.state, state.pos, matrices, RenderLayerHelper.movingDelegate(bufferSource), true, state.state.getSeed(state.pos), 0);
-		//? } else {
+		//?} else {
 		/*MultiBufferSource consumers = SODIUM_LOADED ? CLIENT.renderBuffers().bufferSource() : _layer -> Renderer.getBuffer(RenderPipelines.TRANSLUCENT, TextureSetup.singleTexture(ChunkSectionLayer.TRANSLUCENT.textureView()), true);
 		CLIENT.getBlockRenderer().getModelRenderer().render(CLIENT.level, model, state.state, state.pos, matrices, RenderLayerHelper.movingDelegate(consumers), true, state.state.getSeed(state.pos), 0);
-		*///? }
+		*///?}
 	}
 }

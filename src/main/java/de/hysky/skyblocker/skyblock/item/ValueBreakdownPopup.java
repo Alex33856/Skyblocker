@@ -305,9 +305,9 @@ public class ValueBreakdownPopup extends AbstractPopupScreen {
 		MultiLineTextWidget widget = new MultiLineTextWidget(text, textRenderer);
 		//? if >1.21.10 {
 		widget.setComponentClickHandler(s -> {});
-		//? } else {
-		/* widget.configureStyleHandling(true, s -> {});
-		*///? }
+		//?} else {
+		/*widget.configureStyleHandling(true, s -> {});
+		*///?}
 
 		return widget;
 	}

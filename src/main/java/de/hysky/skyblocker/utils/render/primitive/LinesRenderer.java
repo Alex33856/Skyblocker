@@ -18,7 +18,7 @@ public final class LinesRenderer implements PrimitiveRenderer<LinesRenderState> 
 	@Override
 	public void submitPrimitives(LinesRenderState state, CameraRenderState cameraState) {
 		Vec3[] points = state.points;
-		BufferBuilder buffer = Renderer.getBuffer(state.throughWalls ? SkyblockerRenderPipelines.LINES_THROUGH_WALLS : RenderPipelines.LINES /*? if >1.21.10 {*//*, state.lineWidth*//*? }*/);
+		BufferBuilder buffer = Renderer.getBuffer(state.throughWalls ? SkyblockerRenderPipelines.LINES_THROUGH_WALLS : RenderPipelines.LINES /*? if <1.21.11 {*//*, state.lineWidth*//*?}*/);
 		Matrix4f positionMatrix = new Matrix4f()
 				.translate((float) -cameraState.pos.x, (float) -cameraState.pos.y, (float) -cameraState.pos.z);
 
@@ -35,7 +35,7 @@ public final class LinesRenderer implements PrimitiveRenderer<LinesRenderState> 
 			buffer.addVertex(positionMatrix, (float) points[i].x(), (float) points[i].y(), (float) points[i].z())
 			.setColor(state.colourComponents[0], state.colourComponents[1], state.colourComponents[2], state.alpha)
 			.setNormal(normalVec.x(), normalVec.y(), normalVec.z())
-			/*? if >1.21.10 {*/.setLineWidth(state.lineWidth);/*? } else {*//*;*//*? }*/
+			/*? if >1.21.10 {*/.setLineWidth(state.lineWidth);/*?} else {*//*; *//*?}*/
 		}
 	}
 }

@@ -44,11 +44,11 @@ public class SubPageSelectButton extends AbstractWidget {
 
 		//? if >1.21.10 {
 		this.handleCursor(context);
-		//? } else {
+		//?} else {
 		/*if (this.isHovered()) {
 			context.requestCursor(com.mojang.blaze3d.platform.cursor.CursorTypes.POINTING_HAND);
 		}
-		*///? }
+		*///?}
 	}
 
 	@Override

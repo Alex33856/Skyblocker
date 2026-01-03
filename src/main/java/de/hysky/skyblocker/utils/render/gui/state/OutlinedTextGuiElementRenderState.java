@@ -26,9 +26,9 @@ public class OutlinedTextGuiElementRenderState extends GuiTextRenderState {
 			int color,
 			int outlineColor,
 			boolean shadow,
-			/*? if >1.21.10 {*/ boolean trackEmpty, /*? }*/
+			/*? if >1.21.10 {*/ boolean trackEmpty, /*?}*/
 			ScreenRectangle clipBounds) {
-		super(textRenderer, orderedText, matrix, x, y, color, 0, shadow, /*? if >1.21.10 {*/ trackEmpty, /*? }*/ clipBounds);
+		super(textRenderer, orderedText, matrix, x, y, color, 0, shadow, /*? if >1.21.10 {*/ trackEmpty, /*?}*/ clipBounds);
 		this.outlineColor = outlineColor;
 	}
 
@@ -37,7 +37,7 @@ public class OutlinedTextGuiElementRenderState extends GuiTextRenderState {
 	 */
 	private PreparedText prepareOutline() {
 		FontAccessor accessor = (FontAccessor) this.font;
-		Font.PreparedTextBuilder drawer = this.font.new PreparedTextBuilder(0.0f, 0.0f, this.outlineColor, false /*? if >1.21.10 {*/, this.includeEmpty/*? }*/);
+		Font.PreparedTextBuilder drawer = this.font.new PreparedTextBuilder(0.0f, 0.0f, this.outlineColor, false /*? if >1.21.10 {*/, this.includeEmpty/*?}*/);
 
 		for (int i = -1; i <= 1; i++) {
 			for (int j = -1; j <= 1; j++) {
@@ -61,7 +61,7 @@ public class OutlinedTextGuiElementRenderState extends GuiTextRenderState {
 	}
 
 	private PreparedText prepareText() {
-		PreparedText textPreparation = this.font.prepareText(this.text, (float) this.x, (float) this.y, this.color, this.dropShadow, /*? if >1.21.10 {*/ this.includeEmpty, /*? }*/ this.backgroundColor);
+		PreparedText textPreparation = this.font.prepareText(this.text, (float) this.x, (float) this.y, this.color, this.dropShadow, /*? if >1.21.10 {*/ this.includeEmpty, /*?}*/ this.backgroundColor);
 
 		ScreenRectangle screenRect = textPreparation.bounds();
 		if (screenRect != null) {

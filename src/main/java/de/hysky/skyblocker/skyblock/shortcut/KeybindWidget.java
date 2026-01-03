@@ -10,7 +10,7 @@ import net.minecraft.network.chat.Component;
 //? if >1.21.10 {
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.GuiGraphics.HoveredTextEffects;
-//? }
+//?}
 
 public class KeybindWidget extends Button {
 	private final ShortcutKeyBinding keyBinding;
@@ -86,5 +86,5 @@ public class KeybindWidget extends Button {
 		this.renderDefaultSprite(context);
 		this.renderDefaultLabel(context.textRenderer(HoveredTextEffects.NONE));
 	}
-	//? }
+	//?}
 }

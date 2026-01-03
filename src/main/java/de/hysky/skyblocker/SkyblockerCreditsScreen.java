@@ -42,7 +42,7 @@ import net.minecraft.world.item.component.ResolvableProfile;
 
 //? if >1.21.10 {
 import net.minecraft.util.ExtraCodecs;
-//? }
+//?}
 
 public class SkyblockerCreditsScreen extends Screen {
 	private static final Logger LOGGER = LogUtils.getLogger();
@@ -341,9 +341,9 @@ public class SkyblockerCreditsScreen extends Screen {
 				UUIDUtil.STRING_CODEC.fieldOf("uuid").forGetter(Author::uuid),
 				//? if >1.21.10 {
 				ExtraCodecs.STRING_RGB_COLOR.optionalFieldOf("colour", CommonColors.WHITE).forGetter(Author::colour)
-				//? } else {
-				/* CodecUtils.STRING_RGB_COLOR.optionalFieldOf("colour", CommonColors.WHITE).forGetter(Author::colour)
-				*///? }
+				//?} else {
+				/*CodecUtils.STRING_RGB_COLOR.optionalFieldOf("colour", CommonColors.WHITE).forGetter(Author::colour)
+				*///?}
 				).apply(instance, Author::new));
 
 		public Component asText() {

@@ -40,9 +40,9 @@ import org.jspecify.annotations.Nullable;
 
 //? if >1.21.10 {
 import net.minecraft.client.model.player.PlayerModel;
-//? } else {
+//?} else {
 /*import net.minecraft.client.model.PlayerModel;
-*///? }
+*///?}
 
 public abstract sealed class TrimElementButton extends AbstractButton permits TrimElementButton.Pattern, TrimElementButton.Material {
 	private static final ItemStack BARRIER = new ItemStack(Items.BARRIER);
@@ -71,9 +71,9 @@ public abstract sealed class TrimElementButton extends AbstractButton permits Tr
 	//? if >1.21.10 {
 	public void renderContents(GuiGraphics context, int mouseX, int mouseY, float deltaTicks) {
 		this.renderDefaultSprite(context);
-	//? } else {
-	/* public void renderString(GuiGraphics context, net.minecraft.client.gui.Font textRenderer, int color) {
-	*///? }
+	//?} else {
+	/*public void renderString(GuiGraphics context, net.minecraft.client.gui.Font textRenderer, int color) {
+	*///?}
 		draw(context);
 	}
 

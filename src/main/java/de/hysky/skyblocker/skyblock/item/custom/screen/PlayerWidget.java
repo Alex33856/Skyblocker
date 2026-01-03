@@ -17,9 +17,9 @@ import org.joml.Vector3f;
 //? if >1.21.10 {
 import de.hysky.skyblocker.mixins.accessors.InventoryScreenInvoker;
 import net.minecraft.client.renderer.entity.state.EntityRenderState;
-//? } else {
+//?} else {
 /*import net.minecraft.client.gui.screens.inventory.InventoryScreen;
-*///? }
+*///?}
 
 public class PlayerWidget extends AbstractWidget {
 	private static final Identifier INNER_SPACE_TEXTURE = SkyblockerMod.id("menu_inner_space");
@@ -53,9 +53,9 @@ public class PlayerWidget extends AbstractWidget {
 		//? if >1.21.10 {
 		EntityRenderState renderState = InventoryScreenInvoker.invokeExtractRenderState(this.player);
 		context.submitEntityRenderState(renderState, size, translation, rotation, null, getX(), getY(), this.getRight(), this.getBottom());
-		//? } else {
+		//?} else {
 		/*InventoryScreen.renderEntityInInventory(context, getX(), getY(), this.getRight(), this.getBottom(), size, translation, rotation, null, player);
-		*///? }
+		*///?}
 	}
 
 	@Override

@@ -25,7 +25,7 @@ import de.hysky.skyblocker.debug.Debug;
 import de.hysky.skyblocker.utils.Utils;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.injection.Slice;
-*///? }
+*///?}
 
 @Mixin(EntityRenderer.class)
 public class EntityRendererMixin {
@@ -34,8 +34,8 @@ public class EntityRendererMixin {
 	/*@ModifyExpressionValue(method = "extractRenderState", slice = @Slice(from = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/entity/EntityRenderDispatcher;shouldRenderHitboxes()Z")), at = @At(value = "FIELD", target = "Lnet/minecraft/client/renderer/entity/state/EntityRenderState;isInvisible:Z", opcode = Opcodes.GETFIELD))
 	private boolean skyblocker$armorStandHitboxVisible(boolean invisible, @Local(argsOnly = true) Entity entity) {
 		return (!(entity instanceof ArmorStand) || !Utils.isOnHypixel() || !Debug.debugEnabled() || !SkyblockerConfigManager.get().debug.showInvisibleArmorStands) && invisible;
-	}*/
-	//? }
+	}
+	*///?}
 
 	@Inject(method = "extractRenderState", at = @At("TAIL"))
 	private void skyblocker$customGlow(CallbackInfo ci, @Local(argsOnly = true) Entity entity, @Local(argsOnly = true) EntityRenderState state) {

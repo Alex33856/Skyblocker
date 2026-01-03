@@ -26,9 +26,9 @@ import de.hysky.skyblocker.utils.Utils;
 
 //? if > 1.21.10 {
 import net.minecraft.client.renderer.rendertype.RenderTypes;
-//? } else {
-/* import net.minecraft.client.renderer.rendertype.RenderType;
-*///? }
+//?} else {
+/*import net.minecraft.client.renderer.rendertype.RenderType;
+*///?}
 
 public class CatPicture {
 	private static final Vec3 RENDER_POSITION = new Vec3(6, 72, -92);
@@ -63,9 +63,9 @@ public class CatPicture {
 				matrices,
 				//? if >1.21.10 {
 				RenderTypes.entitySolidZOffsetForward(TextureAtlas.LOCATION_BLOCKS),
-				//? } else {
-				/* RenderType.entitySolidZOffsetForward(TextureAtlas.LOCATION_BLOCKS),
-				 *///? }
+				//?} else {
+				/*RenderType.entitySolidZOffsetForward(TextureAtlas.LOCATION_BLOCKS),
+				*///?}
 				blockStateModel,
 				1f,
 				1f,
@@ -81,9 +81,9 @@ public class CatPicture {
 
 		//? if >1.21.10 {
 		commandQueue.submitCustomGeometry(matrices, RenderTypes.text(TEXTURE), (matricesEntry, buffer) -> {
-		//? } else {
-			/* commandQueue.submitCustomGeometry(matrices, RenderType.text(TEXTURE), (matricesEntry, buffer) -> {
-		*///? }
+		//?} else {
+			/*commandQueue.submitCustomGeometry(matrices, RenderType.text(TEXTURE), (matricesEntry, buffer) -> {
+		*///?}
 			float z = 1F - 1 / 16f - 1 / 2048f;
 			buffer.addVertex(matricesEntry, 0.0F, 1, z).setColor(CommonColors.WHITE).setUv(0.0F, 1.0F).setLight(LightTexture.FULL_BRIGHT);
 			buffer.addVertex(matricesEntry, 1, 1, z).setColor(CommonColors.WHITE).setUv(1.0F, 1.0F).setLight(LightTexture.FULL_BRIGHT);

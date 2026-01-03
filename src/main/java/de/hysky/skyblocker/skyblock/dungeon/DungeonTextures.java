@@ -5,11 +5,11 @@ import de.hysky.skyblocker.annotations.Init;
 //? if >1.21.10 {
 import net.fabricmc.fabric.api.resource.v1.ResourceLoader;
 import net.fabricmc.fabric.api.resource.v1.pack.PackActivationType;
-//? } else {
-/*
-import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
+//?} else {
+
+/*import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
-*///? }
+*///?}
 
 public class DungeonTextures {
 	@Init

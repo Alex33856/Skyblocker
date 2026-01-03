@@ -22,7 +22,7 @@ import org.slf4j.LoggerFactory;
 
 //? if >1.21.10 {
 import net.minecraft.client.gui.ActiveTextCollector;
-//? }
+//?}
 
 public class ConfirmationPromptHelper {
 	public static final Logger LOGGER = LoggerFactory.getLogger(ConfirmationPromptHelper.class);
@@ -62,12 +62,12 @@ public class ConfirmationPromptHelper {
 							if (clickedStyle != null && clickedStyle.getClickEvent() != null) {	// clicking on some prompts invalidates first prompt but not in all cases, so I decided not to nullify command
 								return;
 							}
-							//? } else {
+							//?} else {
 							/*Style style = client.gui.getChat().getClickedComponentStyleAt(click.x(), click.y());
 							if (style != null && style.getClickEvent() != null) {	// clicking on some prompts invalidates first prompt but not in all cases, so I decided not to nullify command
 								return;
 							}
-							*///? }
+							*///?}
 						}
 
 						MessageScheduler.INSTANCE.sendMessageAfterCooldown(command, true);

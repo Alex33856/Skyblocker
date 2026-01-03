@@ -28,19 +28,19 @@ import org.joml.Vector2i;
 import org.joml.Vector2ic;
 
 //? if <1.21.11 {
-/* import java.util.HexFormat;
+/*import java.util.HexFormat;
 import com.mojang.serialization.DataResult;
-*///? }
+*///?}
 
 public final class CodecUtils {
 	//? if <1.21.11 {
-	/* // Naive re-implementation of ExtraCodecs#STRING_RGB_COLOR from 1.21.11
+	/*// Naive re-implementation of ExtraCodecs#STRING_RGB_COLOR from 1.21.11
 	public static final Codec<Integer> STRING_RGB_COLOR = Codec.STRING.comapFlatMap(str -> {
 				if (!str.startsWith("#")) return DataResult.error(() -> "Needs to start with a #");
 				if (str.length() != 7) return DataResult.error(() -> "Invalid length");
 				return DataResult.success(HexFormat.fromHexDigits(str, 1, 7));
 			}, integer -> "#" + HexFormat.of().toHexDigits(integer, 6)
-	);*///? }
+	); *///?}
 
 	public static final Codec<Color> COLOR_CODEC = Codec.INT.xmap(argb -> new Color(argb, true), Color::getRGB);
 

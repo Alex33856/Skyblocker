@@ -39,19 +39,19 @@ public class WaypointsOptionScreen extends Screen {
 		GridLayout.RowHelper adder = grid.createRowHelper(2);
 		UIAndVisualsConfig.Waypoints waypoints = WAYPOINTS.get();
 		adder.addChild(CycleButton
-				.booleanBuilder(CommonComponents.GUI_YES, CommonComponents.OPTION_OFF /*? if >1.21.10 {*/, waypoints.renderLine/*? }*/)
-				/*? if <1.21.11 {*//* .withInitialValue(waypoints.renderLine)*//*? }*/
+				.booleanBuilder(CommonComponents.GUI_YES, CommonComponents.OPTION_OFF /*? if >1.21.10 {*/, waypoints.renderLine/*?}*/)
+				/*? if <1.21.11 {*/ /*.withInitialValue(waypoints.renderLine)*//*?}*/
 				.create(Component.translatable("skyblocker.config.uiAndVisuals.waypoints.renderLine"), (button, value) -> waypoints.renderLine = value)
 		);
 		adder.addChild(CycleButton
-				.booleanBuilder(CommonComponents.GUI_YES, CommonComponents.OPTION_OFF /*? if >1.21.10 {*/, waypoints.allowSkippingWaypoints/*? }*/)
-				/*? if <1.21.11 {*//* .withInitialValue(waypoints.allowSkippingWaypoints)*//*? }*/
+				.booleanBuilder(CommonComponents.GUI_YES, CommonComponents.OPTION_OFF /*? if >1.21.10 {*/, waypoints.allowSkippingWaypoints/*?}*/)
+				/*? if <1.21.11 {*/ /*.withInitialValue(waypoints.allowSkippingWaypoints)*//*?}*/
 				.withTooltip(ignored -> Tooltip.create(Component.translatable("skyblocker.config.uiAndVisuals.waypoints.allowSkippingWaypoints.@Tooltip")))
 				.create(Component.translatable("skyblocker.config.uiAndVisuals.waypoints.allowSkippingWaypoints"), (button, value) -> waypoints.allowSkippingWaypoints = value)
 		);
 		adder.addChild(CycleButton
-				.booleanBuilder(CommonComponents.GUI_YES, CommonComponents.OPTION_OFF /*? if >1.21.10 {*/, waypoints.allowGoingBackwards/*? }*/)
-				/*? if <1.21.11 {*//* .withInitialValue(waypoints.allowGoingBackwards)*//*? }*/
+				.booleanBuilder(CommonComponents.GUI_YES, CommonComponents.OPTION_OFF /*? if >1.21.10 {*/, waypoints.allowGoingBackwards/*?}*/)
+				/*? if <1.21.11 {*/ /*.withInitialValue(waypoints.allowGoingBackwards)*//*?}*/
 				.withTooltip(ignored -> Tooltip.create(Component.translatable("skyblocker.config.uiAndVisuals.waypoints.allowGoingBackwards.@Tooltip")))
 				.create(Component.translatable("skyblocker.config.uiAndVisuals.waypoints.allowGoingBackwards"), (button, value) -> waypoints.allowGoingBackwards = value)
 		);

@@ -3,7 +3,6 @@ package de.hysky.skyblocker.utils.render;
 import com.mojang.blaze3d.pipeline.RenderTarget;
 import com.mojang.blaze3d.platform.InputConstants;
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.textures.AddressMode;
 import com.mojang.blaze3d.textures.FilterMode;
 import com.mojang.blaze3d.textures.GpuTexture;
 import com.mojang.blaze3d.textures.GpuTextureView;
@@ -46,9 +45,9 @@ import java.util.List;
 
 //? if >1.21.10 {
 import com.mojang.blaze3d.textures.GpuSampler;
-//? } else {
+//?} else {
 /*import com.mojang.blaze3d.textures.AddressMode;
-*///? }
+*///?}
 
 public class HudHelper {
 	private static final Minecraft CLIENT = Minecraft.getInstance();
@@ -118,7 +117,7 @@ public class HudHelper {
 		if (CaxtonCompatibility.drawOutlinedText(context, text, x, y, color, outlineColor)) return;
 		if (ModernUICompatibility.drawOutlinedText(context, text, outlineText, x, y, color, outlineColor)) return;
 
-		OutlinedTextGuiElementRenderState renderState = new OutlinedTextGuiElementRenderState(CLIENT.font, text, new Matrix3x2f(context.pose()), x, y, color, outlineColor, false /*? if >1.21.10 {*/, false /*? }*/, context.scissorStack.peek());
+		OutlinedTextGuiElementRenderState renderState = new OutlinedTextGuiElementRenderState(CLIENT.font, text, new Matrix3x2f(context.pose()), x, y, color, outlineColor, false /*? if >1.21.10 {*/, false /*?}*/, context.scissorStack.peek());
 		context.guiRenderState.submitText(renderState);
 	}
 
@@ -138,16 +137,16 @@ public class HudHelper {
 		// The sampler needs to be linear in order for the shader sampling interpolation trick to work properly
 		//? if >1.21.10 {
 		GpuSampler sampler = RenderSystem.getSamplerCache().getClampToEdge(FilterMode.LINEAR);
-		//? } else {
+		//?} else {
 		/*blitTexture.setAddressMode(AddressMode.CLAMP_TO_EDGE);
 		blitTexture.setTextureFilter(FilterMode.LINEAR, false);
-		*///? }
+		*///?}
 		// Pass the radius through the vertex colour - least painful way to do this
 		int vertexColour = ARGB.color(radius, 255, 255);
 
 		// Copy the main render target colour texture to our temporary one since you cannot read from and write to the same texture in a single draw.
 		RenderSystem.getDevice().createCommandEncoder().copyTextureToTexture(mainRenderTarget.getColorTexture(), blitTexture, 0, 0, 0, 0, 0, requiredWidth, requiredHeight);
-		((GuiGraphicsInvoker) graphics).invokeSubmitColoredRectangle(SkyblockerRenderPipelines.BLURRED_RECTANGLE, TextureSetup.singleTexture(blitTextureView /*? if >1.21.10 {*/, sampler/*? }*/), x0, y0, x1, y1, vertexColour, null);
+		((GuiGraphicsInvoker) graphics).invokeSubmitColoredRectangle(SkyblockerRenderPipelines.BLURRED_RECTANGLE, TextureSetup.singleTexture(blitTextureView /*? if >1.21.10 {*/, sampler/*?}*/), x0, y0, x1, y1, vertexColour, null);
 	}
 
 	public static boolean pointIsInArea(double x, double y, double x1, double y1, double x2, double y2) {

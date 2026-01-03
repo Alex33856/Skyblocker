@@ -14,9 +14,9 @@ public class CameraMixin {
 
 	//? if >1.21.10 {
 	@ModifyReturnValue(method = "position", at = @At("RETURN"))
-	//? } else {
-	/* @ModifyReturnValue(method = "getPosition", at = @At("RETURN"))
-	*///? }
+	//?} else {
+	/*@ModifyReturnValue(method = "getPosition", at = @At("RETURN"))
+	*///?}
 	private Vec3 skyblocker$onCameraUpdate(Vec3 original) {
 		if (SkyblockerConfigManager.get().uiAndVisuals.smoothAOTE.predictive) {
 			Vec3 pos = PredictiveSmoothAOTE.getInterpolatedPos();

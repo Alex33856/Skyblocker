@@ -3,4 +3,6 @@
 <suppressions>
     <!-- Do not require packages in the test or game test source set to have package-info files -->
     <suppress checks="JavadocPackage" files="src[\/\\](?:game)?test[\/\\]java"/>
+    <!-- Do not require package-info files for version specific sources, as they generally overlap with the main sources -->
+    <suppress checks="JavadocPackage" files="versions[\/\\].*"/>
 </suppressions>

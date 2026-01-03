@@ -1,19 +1,20 @@
 package de.hysky.skyblocker.utils.render.gui;
 
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.components.ImageButton;
-import net.minecraft.client.gui.screens.recipebook.RecipeBookTabButton;
 import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
 
 //? if >1.21.10 {
+import net.minecraft.client.gui.screens.recipebook.RecipeBookTabButton;
+import net.minecraft.client.gui.components.ImageButton;
+
 public class SideTabButtonWidget extends ImageButton {
-//? } else {
+//?} else {
 /*public class SideTabButtonWidget extends net.minecraft.client.gui.components.StateSwitchingButton {
 	private static final net.minecraft.client.gui.components.WidgetSprites TEXTURES = new net.minecraft.client.gui.components.WidgetSprites(Identifier.withDefaultNamespace("recipe_book/tab"), Identifier.withDefaultNamespace("recipe_book/tab_selected"));
-*///? }
+*///?}
 	protected ItemStack icon;
 	protected boolean selected = false;
 
@@ -22,19 +23,19 @@ public class SideTabButtonWidget extends ImageButton {
 	}
 
 	public SideTabButtonWidget(int x, int y, boolean toggled, ItemStack icon) {
-		super(x, y, 35, 27, /*? if >1.21.10 {*/RecipeBookTabButton.SPRITES, _ignored -> {}/*? } else {*//*toggled *//*? }*/);
+		super(x, y, 35, 27, /*? if >1.21.10 {*/RecipeBookTabButton.SPRITES, _ignored -> {}/*?} else {*//*toggled *//*?}*/);
 		this.icon = icon.copy();
 		//? if <1.21.11 {
 		/*initTextureValues(TEXTURES);
-		*///? }
+		*///?}
 	}
 
 	@Override
 	//? if >1.21.10 {
 	public void renderContents(GuiGraphics context, int mouseX, int mouseY, float delta) {
-	//? } else {
+	//?} else {
 	/*public void renderWidget(GuiGraphics context, int mouseX, int mouseY, float delta) {
-	*///? }
+	*///?}
 		if (sprites == null) return;
 		Identifier identifier = sprites.get(true, this.selected);
 		int x = getX();
@@ -48,9 +49,9 @@ public class SideTabButtonWidget extends ImageButton {
 		super.onClick(click, doubled);
 		//? if >1.21.10 {
 		if (!this.selected) this.selected = true;
-		//? } else {
+		//?} else {
 		/*if (!isStateTriggered()) this.setStateTriggered(true);
-		*///? }
+		*///?}
 	}
 
 	//? if >1.21.10 {
@@ -61,5 +62,5 @@ public class SideTabButtonWidget extends ImageButton {
 	public void unselect() {
 		this.selected = false;
 	}
-	//? }
+	//?}
 }

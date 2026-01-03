@@ -1,36 +1,39 @@
 package de.hysky.skyblocker.skyblock.itemlist.recipebook;
 
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.components.ImageButton;
 import net.minecraft.client.gui.screens.recipebook.RecipeBookTabButton;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.world.item.ItemStack;
+
+//? if >1.21.10 {
+import net.minecraft.client.gui.components.ImageButton;
+//?}
 
 /**
  * Based off {@link net.minecraft.client.gui.screens.recipebook.RecipeBookTabButton}
  */
 //? if >1.21.10 {
 public class SkyblockRecipeTabButton extends ImageButton {
-//? } else {
-/* public class SkyblockRecipeTabButton extends net.minecraft.client.gui.components.StateSwitchingButton {
-*///? }
+//?} else {
+/*public class SkyblockRecipeTabButton extends net.minecraft.client.gui.components.StateSwitchingButton {
+*///?}
 	protected final ItemStack icon;
 	private boolean selected;
 
 	protected SkyblockRecipeTabButton(ItemStack icon) {
-		super(0, 0, 35, 27, /*? if >1.21.10 {*/RecipeBookTabButton.SPRITES, _ignored -> {}/*? } else {*//*false *//*? }*/);
+		super(0, 0, 35, 27, /*? if >1.21.10 {*/RecipeBookTabButton.SPRITES, _ignored -> {}/*?} else {*//*false *//*?}*/);
 		this.icon = icon;
 		//? if <1.21.11 {
 		/*this.initTextureValues(RecipeBookTabButton.SPRITES);
-		*///? }
+		*///?}
 	}
 
 	@Override
 	//? if >1.21.10 {
 	public void renderContents(GuiGraphics context, int mouseX, int mouseY, float delta) {
-	//? } else {
+	//?} else {
 	/*public void renderWidget(GuiGraphics context, int mouseX, int mouseY, float delta) {
-	*///? }
+	*///?}
 		if (this.sprites != null) {
 			int x = this.getX();
 
@@ -46,10 +49,10 @@ public class SkyblockRecipeTabButton extends ImageButton {
 		}
 
 		//? if <1.21.11 {
-		/* if (this.isHovered()) {
+		/*if (this.isHovered()) {
 			context.requestCursor(com.mojang.blaze3d.platform.cursor.CursorTypes.POINTING_HAND);
 		}
-		*///? }
+		*///?}
 	}
 
 	//? if >1.21.10 {
@@ -59,7 +62,7 @@ public class SkyblockRecipeTabButton extends ImageButton {
 			super.handleCursor(context);
 		}
 	}
-	//? }
+	//?}
 
 	public void select() {
 		this.selected = true;

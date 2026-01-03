@@ -22,10 +22,10 @@ public class CategoryTabWidget extends SideTabButtonWidget {
 	//? if >1.21.10 {
 	public void renderContents(GuiGraphics context, int mouseX, int mouseY, float delta) {
 		super.renderContents(context, mouseX, mouseY, delta);
-	//? } else {
+	//?} else {
 	/*public void renderWidget(GuiGraphics context, int mouseX, int mouseY, float delta) {
 		super.renderWidget(context, mouseX, mouseY, delta);
-	*///? }
+	*///?}
 
 
 		if (isMouseOver(mouseX, mouseY)) {
@@ -41,9 +41,9 @@ public class CategoryTabWidget extends SideTabButtonWidget {
 	public void onClick(MouseButtonEvent click, boolean doubled) {
 		//? if >1.21.10 {
 		if (this.selected) return;
-		//? } else {
+		//?} else {
 		/*if (isStateTriggered()) return;
-		*///? }
+		*///?}
 		if (slotId == -1) return;
 		super.onClick(click, doubled);
 		slotClick.click(slotId);
