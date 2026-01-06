@@ -1,3 +1,5 @@
+import net.fabricmc.loom.task.ValidateAccessWidenerTask
+
 plugins {
 	// Building
 	id 'net.fabricmc.fabric-loom-remap'
@@ -223,7 +225,7 @@ dependencies {
 }
 
 loom {
-	accessWidenerPath = file("src/main/resources/skyblocker.accesswidener")
+	accessWidenerPath = rootProject.file("src/main/resources/skyblocker.accesswidener")
 
 	mixin {
 		useLegacyMixinAp = false
@@ -234,15 +236,18 @@ loom {
 			options.put(
 					// Makes lambda names easy to find for Mixins
 					"mark-corresponding-synthetics", "1"
-					)
+			)
 		}
 	}
 
 	runConfigs.all {
 		ideConfigGenerated(true)
-		client()
 		runDir = "../../run" // Shares the run directory between versions
 	}
+}
+
+tasks.withType(ValidateAccessWidenerTask).configureEach {
+	enabled = false
 }
 
 fabricApi {
@@ -262,7 +267,11 @@ processResources {
 	inputs.property "version", project.version
 
 	filesMatching("fabric.mod.json") {
-		expand "version": project.version
+		expand "version": project.version,
+				"fabric_api_version": project.property("fabric_api_version"),
+				"dandelion_version": project.property("dandelion_version"),
+				"yacl_version": project.property("yacl_version"),
+				"minecraft_version": project.property("minecraft_version")
 	}
 }
 
