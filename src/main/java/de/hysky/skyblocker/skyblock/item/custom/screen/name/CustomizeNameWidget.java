@@ -458,13 +458,12 @@ public class CustomizeNameWidget extends AbstractContainerWidget {
 
 			context.drawString(textRenderer, text, textX, textY, -1, false);
 
-		//? if >1.21.10 {
 			this.handleCursor(context);
 		}
 
+		//? if >1.21.10
 		@Override
 		protected void handleCursor(GuiGraphics context) {
-		//?}
 			if (this.isHovered()) {
 				context.requestCursor(CursorTypes.IBEAM);
 			}

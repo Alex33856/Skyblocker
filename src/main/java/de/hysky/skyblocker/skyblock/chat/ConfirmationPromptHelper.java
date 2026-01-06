@@ -20,9 +20,8 @@ import net.minecraft.network.chat.Style;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-//? if >1.21.10 {
+//? if >1.21.10
 import net.minecraft.client.gui.ActiveTextCollector;
-//?}
 
 public class ConfirmationPromptHelper {
 	public static final Logger LOGGER = LoggerFactory.getLogger(ConfirmationPromptHelper.class);

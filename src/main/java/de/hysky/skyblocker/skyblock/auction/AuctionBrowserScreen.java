@@ -282,25 +282,13 @@ public class AuctionBrowserScreen extends AbstractCustomHypixelGUI<AuctionHouseS
 					for (int j = tooltipDefault.size() - 1; j >= 0; j--) {
 						String lowerCase = tooltipDefault.get(j).toLowerCase(Locale.ENGLISH);
 						if (lowerCase.contains("currently")) {
-							//? if >1.21.10 {
 							categoryTabWidget.select();
-							//?} else {
-							/*categoryTabWidget.setStateTriggered(true);
-							*///?}
 							break;
 						} else if (lowerCase.contains("click")) {
-							//? if >1.21.10 {
 							categoryTabWidget.unselect();
-							//?} else {
-							/*categoryTabWidget.setStateTriggered(false);
-							*///?}
 							break;
 						} else {
-							//? if >1.21.10 {
 							categoryTabWidget.select();
-							//?} else {
-							/*categoryTabWidget.setStateTriggered(true);
-							*///?}
 						}
 					}
 				} else if (slotId > 9 && slotId < (handler.getRowCount() - 1) * 9 && slotId % 9 > 1 && slotId % 9 < 8) {

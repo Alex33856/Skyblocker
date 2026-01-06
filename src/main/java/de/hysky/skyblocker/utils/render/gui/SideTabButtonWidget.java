@@ -47,20 +47,20 @@ public class SideTabButtonWidget extends ImageButton {
 	@Override
 	public void onClick(MouseButtonEvent click, boolean doubled) {
 		super.onClick(click, doubled);
-		//? if >1.21.10 {
 		if (!this.selected) this.selected = true;
-		//?} else {
-		/*if (!isStateTriggered()) this.setStateTriggered(true);
-		*///?}
+		//? if <1.21.11
+		/*if (!isStateTriggered()) this.setStateTriggered(true);*/
 	}
 
-	//? if >1.21.10 {
 	public void select() {
 		this.selected = true;
+		//? if <1.21.11
+		/*this.setStateTriggered(true);*/
 	}
 
 	public void unselect() {
 		this.selected = false;
+		//? if <1.21.11
+		/*this.setStateTriggered(false);*/
 	}
-	//?}
 }
