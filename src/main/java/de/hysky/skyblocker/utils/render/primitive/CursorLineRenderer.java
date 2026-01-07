@@ -33,7 +33,7 @@ public final class CursorLineRenderer implements PrimitiveRenderer<CursorLineRen
 
 		buffer.addVertex(positionMatrix, (float) point.x(), (float) point.y(), (float) point.z())
 		.setColor(state.colourComponents[0], state.colourComponents[1], state.colourComponents[2], state.alpha)
-		.setNormal(normal.x(), normal.y(), normal.z())/*? if < 1.21.11*//*;*/ 
+		.setNormal(normal.x(), normal.y(), normal.z())/*? if < 1.21.11*//*;*/
 		//? if > 1.21.10
 		.setLineWidth(state.lineWidth);
 	}
