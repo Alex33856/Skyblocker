@@ -23,6 +23,7 @@ import de.hysky.skyblocker.utils.container.SlotTextAdder;
 import de.hysky.skyblocker.utils.render.title.TitleContainerConfigScreen;
 import de.hysky.skyblocker.utils.scheduler.MessageScheduler;
 import de.hysky.skyblocker.utils.waypoint.Waypoint;
+//? if >1.21.10 {
 import net.azureaaron.dandelion.api.ButtonOption;
 import net.azureaaron.dandelion.api.ConfigCategory;
 import net.azureaaron.dandelion.api.LabelOption;
@@ -32,6 +33,17 @@ import net.azureaaron.dandelion.api.OptionGroup;
 import net.azureaaron.dandelion.api.controllers.ColourController;
 import net.azureaaron.dandelion.api.controllers.FloatController;
 import net.azureaaron.dandelion.api.controllers.IntegerController;
+//? } else {
+/*import net.azureaaron.dandelion.systems.ButtonOption;
+import net.azureaaron.dandelion.systems.ConfigCategory;
+import net.azureaaron.dandelion.systems.LabelOption;
+import net.azureaaron.dandelion.systems.Option;
+import net.azureaaron.dandelion.systems.OptionFlag;
+import net.azureaaron.dandelion.systems.OptionGroup;
+import net.azureaaron.dandelion.systems.controllers.ColourController;
+import net.azureaaron.dandelion.systems.controllers.FloatController;
+import net.azureaaron.dandelion.systems.controllers.IntegerController;
+*///? }
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.input.InputQuirks;

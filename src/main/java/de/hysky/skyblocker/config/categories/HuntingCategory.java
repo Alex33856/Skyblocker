@@ -8,11 +8,19 @@ import de.hysky.skyblocker.config.SkyblockerConfig;
 import de.hysky.skyblocker.skyblock.hunting.LassoHud;
 import de.hysky.skyblocker.skyblock.tabhud.config.WidgetsConfigurationScreen;
 import de.hysky.skyblocker.utils.Location;
+//? if >1.21.10 {
 import net.azureaaron.dandelion.api.ButtonOption;
 import net.azureaaron.dandelion.api.ConfigCategory;
 import net.azureaaron.dandelion.api.Option;
 import net.azureaaron.dandelion.api.OptionGroup;
 import net.azureaaron.dandelion.api.controllers.ColourController;
+//? } else {
+/*import net.azureaaron.dandelion.systems.ButtonOption;
+import net.azureaaron.dandelion.systems.ConfigCategory;
+import net.azureaaron.dandelion.systems.Option;
+import net.azureaaron.dandelion.systems.OptionGroup;
+import net.azureaaron.dandelion.systems.controllers.ColourController;
+*///? }
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 

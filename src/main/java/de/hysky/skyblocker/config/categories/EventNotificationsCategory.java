@@ -6,6 +6,7 @@ import de.hysky.skyblocker.config.SkyblockerConfig;
 import de.hysky.skyblocker.config.configs.EventNotificationsConfig;
 import de.hysky.skyblocker.skyblock.events.EventNotifications;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
+//? if >1.21.10 {
 import net.azureaaron.dandelion.api.ConfigCategory;
 import net.azureaaron.dandelion.api.LabelOption;
 import net.azureaaron.dandelion.api.ListOption;
@@ -13,6 +14,15 @@ import net.azureaaron.dandelion.api.Option;
 import net.azureaaron.dandelion.api.OptionGroup;
 import net.azureaaron.dandelion.api.OptionListener.UpdateType;
 import net.azureaaron.dandelion.api.controllers.IntegerController;
+//? } else {
+/*import net.azureaaron.dandelion.systems.ConfigCategory;
+import net.azureaaron.dandelion.systems.LabelOption;
+import net.azureaaron.dandelion.systems.ListOption;
+import net.azureaaron.dandelion.systems.Option;
+import net.azureaaron.dandelion.systems.OptionGroup;
+import net.azureaaron.dandelion.systems.OptionListener.UpdateType;
+import net.azureaaron.dandelion.systems.controllers.IntegerController;
+*///? }
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.network.chat.Component;

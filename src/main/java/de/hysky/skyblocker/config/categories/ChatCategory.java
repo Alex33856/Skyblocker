@@ -5,11 +5,19 @@ import de.hysky.skyblocker.config.ConfigUtils;
 import de.hysky.skyblocker.config.SkyblockerConfig;
 import de.hysky.skyblocker.skyblock.chat.ChatRulesConfigScreen;
 import de.hysky.skyblocker.utils.chat.ChatFilterResult;
+//? if >1.21.10 {
 import net.azureaaron.dandelion.api.ButtonOption;
 import net.azureaaron.dandelion.api.ConfigCategory;
 import net.azureaaron.dandelion.api.Option;
 import net.azureaaron.dandelion.api.OptionGroup;
 import net.azureaaron.dandelion.api.controllers.IntegerController;
+//? } else {
+/*import net.azureaaron.dandelion.systems.ButtonOption;
+import net.azureaaron.dandelion.systems.ConfigCategory;
+import net.azureaaron.dandelion.systems.Option;
+import net.azureaaron.dandelion.systems.OptionGroup;
+import net.azureaaron.dandelion.systems.controllers.IntegerController;
+*///? }
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 
