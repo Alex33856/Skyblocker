@@ -10,13 +10,13 @@ import net.azureaaron.dandelion.api.ConfigCategory;
 import net.azureaaron.dandelion.api.Option;
 import net.azureaaron.dandelion.api.OptionGroup;
 import net.azureaaron.dandelion.api.controllers.StringController;
-//? } else {
+//?} else {
 /*import net.azureaaron.dandelion.platform.ConfigType;
 import net.azureaaron.dandelion.systems.ConfigCategory;
 import net.azureaaron.dandelion.systems.Option;
 import net.azureaaron.dandelion.systems.OptionGroup;
 import net.azureaaron.dandelion.systems.controllers.StringController;
-*///? }
+*///?}
 import net.minecraft.network.chat.Component;
 
 public class MiscCategory {

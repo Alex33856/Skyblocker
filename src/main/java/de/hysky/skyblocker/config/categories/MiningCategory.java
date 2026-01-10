@@ -22,14 +22,14 @@ import net.azureaaron.dandelion.api.Option;
 import net.azureaaron.dandelion.api.OptionGroup;
 import net.azureaaron.dandelion.api.controllers.FloatController;
 import net.azureaaron.dandelion.api.controllers.IntegerController;
-//? } else {
+//?} else {
 /*import net.azureaaron.dandelion.systems.ButtonOption;
 import net.azureaaron.dandelion.systems.ConfigCategory;
 import net.azureaaron.dandelion.systems.Option;
 import net.azureaaron.dandelion.systems.OptionGroup;
 import net.azureaaron.dandelion.systems.controllers.FloatController;
 import net.azureaaron.dandelion.systems.controllers.IntegerController;
-*///? }
+*///?}
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 

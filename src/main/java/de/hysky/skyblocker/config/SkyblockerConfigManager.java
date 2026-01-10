@@ -31,10 +31,10 @@ import de.hysky.skyblocker.utils.scheduler.Scheduler;
 //? if >1.21.10 {
 import net.azureaaron.dandelion.api.ConfigManager;
 import net.azureaaron.dandelion.api.DandelionConfigScreen;
-//? } else {
+//?} else {
 /*import net.azureaaron.dandelion.systems.ConfigManager;
 import net.azureaaron.dandelion.systems.DandelionConfigScreen;
-*///? }
+*///?}
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
 import net.fabricmc.fabric.api.client.screen.v1.ScreenEvents;

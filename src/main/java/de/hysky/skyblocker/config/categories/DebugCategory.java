@@ -8,11 +8,11 @@ import de.hysky.skyblocker.debug.Debug;
 import net.azureaaron.dandelion.api.ConfigCategory;
 import net.azureaaron.dandelion.api.Option;
 import net.azureaaron.dandelion.api.controllers.IntegerController;
-//? } else {
+//?} else {
 /*import net.azureaaron.dandelion.systems.ConfigCategory;
 import net.azureaaron.dandelion.systems.Option;
 import net.azureaaron.dandelion.systems.controllers.IntegerController;
-*///? }
+*///?}
 import net.minecraft.network.chat.Component;
 
 public class DebugCategory {

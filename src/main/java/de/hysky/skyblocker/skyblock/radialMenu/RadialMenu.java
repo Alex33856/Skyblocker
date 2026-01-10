@@ -5,9 +5,9 @@ import de.hysky.skyblocker.config.SkyblockerConfig;
 import de.hysky.skyblocker.config.SkyblockerConfigManager;
 //? if >1.21.10 {
 import net.azureaaron.dandelion.api.Option;
-//? } else {
+//?} else {
 /*import net.azureaaron.dandelion.systems.Option;
-*///? }
+*///?}
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 

@@ -7,9 +7,9 @@ import de.hysky.skyblocker.skyblock.item.slottext.SlotText;
 import de.hysky.skyblocker.skyblock.item.slottext.SlotTextManager;
 //? if >1.21.10 {
 import net.azureaaron.dandelion.api.Option;
-//? } else {
+//?} else {
 /*import net.azureaaron.dandelion.systems.Option;
-*///? }
+*///?}
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
