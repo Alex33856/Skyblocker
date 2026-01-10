@@ -5,9 +5,8 @@ import net.minecraft.client.gui.screens.recipebook.RecipeBookTabButton;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.world.item.ItemStack;
 
-//? if >1.21.10 {
+//? if >1.21.10
 import net.minecraft.client.gui.components.ImageButton;
-//?}
 
 /**
  * Based off {@link net.minecraft.client.gui.screens.recipebook.RecipeBookTabButton}
@@ -38,7 +37,9 @@ public class SkyblockRecipeTabButton extends ImageButton {
 			int x = this.getX();
 
 			//Offset x
-			if (this.selected) x -= 2;
+			if (this.selected) {
+				x -= 2;
+			}
 
 			//Render main texture
 			context.blitSprite(RenderPipelines.GUI_TEXTURED, this.sprites.get(true, this.selected), x, this.getY(), this.width, this.height);

@@ -1,7 +1,6 @@
 package de.hysky.skyblocker.utils.render.gui;
 
 import java.time.Duration;
-
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.Tooltip;

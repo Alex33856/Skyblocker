@@ -27,9 +27,8 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.crafting.display.RecipeDisplay;
 import org.jspecify.annotations.Nullable;
 
-//? if >1.21.10 {
+//? if >1.21.10
 import net.minecraft.client.gui.components.WidgetSprites;
-//?}
 
 /**
  * Based on {@link net.minecraft.client.gui.screens.recipebook.RecipeBookComponent}.

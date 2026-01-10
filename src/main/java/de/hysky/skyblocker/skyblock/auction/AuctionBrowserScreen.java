@@ -286,9 +286,7 @@ public class AuctionBrowserScreen extends AbstractCustomHypixelGUI<AuctionHouseS
 						} else if (lowerCase.contains("click")) {
 							categoryTabWidget.unselect();
 							break;
-						} else {
-							categoryTabWidget.select();
-						}
+						} else categoryTabWidget.unselect();
 					}
 				} else if (slotId > 9 && slotId < (handler.getRowCount() - 1) * 9 && slotId % 9 > 1 && slotId % 9 < 8) {
 					Object2DoubleMap<String> data = TooltipInfoType.THREE_DAY_AVERAGE.getData();

@@ -40,9 +40,8 @@ import net.minecraft.util.CommonColors;
 import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.world.item.component.ResolvableProfile;
 
-//? if >1.21.10 {
+//? if >1.21.10
 import net.minecraft.util.ExtraCodecs;
-//?}
 
 public class SkyblockerCreditsScreen extends Screen {
 	private static final Logger LOGGER = LogUtils.getLogger();
