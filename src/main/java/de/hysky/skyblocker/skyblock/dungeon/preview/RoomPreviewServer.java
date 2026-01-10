@@ -26,7 +26,11 @@ import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.LevelSettings;
 import net.minecraft.world.level.WorldDataConfiguration;
 import net.minecraft.world.level.border.WorldBorder;
+//? if >1.21.10 {
 import net.minecraft.world.level.gamerules.GameRules;
+//?} else {
+/*import net.minecraft.world.level.GameRules;
+*///?}
 import net.minecraft.world.level.levelgen.FlatLevelSource;
 import net.minecraft.world.level.levelgen.WorldOptions;
 import net.minecraft.world.level.levelgen.flat.FlatLevelGeneratorSettings;
@@ -95,8 +99,13 @@ public class RoomPreviewServer {
 		FileUtils.deleteQuietly(previousSave);
 
 		GameRules gameRules = new GameRules(WorldDataConfiguration.DEFAULT.enabledFeatures());
+		//? if >1.21.10 {
 		gameRules.set(GameRules.ADVANCE_TIME, false, null);
 		gameRules.set(GameRules.RANDOM_TICK_SPEED, 0, null);
+		//?} else {
+		/*gameRules.getRule(GameRules.RULE_DAYLIGHT).set(false, null);
+		gameRules.getRule(GameRules.RULE_RANDOMTICKING).set(0, null);
+		*///?}
 
 		isActive = true;
 		CLIENT.createWorldOpenFlows().createFreshLevel(SAVE_NAME,
