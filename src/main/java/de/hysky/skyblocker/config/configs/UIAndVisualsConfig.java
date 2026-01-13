@@ -275,6 +275,10 @@ public class UIAndVisualsConfig {
 	public static class Bars {
 		public boolean enableBars = true;
 
+		public boolean enableBarsRift = true;
+
+		public boolean riftHealthHP = false;
+
 		public boolean enableVanillaStyleManaBar = false;
 
 		public IntelligenceDisplay intelligenceDisplay = IntelligenceDisplay.ORIGINAL;

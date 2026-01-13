@@ -335,7 +335,7 @@ public class DungeonManager {
 	private static void load() {
 		long startTime = System.currentTimeMillis();
 		List<CompletableFuture<Void>> dungeonFutures = new ArrayList<>();
-		for (Map.Entry<Identifier, Resource> resourceEntry : CLIENT.getResourceManager().listResources(DUNGEONS_PATH, id -> id.getPath().endsWith(".skeleton")).entrySet()) {
+		for (Map.Entry<Identifier, Resource> resourceEntry : CLIENT.getResourceManager().listResources(DUNGEONS_PATH, id -> id.getPath().endsWith(".skeleton") && id.getNamespace().equals(SkyblockerMod.NAMESPACE)).entrySet()) {
 			checkResourceSource(resourceEntry.getKey(), resourceEntry.getValue());
 			String[] path = resourceEntry.getKey().getPath().split("/");
 			if (path.length != 4) {
@@ -357,7 +357,7 @@ public class DungeonManager {
 			}));
 		}
 
-		for (Map.Entry<Identifier, Resource> resourceEntry : CLIENT.getResourceManager().listResources(DUNGEONS_PATH, id -> id.getPath().endsWith(".json")).entrySet()) {
+		for (Map.Entry<Identifier, Resource> resourceEntry : CLIENT.getResourceManager().listResources(DUNGEONS_PATH, id -> id.getPath().endsWith(".json") && id.getNamespace().equals(SkyblockerMod.NAMESPACE)).entrySet()) {
 			checkResourceSource(resourceEntry.getKey(), resourceEntry.getValue());
 			String[] path = resourceEntry.getKey().getPath().split("/");
 			if (path.length != 4) continue;
@@ -713,14 +713,18 @@ public class DungeonManager {
 
 	// Calculate the checkmark colour and mark all secrets as found if the checkmark is green
 	// We also wait for it being matched to ensure that we don't try to mark the room as completed if secret waypoints haven't yet loaded (since the room is still matching)
-	// Mark the secret count as outdated to ensure we have an accurate count
+	// Mark the secret count as outdated to ensure we have an accurate count (white checkmarked rooms)
 	private static void updateRoomCheckmark(Room room, MapItemSavedData map) {
 		if (room.clearState == Room.ClearState.GREEN_CHECKED) return;
 		switch (getRoomCheckmarkColour(map, room, null)) {
 			case DungeonMapUtils.GREEN_COLOR -> {
 				room.clearState = Room.ClearState.GREEN_CHECKED;
-				room.secretCountOutdated = true;
+				// All of the secrets in the room must've been found
+				room.secretCountOutdated = false;
+				room.secretsFound = room.getMaxSecretCount();
 				room.markAllSecrets(true);
+				// Pretend this was from the ws since all Skyblocker clients will do this on their own
+				DungeonEvents.SECRET_COUNT_UPDATED.invoker().onSecretCountUpdate(room, true);
 			}
 			case DungeonMapUtils.WHITE_COLOR -> {
 				if (room.clearState == Room.ClearState.WHITE_CHECKED) return;

@@ -186,6 +186,7 @@ public class DungeonsCategory {
 						.option(Option.<DungeonMapLabels.RoomLabelType>createBuilder()
 								.name(Component.translatable("skyblocker.config.dungeons.map.roomLabelType"))
 								.description(Component.translatable("skyblocker.config.dungeons.map.roomLabelType.@Tooltip"))
+								.tags(CommonTags.ADDED_IN_6_0_0)
 								.binding(defaults.dungeons.dungeonMap.roomLabelType,
 										() -> config.dungeons.dungeonMap.roomLabelType,
 										newValue -> config.dungeons.dungeonMap.roomLabelType = newValue)
@@ -194,6 +195,7 @@ public class DungeonsCategory {
 						.option(Option.<Boolean>createBuilder()
 								.name(Component.translatable("skyblocker.config.dungeons.map.hideCheckmarks"))
 								.description(Component.translatable("skyblocker.config.dungeons.map.hideCheckmarks.@Tooltip"))
+								.tags(CommonTags.ADDED_IN_6_0_0)
 								.binding(defaults.dungeons.dungeonMap.hideCheckmarks,
 										() -> config.dungeons.dungeonMap.hideCheckmarks,
 										newValue -> config.dungeons.dungeonMap.hideCheckmarks = newValue)
@@ -563,9 +565,11 @@ public class DungeonsCategory {
 				// F7/M7 Terminal Hud
 				.group(OptionGroup.createBuilder()
 						.name(Component.translatable("skyblocker.config.dungeons.terminalHud"))
+						.tags(CommonTags.ADDED_IN_6_0_0)
 						.collapsed(true)
 						.option(Option.<Boolean>createBuilder()
 								.name(Component.translatable("skyblocker.config.dungeons.terminalHud.enabled"))
+								.tags(CommonTags.ADDED_IN_6_0_0)
 								.binding(defaults.dungeons.terminalHud.enableTerminalHud,
 										() -> config.dungeons.terminalHud.enableTerminalHud,
 										newValue -> config.dungeons.terminalHud.enableTerminalHud = newValue)
@@ -573,6 +577,7 @@ public class DungeonsCategory {
 								.build())
 						.option(Option.<Boolean>createBuilder()
 								.name(Component.translatable("skyblocker.config.dungeons.terminalHud.showTerminalStatus"))
+								.tags(CommonTags.ADDED_IN_6_0_0)
 								.description(Component.translatable("skyblocker.config.dungeons.terminalHud.showTerminalStatus.@Tooltip"))
 								.binding(defaults.dungeons.terminalHud.showTerminalStatus,
 										() -> config.dungeons.terminalHud.showTerminalStatus,
@@ -581,6 +586,7 @@ public class DungeonsCategory {
 								.build())
 						.option(Option.<Boolean>createBuilder()
 								.name(Component.translatable("skyblocker.config.dungeons.terminalHud.determineInProgressStatus"))
+								.tags(CommonTags.ADDED_IN_6_0_0)
 								.description(Component.translatable("skyblocker.config.dungeons.terminalHud.determineInProgressStatus.@Tooltip"))
 								.binding(defaults.dungeons.terminalHud.showPlayerAtTerminal,
 										() -> config.dungeons.terminalHud.showPlayerAtTerminal,
@@ -589,6 +595,7 @@ public class DungeonsCategory {
 								.build())
 						.option(Option.<Boolean>createBuilder()
 								.name(Component.translatable("skyblocker.config.dungeons.terminalHud.showTerminals"))
+								.tags(CommonTags.ADDED_IN_6_0_0)
 								.binding(defaults.dungeons.terminalHud.showTerminals,
 										() -> config.dungeons.terminalHud.showTerminals,
 										newValue -> config.dungeons.terminalHud.showTerminals = newValue)
@@ -596,6 +603,7 @@ public class DungeonsCategory {
 								.build())
 						.option(Option.<Boolean>createBuilder()
 								.name(Component.translatable("skyblocker.config.dungeons.terminalHud.showDevice"))
+								.tags(CommonTags.ADDED_IN_6_0_0)
 								.binding(defaults.dungeons.terminalHud.showDevice,
 										() -> config.dungeons.terminalHud.showDevice,
 										newValue -> config.dungeons.terminalHud.showDevice = newValue)
@@ -603,6 +611,7 @@ public class DungeonsCategory {
 								.build())
 						.option(Option.<Boolean>createBuilder()
 								.name(Component.translatable("skyblocker.config.dungeons.terminalHud.showLevers"))
+								.tags(CommonTags.ADDED_IN_6_0_0)
 								.binding(defaults.dungeons.terminalHud.showLevers,
 										() -> config.dungeons.terminalHud.showLevers,
 										newValue -> config.dungeons.terminalHud.showLevers = newValue)
@@ -610,6 +619,7 @@ public class DungeonsCategory {
 								.build())
 						.option(Option.<Boolean>createBuilder()
 								.name(Component.translatable("skyblocker.config.dungeons.terminalHud.showGate"))
+								.tags(CommonTags.ADDED_IN_6_0_0)
 								.binding(defaults.dungeons.terminalHud.showGate,
 										() -> config.dungeons.terminalHud.showGate,
 										newValue -> config.dungeons.terminalHud.showGate = newValue)
