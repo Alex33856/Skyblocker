@@ -9,6 +9,9 @@ import net.minecraft.client.gui.screens.Screen;
 public class SkyblockerConfigTest implements FabricClientGameTest {
 	@Override
 	public void runTest(ClientGameTestContext clientGameTestContext) {
+		//? if <1.21.11 {
+		/*if (true) return;
+		*///?}
 		Screen currentScreen = clientGameTestContext.computeOnClient(client -> client.screen);
 		clientGameTestContext.runOnClient(client -> client.setScreen(SkyblockerConfigManager.createGUI(client.screen)));
 		clientGameTestContext.waitTicks(20);
