@@ -1,4 +1,4 @@
-//? if >1.21.10 {
+//? if 1.21.11 {
 package de.hysky.skyblocker.utils.config;
 
 import de.hysky.skyblocker.utils.SkyblockTime;

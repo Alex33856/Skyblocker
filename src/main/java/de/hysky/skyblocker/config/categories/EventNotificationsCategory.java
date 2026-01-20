@@ -6,8 +6,12 @@ import de.hysky.skyblocker.config.SkyblockerConfig;
 import de.hysky.skyblocker.config.configs.EventNotificationsConfig;
 import de.hysky.skyblocker.skyblock.events.EventNotifications;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
-//? if >1.21.10 {
+//? if 1.21.11 {
 import de.hysky.skyblocker.utils.config.DurationController;
+//? } else {
+/*import net.azureaaron.dandelion.api.controllers.IntegerController;
+*///? }
+//? if >1.21.10 {
 import net.azureaaron.dandelion.api.ConfigCategory;
 import net.azureaaron.dandelion.api.LabelOption;
 import net.azureaaron.dandelion.api.ListOption;
@@ -78,7 +82,7 @@ public class EventNotificationsCategory {
 			groups.add(ListOption.<Integer>createBuilder()
 					.name(Component.literal(entry.getKey()))
 					.binding(EventNotifications.DEFAULT_REMINDERS, entry::getValue, integers -> entry.setValue(new IntArrayList(integers)))
-					//? if > 1.21.10 {
+					//? if 1.21.11 {
 					.controller(new DurationController())
 					//?} else {
 					/*.controller(IntegerController.createBuilder().min(0).build())

@@ -145,7 +145,7 @@ public class RoomPreviewServer {
 		}
 
 		server.execute(() ->
-				template.placeInWorld(server.overworld(), BlockPos.ZERO, BlockPos.ZERO, new StructurePlaceSettings(), server.overworld().random, 0));
+				template.placeInWorld(server.overworld(), BlockPos.ZERO, BlockPos.ZERO, new StructurePlaceSettings(), server.overworld().getRandom(), 0));
 
 		// Add a world border to partially prevent falling out of the world
 		server.execute(() -> {
