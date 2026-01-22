@@ -243,6 +243,7 @@ stonecutter {
 		replace("net.fabricmc.fabric.api.client.command.v2.ClientCommandManager", "net.fabricmc.fabric.api.client.command.v2.ClientCommands")
 		replace("ClientCommandManager", "ClientCommands")
 		replace("getSource().getWorld()", "getSource().getLevel()")
+		replace("source.getWorld()", "source.getLevel()")
 
 		replace("net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper", "net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper")
 		replace("KeyBindingHelper", "KeyMappingHelper")
@@ -273,6 +274,8 @@ stonecutter {
 		// Minecraft Renames
 		replace("net.minecraft.world.inventory.ClickType", "net.minecraft.world.inventory.ContainerInput")
 		replace("ClickType", "ContainerInput")
+		replace("net.minecraft.client.renderer.LightTexture", "net.minecraft.util.LightCoordsUtil")
+		replace("LightTexture", "LightCoordsUtil")
 	}
 }
 
