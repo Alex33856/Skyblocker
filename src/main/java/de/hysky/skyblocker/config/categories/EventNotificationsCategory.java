@@ -8,7 +8,7 @@ import de.hysky.skyblocker.skyblock.events.EventNotifications;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 //? if 1.21.11 {
 import de.hysky.skyblocker.utils.config.DurationController;
-//? } else {
+//? } else if >1.21.11 {
 /*import net.azureaaron.dandelion.api.controllers.IntegerController;
 *///? }
 //? if >1.21.10 {
