@@ -264,12 +264,16 @@ stonecutter {
 		replace("VanillaHudElements.STATUS_EFFECTS", "VanillaHudElements.MOB_EFFECTS")
 		replace("ClientTickEvents.END_WORLD_TICK", "ClientTickEvents.END_LEVEL_TICK")
 		replace("Screens.getButtons", "Screens.getWidgets")
+		replace("registerReloader", "registerReloadListener")
 
 		// Minecraft Renames
 		replace("net.minecraft.world.inventory.ClickType", "net.minecraft.world.inventory.ContainerInput")
 		replace("ClickType", "ContainerInput")
+		replace("handleInventoryMouseClick", "handleContainerInput")
 		replace("net.minecraft.client.renderer.LightTexture", "net.minecraft.util.LightCoordsUtil")
 		replace("LightTexture", "LightCoordsUtil")
+		replace("scrollbarVisible()", "scrollable()")
+		replace("getDayTime()", "getGameTime()")
 	}
 }
 

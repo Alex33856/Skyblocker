@@ -251,6 +251,7 @@ public class Utils {
 		ClientPlayConnectionEvents.DISCONNECT.register((handler, client) -> onDisconnect());
 
 		//Register Mod API stuff
+		//? if <= 1.21.11
 		HypixelNetworking.registerToEvents(Util.make(new Object2IntOpenHashMap<>(), map -> map.put(LocationUpdateS2CPacket.ID, 1)));
 		HypixelPacketEvents.HELLO.register(Utils::onPacket);
 		HypixelPacketEvents.LOCATION_UPDATE.register(Utils::onPacket);

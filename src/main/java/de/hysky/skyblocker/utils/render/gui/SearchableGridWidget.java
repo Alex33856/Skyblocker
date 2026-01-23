@@ -8,6 +8,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractContainerWidget;
 import net.minecraft.client.gui.components.AbstractWidget;
+//? if >1.21.11
+// import net.minecraft.client.gui.components.AbstractScrollArea;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.gui.layouts.GridLayout;
@@ -28,7 +30,7 @@ public abstract class SearchableGridWidget extends AbstractContainerWidget {
 	private final int expectedWidgetWidth;
 
 	public SearchableGridWidget(int x, int y, int width, int height, Component message, int expectedWidgetWidth) {
-		super(x, y, width, height, message);
+		super(x, y, width, height, message /*? > 1.21.11 {*//*, AbstractScrollArea.defaultSettings(10)*//*?}*/);
 		searchField = new EditBox(Minecraft.getInstance().font, width, TEXT_FIELD_HEIGHT, Component.translatable("gui.recipebook.search_hint"));
 		searchField.setHint(Component.translatable("gui.recipebook.search_hint").withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.GRAY));
 		searchField.setResponder(this::filterInternal);

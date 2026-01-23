@@ -13,8 +13,13 @@ import net.minecraft.world.item.ItemStack;
 public abstract class AbstractCustomHypixelGUI<T extends AbstractContainerMenu> extends AbstractContainerScreen<T> implements ContainerListener {
 
 	public boolean isWaitingForServer = true;
-	public AbstractCustomHypixelGUI(T handler, Inventory inventory, Component title) {
+	public AbstractCustomHypixelGUI(T handler, Inventory inventory, Component title, int imageHeight) {
+		//? if >1.21.11 {
+		/*super(handler, inventory, title, 176, imageHeight);
+		*///? } else {
 		super(handler, inventory, title);
+		this.imageHeight = imageHeight;
+		//? }
 		handler.addSlotListener(this);
 	}
 
