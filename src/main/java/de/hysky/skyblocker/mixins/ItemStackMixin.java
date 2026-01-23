@@ -115,7 +115,11 @@ public abstract class ItemStackMixin implements DataComponentHolder, SkyblockerS
 		return durabilityBarFill >= 0 ? OkLabColor.interpolate(CommonColors.RED, CommonColors.GREEN, durabilityBarFill) : original;
 	}
 
+	//? if > 1.21.11 {
+	/*@Inject(method = "<init>(Lnet/minecraft/core/Holder;ILnet/minecraft/core/component/PatchedDataComponentMap;)V", at = @At("TAIL"))
+	*///? } else {
 	@Inject(method = "<init>(Lnet/minecraft/world/level/ItemLike;ILnet/minecraft/core/component/PatchedDataComponentMap;)V", at = @At("TAIL"))
+	//? }
 	private void onInit(CallbackInfo ci) {
 		skyblocker$getAndCacheDurability();
 	}
