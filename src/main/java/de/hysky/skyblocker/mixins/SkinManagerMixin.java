@@ -11,7 +11,11 @@ import de.hysky.skyblocker.utils.Utils;
 @Mixin(targets = "net.minecraft.client.resources.SkinManager$1")
 public class SkinManagerMixin {
 
+	//? if >1.21.11 {
+	/*@WrapWithCondition(method = "lambda$load$0", at = @At(value = "INVOKE", target = "Lorg/slf4j/Logger;warn(Ljava/lang/String;Ljava/lang/Object;)V"))
+	*///? } else {
 	@WrapWithCondition(method = "method_54647", at = @At(value = "INVOKE", target = "Lorg/slf4j/Logger;warn(Ljava/lang/String;Ljava/lang/Object;)V"))
+	//? }
 	private static boolean skyblocker$dontLogInvalidSignatureWarnings(Logger logger, String message, Object profileId) {
 		return !Utils.isOnHypixel();
 	}

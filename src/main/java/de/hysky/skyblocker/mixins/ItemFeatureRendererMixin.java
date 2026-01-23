@@ -16,6 +16,8 @@ import net.minecraft.client.renderer.feature.ItemFeatureRenderer;
 
 @Mixin(ItemFeatureRenderer.class)
 public class ItemFeatureRendererMixin {
+	// TODO (26.1): Fix
+	//? if <= 1.21.11 {
 
 	@WrapOperation(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/SubmitNodeStorage$ItemSubmit;outlineColor()I"), require = 2)
 	private int skyblocker$useCustomGlowColour(SubmitNodeStorage.ItemSubmit command, Operation<Integer> operation) {
@@ -26,4 +28,6 @@ public class ItemFeatureRendererMixin {
 	private OutlineBufferSource skyblocker$useCustomGlowConsumers(OutlineBufferSource original, @Local SubmitNodeStorage.ItemSubmit command) {
 		return command.skyblocker$getCustomGlowColour() != MobGlow.NO_GLOW ? GlowRenderer.getInstance().getGlowVertexConsumers() : original;
 	}
+
+	//? }
 }

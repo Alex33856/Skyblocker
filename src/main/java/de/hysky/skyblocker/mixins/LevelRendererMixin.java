@@ -34,7 +34,12 @@ public class LevelRendererMixin {
 		return hasVanillaGlow || hasCustomGlow;
 	}
 
-	@Inject(method = "method_62214",
+	@Inject(
+			//? if >1.21.11 {
+			/*method = "lambda$addMainPass$0",
+			*///? } else {
+			method = "method_62214",
+			//? }
 			slice = @Slice(from = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/LevelRenderer;shouldShowEntityOutlines()Z")),
 			at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/systems/CommandEncoder;clearColorAndDepthTextures(Lcom/mojang/blaze3d/textures/GpuTexture;ILcom/mojang/blaze3d/textures/GpuTexture;D)V", ordinal = 0, shift = At.Shift.AFTER)
 	)
@@ -44,7 +49,14 @@ public class LevelRendererMixin {
 		}
 	}
 
-	@Inject(method = "method_62214", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/OutlineBufferSource;endOutlineBatch()V"))
+	@Inject(
+			//? if >1.21.11 {
+			/*method = "lambda$addMainPass$0",
+			*///? } else {
+			method = "method_62214",
+			//? }
+			at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/OutlineBufferSource;endOutlineBatch()V")
+	)
 	private void skyblocker$drawGlowVertexConsumers(CallbackInfo ci) {
 		GlowRenderer.getInstance().getGlowVertexConsumers().endOutlineBatch();
 	}
