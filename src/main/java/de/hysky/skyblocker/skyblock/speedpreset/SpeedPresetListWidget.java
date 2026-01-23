@@ -123,12 +123,14 @@ public class SpeedPresetListWidget extends ContainerObjectSelectionList<SpeedPre
 
 			// All Xs and Ys are then set using the initPosition() method.
 			this.titleInput = new EditBox(client.font, 0, 0, 120, 20, Component.empty());
+			//? if <= 1.21.11
 			this.titleInput.setFilter(str -> str.isEmpty() || TITLE.matcher(str).matches());
 			this.titleInput.setValue(title);
 			this.titleInput.setMaxLength(16);
 			this.titleInput.setHint(Component.literal("newPreset").withStyle(ChatFormatting.DARK_GRAY));
 			this.speedInput = new EditBox(client.font, 0, 0, 50, 20, Component.empty());
 
+			//? if <= 1.21.11
 			this.speedInput.setFilter(str -> str.isEmpty() || NUMBER.matcher(str).matches());
 			this.speedInput.setValue(speed);
 			this.speedInput.setMaxLength(3);

@@ -8,6 +8,8 @@ import java.util.function.Consumer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractContainerWidget;
+//? if >1.21.11
+// import net.minecraft.client.gui.components.AbstractScrollArea;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.StringWidget;
 import net.minecraft.client.gui.components.events.GuiEventListener;
@@ -67,9 +69,10 @@ public class EditBarColorPopup extends AbstractPopupScreen {
 		private final EnterConfirmTextFieldWidget textFieldWidget;
 
 		private BasicColorSelector(int x, int y, int width, Runnable onEnter) {
-			super(x, y, width, 15, Component.literal("edit color"));
+			super(x, y, width, 15, Component.literal("edit color") /*? > 1.21.11 {*//*, AbstractScrollArea.defaultSettings(10)*//*?}*/);
 			textFieldWidget = new EnterConfirmTextFieldWidget(Minecraft.getInstance().font, getX() + 16, getY(), width - 16, 15, Component.empty(), onEnter);
 			textFieldWidget.setResponder(this::onTextChange);
+			//? if <= 1.21.11
 			textFieldWidget.setFilter(s -> s.length() <= 6);
 		}
 

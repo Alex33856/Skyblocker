@@ -92,7 +92,7 @@ public abstract class SearchableGridWidget extends AbstractContainerWidget {
 	private class WidgetsContainer extends AbstractContainerWidget {
 
 		private WidgetsContainer() {
-			super(0, 0, SearchableGridWidget.this.getWidth(), SearchableGridWidget.this.getHeight() - TEXT_FIELD_HEIGHT, Component.literal("Grid"));
+			super(0, 0, SearchableGridWidget.this.getWidth(), SearchableGridWidget.this.getHeight() - TEXT_FIELD_HEIGHT, Component.literal("Grid") /*? > 1.21.11 {*//*, AbstractScrollArea.defaultSettings(10)*//*?}*/);
 		}
 
 		@Override

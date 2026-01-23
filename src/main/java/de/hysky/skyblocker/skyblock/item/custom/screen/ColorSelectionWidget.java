@@ -19,6 +19,8 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractContainerWidget;
 import net.minecraft.client.gui.components.AbstractSliderButton;
 import net.minecraft.client.gui.components.AbstractWidget;
+//? if >1.21.11
+// import net.minecraft.client.gui.components.AbstractScrollArea;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.Checkbox;
 import net.minecraft.client.gui.components.StringWidget;
@@ -78,7 +80,7 @@ public class ColorSelectionWidget extends AbstractContainerWidget implements Clo
 	private final List<AbstractWidget> children;
 
 	public ColorSelectionWidget(int x, int y, int width, int height, Font textRenderer) {
-		super(x, y, width, height, Component.nullToEmpty("ColorSelectionWidget"));
+		super(x, y, width, height, Component.nullToEmpty("ColorSelectionWidget") /*? > 1.21.11 {*//*, AbstractScrollArea.defaultSettings(10)*//*?}*/);
 		int height1 = Math.min(Math.min(2 * height / 3, width / 5), height - 40); // 40 is the height of slider + timeline + some padding/margin
 
 		colorPicker = new ColorPickerWidget(0, 0, height1 * 2, height1);

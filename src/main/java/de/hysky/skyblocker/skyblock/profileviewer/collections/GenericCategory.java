@@ -61,7 +61,7 @@ public class GenericCategory implements ProfileViewerPage {
 			ItemStack itemStack = ItemRepository.getItemStack(ICON_TRANSLATION.getOrDefault(collection.id(), collection.id()).replace(':', '-'));
 			itemStack = itemStack == null ? Ico.BARRIER.copy() : itemStack.copy();
 
-			if (itemStack.getItem().getName().getString().equals("Barrier")) {
+			if (itemStack.getItem().getName(/*? if >1.21.11 {*//*itemStack*//*? }*/).getString().equals("Barrier")) {
 				itemStack.set(DataComponents.CUSTOM_NAME, Component.nullToEmpty(collection.id()));
 				System.out.println(collection);
 				System.out.println(this.category);

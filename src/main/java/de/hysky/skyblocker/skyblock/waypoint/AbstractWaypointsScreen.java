@@ -15,6 +15,8 @@ import java.util.List;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractButton;
 import net.minecraft.client.gui.components.AbstractContainerWidget;
+//? if >1.21.11
+// import net.minecraft.client.gui.components.AbstractScrollArea;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.ImageButton;
 import net.minecraft.client.gui.components.StringWidget;
@@ -152,7 +154,7 @@ public abstract class AbstractWaypointsScreen<T extends Screen> extends Screen {
 		private final AbstractButton closeButton;
 
 		PopupContainer() {
-			super(0, 0, 0, 0, Component.empty());
+			super(0, 0, 0, 0, Component.empty() /*? > 1.21.11 {*//*, AbstractScrollArea.defaultSettings(10)*//*?}*/);
 			this.closeButton = new ImageButton(14, 14, new WidgetSprites(
 					Identifier.withDefaultNamespace("widget/cross_button"), Identifier.withDefaultNamespace("widget/cross_button_highlighted")),
 					b -> visible = false,

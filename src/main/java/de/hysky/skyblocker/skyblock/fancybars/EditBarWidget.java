@@ -12,6 +12,8 @@ import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractContainerWidget;
 import net.minecraft.client.gui.components.AbstractWidget;
+//? if >1.21.11
+// import net.minecraft.client.gui.components.AbstractScrollArea;
 import net.minecraft.client.gui.components.StringWidget;
 import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
@@ -44,7 +46,7 @@ public class EditBarWidget extends AbstractContainerWidget {
 	private int contentsWidth = 0;
 
 	public EditBarWidget(int x, int y, Screen parent) {
-		super(x, y, 100, 99, Component.literal("Edit bar"));
+		super(x, y, 100, 99, Component.literal("Edit bar") /*? > 1.21.11 {*//*, AbstractScrollArea.defaultSettings(10)*//*?}*/);
 
 		Font textRenderer = Minecraft.getInstance().font;
 

@@ -12,6 +12,8 @@ import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractContainerWidget;
 import net.minecraft.client.gui.components.AbstractWidget;
+//? if >1.21.11
+// import net.minecraft.client.gui.components.AbstractScrollArea;
 import net.minecraft.client.gui.components.StringWidget;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.components.events.GuiEventListener;
@@ -243,7 +245,7 @@ public class ArmorTab extends GridLayoutTab implements Closeable {
 		private final IdentifierTextField field;
 
 		private ModelFieldContainer(int width, int height) {
-			super(0, 0, width, height, Component.empty());
+			super(0, 0, width, height, Component.empty() /*? > 1.21.11 {*//*, AbstractScrollArea.defaultSettings(10)*//*?}*/);
 			containerLayout = new FrameLayout();
 			field = containerLayout.addChild(new IdentifierTextField(width - 10, 20, identifier -> {
 				String uuid = armor[selectedSlot].getUuid();

@@ -39,6 +39,7 @@ public class EditBidPopup extends AbstractPopupScreen {
 		layout = LinearLayout.vertical();
 		layout.spacing(8).defaultCellSetting().alignHorizontallyCenter();
 		textFieldWidget = new EnterConfirmTextFieldWidget(font, 120, 15, Component.empty(), () -> done(null));
+		//? if <= 1.21.11
 		textFieldWidget.setFilter(this::isStringGood);
 		layout.addChild(new StringWidget(Component.literal("- Set Bid -").withStyle(Style.EMPTY.withBold(true)), font));
 		layout.addChild(textFieldWidget);

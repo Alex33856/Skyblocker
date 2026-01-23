@@ -175,6 +175,7 @@ public abstract sealed class TrimElementButton extends AbstractButton permits Tr
 			// Find item that provides given material
 			stack = BuiltInRegistries.ITEM.stream()
 					.filter(item -> Optional.ofNullable(item.components().get(DataComponents.PROVIDES_TRIM_MATERIAL))
+							//? if <=1.21.11
 							.flatMap(c -> c.unwrap(Utils.getRegistryWrapperLookup()))
 							.map(provided -> provided.is(element))
 							.orElse(false)

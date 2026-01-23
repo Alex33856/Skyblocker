@@ -182,7 +182,11 @@ public class WidgetsConfigurationScreen extends Screen implements ContainerListe
 	@Override
 	protected void repositionElements() {
 		if (this.tabNavigation != null) {
+			//? if >1.21.11 {
+			/*this.tabNavigation.updateWidth(this.width);
+			*///? } else {
 			this.tabNavigation.setWidth(this.width);
+			//? }
 			this.tabNavigation.arrangeElements();
 			int i = this.tabNavigation.getRectangle().bottom();
 			ScreenRectangle screenRect = new ScreenRectangle(0, i, this.width, this.height - i - 5);

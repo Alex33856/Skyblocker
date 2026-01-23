@@ -5,6 +5,8 @@ import java.util.function.Consumer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractContainerWidget;
+//? if >1.21.11
+// import net.minecraft.client.gui.components.AbstractScrollArea;
 import net.minecraft.client.gui.components.ContainerObjectSelectionList;
 import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.gui.narration.NarratableEntry;
@@ -34,7 +36,7 @@ public class DropdownWidget<T> extends AbstractContainerWidget {
 	private int maxHeight;
 
 	public DropdownWidget(Minecraft minecraftClient, int x, int y, int width, int maxHeight, List<T> entries, Consumer<T> selectCallback, T selected, Consumer<Boolean> openedCallback) {
-		super(x, y, width, HEADER_HEIGHT, Component.empty());
+		super(x, y, width, HEADER_HEIGHT, Component.empty() /*? > 1.21.11 {*//*, AbstractScrollArea.defaultSettings(10)*//*?}*/);
 		this.maxHeight = maxHeight;
 		this.entries = entries;
 		this.selectCallback = selectCallback;

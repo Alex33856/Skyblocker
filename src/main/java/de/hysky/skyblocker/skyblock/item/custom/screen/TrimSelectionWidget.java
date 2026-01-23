@@ -11,6 +11,8 @@ import java.util.Map;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractContainerWidget;
 import net.minecraft.client.gui.components.AbstractWidget;
+//? if >1.21.11
+// import net.minecraft.client.gui.components.AbstractScrollArea;
 import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.gui.layouts.FrameLayout;
 import net.minecraft.client.gui.layouts.GridLayout;
@@ -40,7 +42,7 @@ public class TrimSelectionWidget extends AbstractContainerWidget {
 	private Identifier selectedMaterial = null;
 
 	public TrimSelectionWidget(int x, int y, int width, int height) {
-		super(x, y, width, height, Component.nullToEmpty("Trim Selection"));
+		super(x, y, width, height, Component.nullToEmpty("Trim Selection") /*? > 1.21.11 {*//*, AbstractScrollArea.defaultSettings(10)*//*?}*/);
 
 		// Patterns
 		TrimElementButton.Pattern patternNoneButton = new TrimElementButton.Pattern(null, null, this::onClickPattern);

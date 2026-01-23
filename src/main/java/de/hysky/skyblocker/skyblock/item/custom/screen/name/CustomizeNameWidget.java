@@ -21,6 +21,8 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractButton;
 import net.minecraft.client.gui.components.AbstractContainerWidget;
 import net.minecraft.client.gui.components.AbstractWidget;
+//? if >1.21.11
+// import net.minecraft.client.gui.components.AbstractScrollArea;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.StringWidget;
 import net.minecraft.client.gui.components.Tooltip;
@@ -73,7 +75,7 @@ public class CustomizeNameWidget extends AbstractContainerWidget {
 	private @Nullable Style insertAs;
 
 	public CustomizeNameWidget(Screen parent) {
-		super(0, 0, 0, 0, Component.literal("Customize Item Name"));
+		super(0, 0, 0, 0, Component.literal("Customize Item Name") /*? > 1.21.11 {*//*, AbstractScrollArea.defaultSettings(10)*//*?}*/);
 		ImmutableList.Builder<AbstractWidget> builder = ImmutableList.builder();
 		// the gui is a grid of 20 columns, should be 16 px each
 		textField = grid.addChild(new TextField(), 1, 0, 1, 20);

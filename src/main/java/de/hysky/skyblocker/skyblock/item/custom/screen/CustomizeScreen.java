@@ -177,7 +177,11 @@ public class CustomizeScreen extends Screen {
 	@Override
 	protected void repositionElements() {
 		int i = tabNavigation.getRectangle().bottom();
+		//? if > 1.21.11 {
+		/*tabNavigation.updateWidth(width);
+		*///? } else {
 		tabNavigation.setWidth(width);
+		//? }
 		tabNavigation.arrangeElements();
 		footerLayout.setPosition((width - footerLayout.getWidth()) / 2, height - footerLayout.getHeight() - 5);
 		tabManager.setTabArea(new ScreenRectangle(0, i, width, footerLayout.getY() - i - 2));

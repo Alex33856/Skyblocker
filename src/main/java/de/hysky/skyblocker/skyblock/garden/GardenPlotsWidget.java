@@ -25,6 +25,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractContainerWidget;
+//? if >1.21.11
+// import net.minecraft.client.gui.components.AbstractScrollArea;
 import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.client.gui.screens.inventory.ContainerScreen;
@@ -206,7 +208,7 @@ public class GardenPlotsWidget extends AbstractContainerWidget {
 	private final ItemButtonWidget[] widgets;
 
 	public GardenPlotsWidget(int x, int y) {
-		super(x, y, 104, 132, Component.translatable("skyblocker.gardenPlots"));
+		super(x, y, 104, 132, Component.translatable("skyblocker.gardenPlots") /*? > 1.21.11 {*//*, AbstractScrollArea.defaultSettings(10)*//*?}*/);
 		items = Arrays.stream(gardenPlots).map(gardenPlot -> {
 			if (gardenPlot == null) return null;
 			ItemStack itemStack = new ItemStack(gardenPlot.item());

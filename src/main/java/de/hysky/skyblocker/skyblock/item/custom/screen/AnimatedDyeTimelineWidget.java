@@ -18,6 +18,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractContainerWidget;
 import net.minecraft.client.gui.components.AbstractWidget;
+//? if >1.21.11
+// import net.minecraft.client.gui.components.AbstractScrollArea;
 import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.client.input.KeyEvent;
@@ -44,7 +46,7 @@ public class AnimatedDyeTimelineWidget extends AbstractContainerWidget implement
 	private @Nullable AnimatedDyeTimelineWidget.KeyframeWidget focusedFrame = null;
 
 	public AnimatedDyeTimelineWidget(int x, int y, int width, int height, FrameCallback frameCallback) {
-		super(x, y, width, height, Component.literal("Animated Dye Timeline"));
+		super(x, y, width, height, Component.literal("Animated Dye Timeline") /*? > 1.21.11 {*//*, AbstractScrollArea.defaultSettings(10)*//*?}*/);
 		createImage(width, height);
 		this.frameCallback = frameCallback;
 	}

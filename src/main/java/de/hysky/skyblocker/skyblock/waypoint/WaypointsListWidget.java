@@ -427,6 +427,7 @@ public class WaypointsListWidget extends ContainerObjectSelectionList<WaypointsL
 			leftLayout.addChild(new StringWidget(Component.literal("X:"), minecraft.font), p -> p.paddingLeft(2));
 			EditBox xField = new EditBox(minecraft.font, 26, 20, Component.literal("X"));
 			xField.setValue(Integer.toString(waypoint.pos.getX()));
+			//? if <= 1.21.11
 			xField.setFilter(this::checkInt);
 			xField.setResponder(this::updateX);
 			leftLayout.addChild(xField);
@@ -434,6 +435,7 @@ public class WaypointsListWidget extends ContainerObjectSelectionList<WaypointsL
 			leftLayout.addChild(new StringWidget(Component.literal("Y:"), minecraft.font), p -> p.paddingLeft(2));
 			EditBox yField = new EditBox(minecraft.font, 26, 20, Component.literal("Y"));
 			yField.setValue(Integer.toString(waypoint.pos.getY()));
+			//? if <= 1.21.11
 			yField.setFilter(this::checkInt);
 			yField.setResponder(this::updateY);
 			leftLayout.addChild(yField);
@@ -441,6 +443,7 @@ public class WaypointsListWidget extends ContainerObjectSelectionList<WaypointsL
 			leftLayout.addChild(new StringWidget(Component.literal("Z:"), minecraft.font), p -> p.paddingLeft(2));
 			EditBox zField = new EditBox(minecraft.font, 26, 20, Component.literal("Z"));
 			zField.setValue(Integer.toString(waypoint.pos.getZ()));
+			//? if <= 1.21.11
 			zField.setFilter(this::checkInt);
 			zField.setResponder(this::updateZ);
 			leftLayout.addChild(zField);
