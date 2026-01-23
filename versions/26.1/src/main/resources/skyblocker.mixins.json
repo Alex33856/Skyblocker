@@ -28,6 +28,7 @@
     "GlCommandEncoderMixin",
     "GuiGraphicsMixin",
     "GuiMixin",
+    "HolderReferenceMixin",
     "InventoryMixin",
     "InventoryScreenMixin",
     "ItemFeatureRendererMixin",
