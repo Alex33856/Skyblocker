@@ -8,7 +8,7 @@ plugins {
 	id "me.modmuss50.mod-publish-plugin" version "${mod_publish_plugin_version}"
 }
 
-version = "${project.mod_version}+${project.minecraft_version}"
+version = "${project.mod_version}+${sc.current.version}"
 group = project.maven_group
 
 repositories {
@@ -139,7 +139,7 @@ repositories {
 dependencies {
 	testImplementation "net.fabricmc:fabric-loader-junit:${project.loader_version}"
 	// To change the versions see the gradle.properties file
-	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	minecraft "com.mojang:minecraft:${sc.current.version}"
 
 	implementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
@@ -308,7 +308,7 @@ processResources {
 		"fabric_api_version": project.property("fabric_api_version"),
 		"dandelion_version": project.property("dandelion_version"),
 		"yacl_version": project.property("yacl_version"),
-		"minecraft_version": project.property("minecraft_version")
+		"minecraft_version": sc.current.version
 	}
 }
 
@@ -361,7 +361,7 @@ publishMods {
 	file = jar.archiveFile
 	changelog = System.getenv('CHANGELOG_HIGHLIGHT')
 	version = "v${project.version}"
-	displayName = "Skyblocker ${mod_version} for ${minecraft_version}"
+	displayName = "Skyblocker ${mod_version} for ${sc.current.version}"
 	modLoaders.add("fabric")
 	type = project.version.contains("alpha") ? ALPHA : project.version.contains("beta") ? BETA : STABLE
 
@@ -376,7 +376,7 @@ publishMods {
 	modrinth {
 		accessToken = System.getenv("MODRINTH_TOKEN")
 		projectId = modrinth_id
-		minecraftVersions.add(minecraft_version)
+		minecraftVersions.add(sc.current.version)
 		announcementTitle = "<:modrinth:1237114573354438696> Download from Modrinth"
 		requires("fabric-api", "fabric-language-kotlin")
 		optional("modmenu", "rei", "emi", "jei")
@@ -386,7 +386,7 @@ publishMods {
 	curseforge {
 		accessToken = System.getenv("CURSEFORGE_TOKEN")
 		projectId = curseforge_id
-		minecraftVersions.add(minecraft_version)
+		minecraftVersions.add(sc.current.version)
 		announcementTitle = "<:curseforge:900697838453936149> Download from CurseForge"
 		projectSlug = "skyblocker"
 		requires("fabric-api", "fabric-language-kotlin")
@@ -398,7 +398,7 @@ publishMods {
 		webhookUrl = System.getenv("DISCORD_WEBHOOK")
 		username = "Changelog"
 		content = changelog.map {
-			def header = "<@&1134565945482948638>\n## Skyblocker v${mod_version} for ${minecraft_version}\n"
+			def header = "<@&1134565945482948638>\n## Skyblocker v${mod_version} for ${sc.current.version}\n"
 			def truncatedChangelog = truncateChangelog(it, 1850)
 			header + truncatedChangelog
 		}
