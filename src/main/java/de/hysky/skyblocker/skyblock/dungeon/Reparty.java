@@ -83,7 +83,6 @@ public class Reparty extends ChatPatternListener {
 				}
 			}
 
-			//? if <= 1.21.11 {
 			case ErrorS2CPacket(var id, var error) when id.equals(PartyInfoS2CPacket.ID) && this.repartying -> {
 				assert CLIENT.player != null;
 				CLIENT.player.displayClientMessage(Constants.PREFIX.get().append(Component.translatable("skyblocker.reparty.error")), false);
@@ -91,7 +90,6 @@ public class Reparty extends ChatPatternListener {
 
 				this.repartying = false;
 			}
-			//? }
 
 			default -> {} //Do nothing
 		}

@@ -466,7 +466,6 @@ public class Utils {
 				}
 			}
 
-			//? if <=1.21.11 {
 			case ErrorS2CPacket(var id, var error) when id.equals(LocationUpdateS2CPacket.ID) -> {
 				server = "";
 				gameType = "";
@@ -482,7 +481,6 @@ public class Utils {
 
 				LOGGER.error("[Skyblocker] Failed to update your current location! Some features of the mod may not work correctly :( - Error: {}", error);
 			}
-			//? }
 
 			case PlayerInfoS2CPacket(var playerRank, var packageRank, var monthlyPackageRank, var _prefix) -> {
 				rank = RankType.getEffectiveRank(playerRank, packageRank, monthlyPackageRank);
