@@ -294,7 +294,13 @@ public class AuctionViewScreen extends AbstractCustomHypixelGUI<AuctionHouseScre
 		return new PopupScreen.Builder(this, title)
 				.addButton(Component.translatable("text.skyblocker.confirm"), popupScreen -> this.minecraft.gameMode.handleInventoryMouseClick(this.minecraft.player.containerMenu.containerId, 11, 0, ClickType.PICKUP, minecraft.player))
 				.addButton(Component.translatable("gui.cancel"), PopupScreen::onClose)
-				.setMessage((isBinAuction ? Component.translatable("skyblocker.fancyAuctionHouse.price") : Component.translatable("skyblocker.fancyAuctionHouse.newBid")).append(" ").append(priceText))
+				//? if >1.21.11 {
+				/*.addMessage(
+				 *///? } else {
+				.setMessage(
+				//? }
+						(isBinAuction ? Component.translatable("skyblocker.fancyAuctionHouse.price") : Component.translatable("skyblocker.fancyAuctionHouse.newBid")).append(" ").append(priceText)
+				)
 				.onClose(() -> {
 					// This really shouldn't be possible to be null in its ACTUAL use case.
 					//noinspection DataFlowIssue

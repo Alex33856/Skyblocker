@@ -9,7 +9,11 @@ import com.mojang.serialization.Dynamic;
 
 import de.hysky.skyblocker.utils.Utils;
 import net.minecraft.commands.arguments.item.ItemParser;
+//? if > 1.21.11 {
+/*import net.minecraft.commands.arguments.item.ItemInput;
+*///? } else {
 import net.minecraft.commands.arguments.item.ItemParser.ItemResult;
+//? }
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.component.TypedDataComponent;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -64,10 +68,17 @@ public class ItemStackComponentizationFixer {
 		ItemParser reader = new ItemParser(Utils.getRegistryWrapperLookup());
 
 		try {
-			ItemResult result = reader.parse(new StringReader(itemString));
-			ItemStack stack = new ItemStack(result.item(), count);
+			//? if > 1.21.11 {
+			/*ItemInput result;
+			*///? } else {
+			ItemResult result;
+			//? }
+			result = reader.parse(new StringReader(itemString));
+			ItemStack stack = new ItemStack(result./*? if >1.21.11 {*//*getItem()*//*} else {*/item()/*? }*/, count);
 
 			//Vanilla skips validation with /give so we will too
+			// TODO (26.1): Fix
+			//? if <= 1.21.11
 			stack.applyComponents(result.components());
 
 			return stack;

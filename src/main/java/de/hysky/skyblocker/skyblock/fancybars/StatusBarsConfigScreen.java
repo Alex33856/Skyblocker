@@ -296,7 +296,13 @@ public class StatusBarsConfigScreen extends Screen {
 							assert minecraft != null;
 							minecraft.setScreen(new PopupScreen.Builder(this, Component.translatable("skyblocker.bars.config.explanationTitle"))
 									.addButton(Component.translatable("gui.ok"), PopupScreen::onClose)
-									.setMessage(Component.translatable("skyblocker.bars.config.explanation"))
+									//? if >1.21.11 {
+									/*.addMessage(
+									 *///? } else {
+									.setMessage(
+									//? }
+											Component.translatable("skyblocker.bars.config.explanation")
+									)
 									.build());
 						})
 				.bounds(width - 20, (height - 15) / 2, 15, 15)

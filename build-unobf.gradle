@@ -274,6 +274,7 @@ stonecutter {
 		replace("LightTexture", "LightCoordsUtil")
 		replace("scrollbarVisible()", "scrollable()")
 		replace("getDayTime()", "getGameTime()")
+		replace("ItemTags.DYEABLE", "ItemTags.CAULDRON_CAN_REMOVE_DYE")
 	}
 }
 
