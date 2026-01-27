@@ -273,7 +273,7 @@ stonecutter {
 		replace("net.minecraft.client.renderer.LightTexture", "net.minecraft.util.LightCoordsUtil")
 		replace("LightTexture", "LightCoordsUtil")
 		replace("scrollbarVisible()", "scrollable()")
-		replace("getDayTime()", "getGameTime()")
+		replace("getDayTime()", "getOverworldClockTime()") // TODO (26.1): test this
 		replace("ItemTags.DYEABLE", "ItemTags.CAULDRON_CAN_REMOVE_DYE")
 	}
 }
