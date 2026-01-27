@@ -296,7 +296,7 @@ public class AuctionViewScreen extends AbstractCustomHypixelGUI<AuctionHouseScre
 				.addButton(Component.translatable("gui.cancel"), PopupScreen::onClose)
 				//? if >1.21.11 {
 				/*.addMessage(
-				 *///? } else {
+				*///? } else {
 				.setMessage(
 				//? }
 						(isBinAuction ? Component.translatable("skyblocker.fancyAuctionHouse.price") : Component.translatable("skyblocker.fancyAuctionHouse.newBid")).append(" ").append(priceText)

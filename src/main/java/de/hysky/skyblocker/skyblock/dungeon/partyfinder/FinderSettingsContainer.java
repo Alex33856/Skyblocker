@@ -6,7 +6,7 @@ import java.util.Locale;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractContainerWidget;
 //? if >1.21.11
-// import net.minecraft.client.gui.components.AbstractScrollArea;
+//import net.minecraft.client.gui.components.AbstractScrollArea;
 import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.client.input.MouseButtonEvent;

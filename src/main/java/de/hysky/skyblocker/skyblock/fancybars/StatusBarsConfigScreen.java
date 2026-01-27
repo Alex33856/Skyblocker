@@ -277,7 +277,7 @@ public class StatusBarsConfigScreen extends Screen {
 								.addButton(Component.translatable("gui.ok"), PopupScreen::onClose)
 								//? if >1.21.11 {
 									/*.addMessage(
-									 *///? } else {
+									*///? } else {
 									.setMessage(
 									//? }
 											Component.translatable("skyblocker.bars.config.explanation")

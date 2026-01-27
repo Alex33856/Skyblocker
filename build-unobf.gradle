@@ -210,7 +210,7 @@ dependencies {
 }
 
 loom {
-	accessWidenerPath = rootProject.file("src/main/resources/skyblocker-unobf.classtweaker")
+	accessWidenerPath = project.file("src/main/resources/skyblocker.classtweaker")
 
 	mixin {
 		useLegacyMixinAp = false

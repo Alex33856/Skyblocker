@@ -1,6 +1,7 @@
 package de.hysky.skyblocker.mixins;
 
 import org.spongepowered.asm.mixin.Mixin;
+//? if <= 1.21.11 {
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
@@ -12,6 +13,7 @@ import de.hysky.skyblocker.skyblock.entity.MobGlow;
 import de.hysky.skyblocker.utils.render.GlowRenderer;
 import net.minecraft.client.renderer.OutlineBufferSource;
 import net.minecraft.client.renderer.SubmitNodeStorage;
+//? }
 import net.minecraft.client.renderer.feature.ItemFeatureRenderer;
 
 @Mixin(ItemFeatureRenderer.class)

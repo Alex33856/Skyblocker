@@ -82,7 +82,7 @@
   "mixins": [
     "skyblocker.mixins.json"
   ],
-  "accessWidener": "skyblocker-unobf.classtweaker",
+  "accessWidener": "skyblocker.classtweaker",
   "depends": {
     "fabricloader": ">=0.18.4",
     "fabric-api": ">=${fabric_api_version}",

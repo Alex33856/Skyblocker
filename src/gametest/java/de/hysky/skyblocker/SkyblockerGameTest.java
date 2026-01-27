@@ -46,7 +46,11 @@ public class SkyblockerGameTest implements FabricClientGameTest {
 			});
 
 			// Take a screenshot and compare it
+			//? if >1.21.11 {
+			/*singleplayer.getClientLevel().waitForChunksRender();
+			*///? } else {
 			singleplayer.getClientWorld().waitForChunksRender();
+			//? }
 			context.assertScreenshotEquals(TestScreenshotComparisonOptions.of("skyblocker_render").saveWithFileName("skyblocker_render"));
 
 			// Restore the fancy status bars config

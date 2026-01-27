@@ -74,7 +74,7 @@ public class ItemStackComponentizationFixer {
 			ItemResult result;
 			//? }
 			result = reader.parse(new StringReader(itemString));
-			ItemStack stack = new ItemStack(result./*? if >1.21.11 {*//*getItem()*//*} else {*/item()/*? }*/, count);
+			ItemStack stack = new ItemStack(result.item(), count);
 
 			//Vanilla skips validation with /give so we will too
 			// TODO (26.1): Fix
