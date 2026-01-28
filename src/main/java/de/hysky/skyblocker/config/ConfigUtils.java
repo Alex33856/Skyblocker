@@ -4,19 +4,11 @@ import java.util.function.Function;
 
 import org.apache.commons.lang3.StringUtils;
 
-//? if >1.21.10 {
 import net.azureaaron.dandelion.api.ButtonOption;
 import net.azureaaron.dandelion.api.controllers.BooleanController;
 import net.azureaaron.dandelion.api.controllers.BooleanController.BooleanStyle;
 import net.azureaaron.dandelion.api.controllers.ColourController;
 import net.azureaaron.dandelion.api.controllers.EnumController;
-//?} else {
-/*import net.azureaaron.dandelion.systems.ButtonOption;
-import net.azureaaron.dandelion.systems.controllers.BooleanController;
-import net.azureaaron.dandelion.systems.controllers.BooleanController.BooleanStyle;
-import net.azureaaron.dandelion.systems.controllers.ColourController;
-import net.azureaaron.dandelion.systems.controllers.EnumController;
-*///?}
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.options.controls.KeyBindsScreen;

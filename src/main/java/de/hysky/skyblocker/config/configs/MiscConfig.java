@@ -1,10 +1,6 @@
 package de.hysky.skyblocker.config.configs;
 
-//? if >1.21.10 {
 import net.azureaaron.dandelion.api.ConfigType;
-//?} else {
-/*import net.azureaaron.dandelion.platform.ConfigType;
-*///?}
 import net.minecraft.client.resources.language.I18n;
 
 public class MiscConfig {
