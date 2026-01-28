@@ -242,6 +242,14 @@ loom {
 	}
 }
 
+stonecutter {
+	replacements.string(current.parsed.matches("<1.21.11")) {
+		// replace("net.azureaaron.dandelion.systems.", "net.azureaaron.dandelion.api.")
+		replace("net.azureaaron.dandelion.api.ConfigType", "net.azureaaron.dandelion.platform.ConfigType")
+		replace("net.azureaaron.dandelion.api.", "net.azureaaron.dandelion.systems.")
+	}
+}
+
 tasks.withType(ValidateAccessWidenerTask).configureEach {
 	enabled = false
 }
