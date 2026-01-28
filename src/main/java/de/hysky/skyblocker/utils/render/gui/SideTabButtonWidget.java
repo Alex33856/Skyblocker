@@ -16,6 +16,7 @@ public class SideTabButtonWidget extends ImageButton {
 	private static final net.minecraft.client.gui.components.WidgetSprites TEXTURES = new net.minecraft.client.gui.components.WidgetSprites(Identifier.withDefaultNamespace("recipe_book/tab"), Identifier.withDefaultNamespace("recipe_book/tab_selected"));
 *///?}
 	protected ItemStack icon;
+	//? if >1.21.10
 	protected boolean selected = false;
 
 	public void setIcon(ItemStack icon) {
@@ -48,19 +49,13 @@ public class SideTabButtonWidget extends ImageButton {
 	public void onClick(MouseButtonEvent click, boolean doubled) {
 		super.onClick(click, doubled);
 		if (!this.selected) this.selected = true;
-		//? if <1.21.11
-		/*if (!isStateTriggered()) this.setStateTriggered(true);*/
 	}
 
 	public void select() {
 		this.selected = true;
-		//? if <1.21.11
-		/*this.setStateTriggered(true);*/
 	}
 
 	public void unselect() {
 		this.selected = false;
-		//? if <1.21.11
-		/*this.setStateTriggered(false);*/
 	}
 }
