@@ -119,16 +119,16 @@ public class ChatRuleConfigScreen extends Screen {
 		// Filter settings
 		LinearLayout filtersRow1 = contentAdder.addChild(LinearLayout.horizontal().spacing(GRID_SPACING), 3);
 		filtersRow1.addChild(CycleButton.booleanBuilder(YES_TEXT, NO_TEXT /*? if >1.21.10 {*/, chatRule.getRegex() /*?}*/)
-				/*? if <1.21.11*//*.withInitialValue(chatRule.getRegex())*/
+				/*? if <1.21.11*///.withInitialValue(chatRule.getRegex())
 				.withTooltip(b -> Tooltip.create(Component.translatable("skyblocker.config.chat.chatRules.screen.ruleScreen.regex.@Tooltip")))
 				.create(0, 0, getWidth(1.5f), 20, Component.translatable("skyblocker.config.chat.chatRules.screen.ruleScreen.regex"), (button, value) -> chatRule.setRegex(value)));
 		filtersRow1.addChild(CycleButton.booleanBuilder(YES_TEXT, NO_TEXT /*? if >1.21.10 {*/, chatRule.getIgnoreCase() /*?}*/)
-				/*? if <1.21.11*//*.withInitialValue(chatRule.getIgnoreCase())*/
+				/*? if <1.21.11*///.withInitialValue(chatRule.getIgnoreCase())
 				.withTooltip(b -> Tooltip.create(Component.translatable("skyblocker.config.chat.chatRules.screen.ruleScreen.ignoreCase.@Tooltip")))
 				.create(0, 0, getWidth(1.5f), 20, Component.translatable("skyblocker.config.chat.chatRules.screen.ruleScreen.ignoreCase"), (button, value) -> chatRule.setIgnoreCase(value)));
 		LinearLayout filtersRow2 = contentAdder.addChild(LinearLayout.horizontal().spacing(GRID_SPACING), 3);
 		filtersRow2.addChild(CycleButton.booleanBuilder(YES_TEXT, NO_TEXT /*? if >1.21.10 {*/, chatRule.getPartialMatch() /*?}*/)
-				/*? if <1.21.11*//*.withInitialValue(chatRule.getPartialMatch())*/
+				/*? if <1.21.11*///.withInitialValue(chatRule.getPartialMatch())
 				.withTooltip(b -> Tooltip.create(Component.translatable("skyblocker.config.chat.chatRules.screen.ruleScreen.partialMatch.@Tooltip")))
 				.create(0, 0, getWidth(1.5f), 20, Component.translatable("skyblocker.config.chat.chatRules.screen.ruleScreen.partialMatch"), (button, value) -> chatRule.setPartialMatch(value)));
 		filtersRow2.addChild(Button.builder(Component.translatable("skyblocker.config.chat.chatRules.screen.ruleScreen.locations"),
