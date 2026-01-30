@@ -231,53 +231,6 @@ loom {
 	}
 }
 
-stonecutter {
-	replacements.string(current.parsed.matches(">1.21.11")) {
-		// Fabric API Renames
-		replace("net.fabricmc.fabric.api.client.command.v2.ClientCommandManager", "net.fabricmc.fabric.api.client.command.v2.ClientCommands")
-		replace("ClientCommandManager", "ClientCommands")
-		replace("getSource().getWorld()", "getSource().getLevel()")
-		replace("source.getWorld()", "source.getLevel()")
-
-		replace("net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper", "net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper")
-		replace("KeyBindingHelper", "KeyMappingHelper")
-		replace("registerKeyBinding", "registerKeyMapping")
-
-		replace("net.fabricmc.fabric.api.renderer.v1.render.RenderLayerHelper", "net.fabricmc.fabric.api.renderer.v1.render.ChunkSectionLayerHelper")
-		replace("RenderLayerHelper", "ChunkSectionLayerHelper")
-
-		replace("net.fabricmc.fabric.api.client.rendering.v1.world.WorldRenderEvents", "net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents")
-		replace("WorldRenderEvents", "LevelRenderEvents")
-		replace("net.fabricmc.fabric.api.client.rendering.v1.world.WorldTerrainRenderContext", "net.fabricmc.fabric.api.client.rendering.v1.level.LevelTerrainRenderContext")
-		replace("WorldTerrainRenderContext", "LevelTerrainRenderContext")
-		replace("net.fabricmc.fabric.api.client.rendering.v1.world.WorldExtractionContext", "net.fabricmc.fabric.api.client.rendering.v1.level.LevelExtractionContext")
-		replace("WorldExtractionContext", "LevelExtractionContext")
-		replace("net.fabricmc.fabric.api.client.rendering.v1.world.WorldRenderContext", "net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderContext")
-		replace("WorldRenderContext", "LevelRenderContext")
-		replace("context.worldState()", "context.levelState()")
-		replace("context.commandQueue()",  "context.submitNodeCollector()")
-
-		replace("net.fabricmc.fabric.api.client.rendering.v1.SpecialGuiElementRegistry", "net.fabricmc.fabric.api.client.rendering.v1.PictureInPictureRendererRegistry")
-		replace("SpecialGuiElementRegistry", "PictureInPictureRendererRegistry")
-		replace("context.vertexConsumers()", "context.bufferSource()")
-
-		replace("VanillaHudElements.STATUS_EFFECTS", "VanillaHudElements.MOB_EFFECTS")
-		replace("ClientTickEvents.END_WORLD_TICK", "ClientTickEvents.END_LEVEL_TICK")
-		replace("Screens.getButtons", "Screens.getWidgets")
-		replace("registerReloader", "registerReloadListener")
-
-		// Minecraft Renames
-		replace("net.minecraft.world.inventory.ClickType", "net.minecraft.world.inventory.ContainerInput")
-		replace("ClickType", "ContainerInput")
-		replace("handleInventoryMouseClick", "handleContainerInput")
-		replace("net.minecraft.client.renderer.LightTexture", "net.minecraft.util.LightCoordsUtil")
-		replace("LightTexture", "LightCoordsUtil")
-		replace("scrollbarVisible()", "scrollable()")
-		replace("getDayTime()", "getOverworldClockTime()") // TODO (26.1): test this
-		replace("ItemTags.DYEABLE", "ItemTags.CAULDRON_CAN_REMOVE_DYE")
-	}
-}
-
 sourceSets {
 	main {
 		java {
