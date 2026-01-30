@@ -10,6 +10,11 @@ repositories {
 
 stonecutter.active "1.21.11"
 
+// Remove when natively supported by Stonecutter
+stonecutter.handlers {
+	inherit("accesswidener", "classtweaker")
+}
+
 spotless {
 	java {
 		target("src/**/*.java", "versions/*/src/**/*.java")

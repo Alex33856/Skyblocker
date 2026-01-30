@@ -221,7 +221,7 @@ dependencies {
 }
 
 loom {
-	accessWidenerPath = rootProject.file("src/main/resources/skyblocker.classtweaker")
+	accessWidenerPath = sc.process(rootProject.file("src/main/resources/skyblocker.classtweaker"), "build/skyblocker.accesswidener")
 
 	mixin {
 		useLegacyMixinAp = false
@@ -248,10 +248,6 @@ stonecutter {
 		replace("net.azureaaron.dandelion.api.ConfigType", "net.azureaaron.dandelion.platform.ConfigType")
 		replace("net.azureaaron.dandelion.api.", "net.azureaaron.dandelion.systems.")
 	}
-}
-
-tasks.withType(ValidateAccessWidenerTask).configureEach {
-	enabled = false
 }
 
 fabricApi {

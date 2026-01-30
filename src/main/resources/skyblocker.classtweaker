@@ -26,6 +26,7 @@ accessible	field	net/minecraft/world/level/block/CarpetBlock	SHAPE	Lnet/minecraf
 
 # Hud Rendering
 extendable	class	net/minecraft/client/gui/render/state/GuiTextRenderState
+#? if >1.21.10
 accessible	field	net/minecraft/client/gui/render/state/GuiTextRenderState	includeEmpty	Z
 accessible	class	net/minecraft/client/gui/Font$PreparedTextBuilder
 accessible	field	net/minecraft/client/gui/Font$PreparedTextBuilder	x	F
