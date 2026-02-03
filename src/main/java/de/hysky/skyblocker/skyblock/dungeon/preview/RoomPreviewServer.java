@@ -12,6 +12,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.TitleScreen;
 import net.minecraft.client.server.IntegratedServer;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -99,18 +100,22 @@ public class RoomPreviewServer {
 		File previousSave = CLIENT.getLevelSource().getLevelPath(SAVE_NAME).toFile();
 		FileUtils.deleteQuietly(previousSave);
 
+		//? if 1.21.10 || 1.21.11
 		GameRules gameRules = new GameRules(WorldDataConfiguration.DEFAULT.enabledFeatures());
-		//? if >1.21.10 {
+		//? if 1.21.11 {
 		gameRules.set(GameRules.ADVANCE_TIME, false, null);
 		gameRules.set(GameRules.RANDOM_TICK_SPEED, 0, null);
-		//?} else {
+		//?} else if 1.21.10 {
 		/*gameRules.getRule(GameRules.RULE_DAYLIGHT).set(false, null);
 		gameRules.getRule(GameRules.RULE_RANDOMTICKING).set(0, null);
 		*///?}
 
 		isActive = true;
 		CLIENT.createWorldOpenFlows().createFreshLevel(SAVE_NAME,
-				new LevelSettings(SAVE_NAME, GameType.SPECTATOR, false, Difficulty.PEACEFUL, true, gameRules, WorldDataConfiguration.DEFAULT),
+				//? if >1.21.11
+				//new LevelSettings(SAVE_NAME, GameType.SPECTATOR, new LevelSettings.DifficultySettings(Difficulty.PEACEFUL, false, false), true, WorldDataConfiguration.DEFAULT),
+				//? if <=1.21.11
+				 new LevelSettings(SAVE_NAME, GameType.SPECTATOR, false, Difficulty.PEACEFUL, true, gameRules, WorldDataConfiguration.DEFAULT),
 				new WorldOptions(SAVE_NAME.hashCode(), false, false),
 				(lookup) -> {
 					var preset = WorldPresets.createFlatWorldDimensions(lookup);
@@ -122,6 +127,12 @@ public class RoomPreviewServer {
 
 		IntegratedServer server = CLIENT.getSingleplayerServer();
 		if (server == null) reset();
+		//? if >1.21.11 {
+		/*else {
+			server.getGameRules().set(GameRules.ADVANCE_TIME, false, server);
+			server.getGameRules().set(GameRules.RANDOM_TICK_SPEED, 0, server);
+		}
+		*///? }
 	}
 
 	public static void addErrorMessage(Component errorText) {
@@ -130,6 +141,14 @@ public class RoomPreviewServer {
 
 	public static @Nullable StructureTemplate getStructureTemplate(IntegratedServer server, String type, String roomName) {
 		Optional<int[]> blockData = DungeonManager.getRoomBlockData(type, roomName);
+		//? if >1.21.11 {
+		/*return blockData.map(blocks -> {
+			StructureTemplate template = new StructureTemplate();
+			template.load(BuiltInRegistries.BLOCK, RoomStructure.getCompound(blocks));
+			return template;
+		}).orElse(null);
+		*///? }
+		//? if <=1.21.11
 		return blockData.map(blocks -> server.getStructureManager().readStructure(RoomStructure.getCompound(blocks))).orElse(null);
 	}
 
