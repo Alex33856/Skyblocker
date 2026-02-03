@@ -23,9 +23,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 //? if <1.21.11 {
 /*import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
-import de.hysky.skyblocker.config.SkyblockerConfigManager;
 import de.hysky.skyblocker.debug.Debug;
 import de.hysky.skyblocker.utils.Utils;
+import net.minecraft.world.entity.decoration.ArmorStand;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.injection.Slice;
 *///?}
