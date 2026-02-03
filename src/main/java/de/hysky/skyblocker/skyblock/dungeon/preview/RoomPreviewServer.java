@@ -101,15 +101,16 @@ public class RoomPreviewServer {
 		File previousSave = CLIENT.getLevelSource().getLevelPath(SAVE_NAME).toFile();
 		FileUtils.deleteQuietly(previousSave);
 
-		//? if 1.21.10 || 1.21.11
+		//? if 1.21.10 || 1.21.11 {
 		GameRules gameRules = new GameRules(WorldDataConfiguration.DEFAULT.enabledFeatures());
 		//? if 1.21.11 {
 		gameRules.set(GameRules.ADVANCE_TIME, false, null);
 		gameRules.set(GameRules.RANDOM_TICK_SPEED, 0, null);
-		//?} else if 1.21.10 {
+		//?} else {
 		/*gameRules.getRule(GameRules.RULE_DAYLIGHT).set(false, null);
 		gameRules.getRule(GameRules.RULE_RANDOMTICKING).set(0, null);
 		*///?}
+		//? }
 
 		isActive = true;
 		CLIENT.createWorldOpenFlows().createFreshLevel(SAVE_NAME,
