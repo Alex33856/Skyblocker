@@ -120,6 +120,7 @@
   "skyblocker.config.chat.filter.chatFilterResult.ACTION_BAR": "Move to action bar",
   "skyblocker.config.chat.filter.chatFilterResult.FILTER": "Filter",
   "skyblocker.config.chat.filter.chatFilterResult.PASS": "Disabled",
+  "skyblocker.config.chat.filter.chatFilterResult.TOAST": "Show toast",
   "skyblocker.config.chat.filter.hideAOTE": "Hide Teleport Ability Messages",
   "skyblocker.config.chat.filter.hideAOTE.@Tooltip": "Hides those pesky \"There are blocks in the way!\" messages.",
   "skyblocker.config.chat.filter.hideAbility": "Hide Ability Cooldown",
@@ -146,6 +147,9 @@
 
   "skyblocker.config.chat.skyblockXpMessages": "SkyBlock XP Messages",
   "skyblocker.config.chat.skyblockXpMessages.@Tooltip": "Notifies you in the chat when you gain SkyBlock XP.",
+
+  "skyblocker.config.chat.toastDuration": "Toast Display Duration",
+  "skyblocker.config.chat.toastDuration.@Tooltip": "How long in seconds should the toast display for filters set to \"Show toast\".",
 
   "skyblocker.config.crimsonIsle": "Crimson Isle",
 
@@ -434,7 +438,7 @@
   "skyblocker.config.farming.garden.farmingHud.type.BOTH": "Both",
   "skyblocker.config.farming.garden.farmingHud.type.NPC": "NPC",
   "skyblocker.config.farming.garden.gardenPlotsWidget": "Enable Garden Plots Widget",
-  "skyblocker.config.farming.garden.gardenPlotsWidget.@Tooltip": "While in the garden, on the right of your inventory there will be a widget to quickly teleport to plots. It will also show plots that have pests (this requires the Pests widget to be enabled and visible in the Tab).",
+  "skyblocker.config.farming.garden.gardenPlotsWidget.@Tooltip": "While in the garden, on the right of your inventory there will be a widget to quickly teleport to plots. It will also show plots that have pests (this requires the Pests widget to be enabled and visible in the Tab).\n\nThe icon of a plot can be customized by right clicking the plot in the widget.",
   "skyblocker.config.farming.garden.lockMouseGround": "Only lock camera when on the ground",
   "skyblocker.config.farming.garden.lockMouseTool": "Lock camera when holding a farming tool",
   "skyblocker.config.farming.garden.pestHighlighter": "Pest Highlighter",
@@ -990,13 +994,13 @@
   "skyblocker.config.slayer.blazeSlayer.attunementHighlights": "Attunement Highlights",
   "skyblocker.config.slayer.blazeSlayer.attunementHighlights.@Tooltip": "Applies a color matching the current attunement to the selected effect.",
   "skyblocker.config.slayer.blazeSlayer.enableFirePillarAnnouncer": "Fire Pillar Countdown Notifications",
-  "skyblocker.config.slayer.blazeSlayer.enableFirePillarAnnouncer.@Tooltip": "Countdowns the last five seconds before the Fire Pillar explodes. Configure 'Title Container' to customise the location on the HUD (Note: This only uses a rudimentary distance check, so the Pillar may be spawned by another player's slayer)",
+  "skyblocker.config.slayer.blazeSlayer.enableFirePillarAnnouncer.@Tooltip": "Countdowns the last five seconds before the Fire Pillar explodes. Configure 'Title Container' to customise the location on the HUD (Note: This only uses a rudimentary distance check, so the Pillar may be spawned by another player's slayer).",
   "skyblocker.config.slayer.blazeSlayer.enableFirePillarAnnouncer.mode.OFF": "Off",
   "skyblocker.config.slayer.blazeSlayer.enableFirePillarAnnouncer.mode.SOUND_AND_VISUAL": "Sound and Visual Indicator",
   "skyblocker.config.slayer.blazeSlayer.enableFirePillarAnnouncer.mode.VISUAL": "Visual Indicator",
   "skyblocker.config.slayer.blazeSlayer.hideHellionShield": "Hide Hellion Shield Messages",
   "skyblocker.config.slayer.blazeSlayer.muteBlazeSounds": "Mute Blaze Sounds",
-  "skyblocker.config.slayer.blazeSlayer.muteBlazeSounds.@Tooltip": "Mutes Blaze, Fire, Lava, Fireball and Lightning Bolt Sounds",
+  "skyblocker.config.slayer.blazeSlayer.muteBlazeSounds.@Tooltip": "Mutes Blaze, Fire, Lava, Fireball and Lightning Bolt Sounds.",
 
   "skyblocker.config.slayer.bossSpawnAlert": "Boss Spawn Alert",
   "skyblocker.config.slayer.bossSpawnAlert.@Tooltip": "Displays a warning when a slayer boss spawns",
@@ -1035,7 +1039,7 @@
   "skyblocker.config.slayer.highlightMinis.@Tooltip[2]": "\nHITBOX: Display a Hitbox around Slayer Minibosses.",
 
   "skyblocker.config.slayer.highlightUnclaimedRewards": "Highlight Unclaimed Rewards",
-  "skyblocker.config.slayer.highlightUnclaimedRewards.@Tooltip": "Highlights unclaimed slayer level rewards",
+  "skyblocker.config.slayer.highlightUnclaimedRewards.@Tooltip": "Highlights unclaimed slayer level rewards.",
 
   "skyblocker.config.slayer.minibossSpawnAlert": "MiniBoss Spawn Alert",
   "skyblocker.config.slayer.minibossSpawnAlert.@Tooltip": "Displays a warning when a slayer miniboss spawns.",
@@ -1050,7 +1054,7 @@
 
   "skyblocker.config.slayer.spiderSlayer": "Spider Slayer",
   "skyblocker.config.slayer.spiderSlayer.muteSpiderSounds": "Mute Spider Sounds",
-  "skyblocker.config.slayer.spiderSlayer.muteSpiderSounds.@Tooltip": "Mutes Spider, Bat, Silverfish and Skeleton Sounds",
+  "skyblocker.config.slayer.spiderSlayer.muteSpiderSounds.@Tooltip": "Mutes Spider, Bat, Silverfish and Skeleton Sounds.",
 
   "skyblocker.config.slayer.vampireSlayer": "Vampire Slayer",
   "skyblocker.config.slayer.vampireSlayer.compactEffigyWaypoints": "Compact Effigy Waypoints",
