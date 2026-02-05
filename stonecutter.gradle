@@ -63,8 +63,7 @@ stonecutter.parameters {
 		}
 
 		string(current.parsed.matches("<1.21.11")) {
-			replace("net.azureaaron.dandelion.api.ConfigType", "net.azureaaron.dandelion.platform.ConfigType")
-			replace("net.azureaaron.dandelion.api.", "net.azureaaron.dandelion.systems.")
+			replace("net.azureaaron.dandelion.", "net.azureaaron.dandelion_bp.")
 		}
 	}
 }
