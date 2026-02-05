@@ -336,7 +336,6 @@ public class WidgetsConfigurationScreen extends Screen implements ContainerListe
 		}
 		handler.removeSlotListener(this);
 		Scheduler.INSTANCE.schedule(PlayerListManager::updateList, 1);
-		SkyblockerConfigManager.save();
 	}
 
 	@Override
