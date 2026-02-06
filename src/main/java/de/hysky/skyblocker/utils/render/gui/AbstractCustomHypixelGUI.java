@@ -19,14 +19,14 @@ public abstract class AbstractCustomHypixelGUI<T extends AbstractContainerMenu> 
 		*///? } else {
 		super(handler, inventory, title);
 		this.imageHeight = imageHeight;
+		this.inventoryLabelY = imageHeight - 94;
 		//? }
 		handler.addSlotListener(this);
 	}
 
 	protected void clickSlot(int slotID, int button) {
 		if (isWaitingForServer) return;
-		if (minecraft == null) return;
-		assert this.minecraft.gameMode != null;
+		if (minecraft.gameMode == null || minecraft.player == null) return;
 		this.minecraft.gameMode.handleInventoryMouseClick(menu.containerId, slotID, button, ClickType.PICKUP, minecraft.player);
 		menu.getCarried().setCount(0);
 		isWaitingForServer = true;

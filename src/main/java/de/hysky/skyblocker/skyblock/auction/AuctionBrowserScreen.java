@@ -81,7 +81,6 @@ public class AuctionBrowserScreen extends AbstractCustomHypixelGUI<AuctionHouseS
 
 	public AuctionBrowserScreen(AuctionHouseScreenHandler handler, Inventory inventory) {
 		super(handler, inventory, ResourcePackCompatibility.options.renameAuctionBrowser().orElse(false) ? Component.literal("AuctionBrowserSkyblocker") : Component.literal("Auctions Browser"), 187);
-		this.inventoryLabelY = 92;
 		this.titleLabelX = 999;
 	}
 
