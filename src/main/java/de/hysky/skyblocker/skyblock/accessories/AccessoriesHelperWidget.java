@@ -30,6 +30,8 @@ import net.minecraft.client.gui.screens.inventory.ContainerScreen;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.client.gui.screens.recipebook.RecipeBookPage;
 import net.minecraft.client.gui.screens.recipebook.RecipeBookTabButton;
+//? if >1.21.11
+//import net.minecraft.client.gui.components.AbstractScrollArea;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.AbstractContainerWidget;
 import net.minecraft.client.gui.components.CycleButton;
@@ -133,7 +135,7 @@ class AccessoriesHelperWidget extends AbstractContainerWidget implements Hovered
 	}
 
 	AccessoriesHelperWidget() {
-		super(0, 0, 147, 182, CommonComponents.EMPTY);
+		super(0, 0, 147, 182, CommonComponents.EMPTY /*? > 1.21.11 {*//*, AbstractScrollArea.defaultSettings(10)*//*?}*/);
 		this.layout = new FrameLayout(getWidth() - BORDER_SIZE * 2, getHeight() - BORDER_SIZE * 2);
 		LinearLayout mainLayout = layout.addChild(LinearLayout.vertical());
 		mainLayout.defaultCellSetting().alignHorizontallyCenter();
@@ -152,7 +154,9 @@ class AccessoriesHelperWidget extends AbstractContainerWidget implements Hovered
 
 		int filterWidth = layout.getWidth() - 2;
 
-		mainLayout.addChild(CycleButton.builder(f -> Component.translatable(f.toString()), filter)
+		mainLayout.addChild(CycleButton.<Filter>builder(f -> Component.translatable(f.toString())/*? if > 1.21.10 { */, filter/*? }*/)
+				//? if < 1.21.11
+				//.withInitialValue(filter)
 				.withValues(Filter.values())
 				.create(0, 0, filterWidth, 16, Component.translatable("skyblocker.accessoryHelper.filter"), (b, v) -> {
 					filter = v;
@@ -160,7 +164,9 @@ class AccessoriesHelperWidget extends AbstractContainerWidget implements Hovered
 					changePage(0);
 				})
 		);
-		mainLayout.addChild(CycleButton.booleanBuilder(Component.translatable("skyblocker.accessoryHelper.highestTierOnly"), Component.translatable("skyblocker.accessoryHelper.allTiers"), showHighestTierOnly)
+		mainLayout.addChild(CycleButton.booleanBuilder(Component.translatable("skyblocker.accessoryHelper.highestTierOnly"), Component.translatable("skyblocker.accessoryHelper.allTiers")/*? if >1.21.10 {*/, showHighestTierOnly/*? }*/)
+				//? if < 1.21.11
+				//.withInitialValue(showHighestTierOnly)
 				.displayOnlyValue()
 				.create(0, 0, filterWidth, 16, CommonComponents.EMPTY, (button, value) -> {
 					showHighestTierOnly = value;
@@ -306,7 +312,11 @@ class AccessoriesHelperWidget extends AbstractContainerWidget implements Hovered
 		}
 
 		@Override
+		//? if >1.21.10 {
 		public void renderContents(GuiGraphics context, int mouseX, int mouseY, float deltaTicks) {
+		//? } else {
+		/*public void renderWidget(GuiGraphics context, int mouseX, int mouseY, float deltaTicks) {
+		*///? }
 			if (this.sprites == null) return;
 			int x = this.getX();
 			if (this.toggled) x -= 2;
