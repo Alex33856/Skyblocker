@@ -67,7 +67,11 @@ public abstract sealed class AbstractSkyblockRecipeCategory<T extends SkyblockRe
 	}
 
 	@Override
+	//? if >1.21.10 {
 	public Identifier getIdentifier(T recipe) {
+	//? } else {
+	/*public Identifier getRegistryName(T recipe) {
+	*///? }
 		return recipe.getRecipeIdentifier();
 	}
 }
