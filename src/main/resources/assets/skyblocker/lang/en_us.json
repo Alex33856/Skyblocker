@@ -21,7 +21,7 @@
   "key.skyblocker.wikiLookup.fandom": "Fandom Wiki Lookup",
   "key.skyblocker.wikiLookup.official": "Hypixel Wiki Lookup",
 
-  "skyblocker.accessoryHelper.afterSelling": "%s after selling:",
+  "skyblocker.accessoryHelper.afterSelling": "%s after selling %s",
   "skyblocker.accessoryHelper.allTiers": "Show all tiers",
   "skyblocker.accessoryHelper.fandom": "(Hold shift for Fandom)",
   "skyblocker.accessoryHelper.filter": "Filter",
@@ -937,6 +937,9 @@
 
   "skyblocker.config.misc": "Misc",
 
+  "skyblocker.config.misc.cat": "Cat",
+  "skyblocker.config.misc.cat.@Tooltip": "Adds a cat picture to the Hub's Community Center.",
+
   "skyblocker.config.misc.configBackend": "Config Backend",
   "skyblocker.config.misc.configBackend.@Tooltip": "You can choose between having YetAnotherConfigLib (YACL) or MoulConfig as the Config Backend.",
 
@@ -945,7 +948,7 @@
   "skyblocker.config.misc.richPresence.cycleMode": "Cycle Skyblock Info",
   "skyblocker.config.misc.richPresence.enableRichPresence": "Enabled",
   "skyblocker.config.misc.richPresence.info": "Skyblock Info",
-  "skyblocker.config.misc.richPresence.info.@Tooltip": "This value doesn't matter if you are cycling",
+  "skyblocker.config.misc.richPresence.info.@Tooltip": "This value doesn't matter if you are cycling.",
   "skyblocker.config.misc.richPresence.info.BITS": "BITS",
   "skyblocker.config.misc.richPresence.info.LOCATION": "LOCATION",
   "skyblocker.config.misc.richPresence.info.PURSE": "PURSE",
