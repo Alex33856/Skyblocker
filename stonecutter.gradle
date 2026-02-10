@@ -1,3 +1,5 @@
+import com.diffplug.spotless.LineEnding
+
 plugins {
 	id("dev.kikugie.stonecutter")
 	id("net.fabricmc.fabric-loom-remap") version "1.14-SNAPSHOT" apply false
@@ -32,6 +34,7 @@ stonecutter.parameters {
 			replace("RenderLayerHelper", "ChunkSectionLayerHelper")
 
 			replace("net.fabricmc.fabric.api.client.rendering.v1.world.WorldRenderEvents", "net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents")
+			replace("WorldRenderEvents.BEFORE_ENTITIES", "LevelRenderEvents.COLLECT_SUBMITS")
 			replace("WorldRenderEvents", "LevelRenderEvents")
 			replace("net.fabricmc.fabric.api.client.rendering.v1.world.WorldTerrainRenderContext", "net.fabricmc.fabric.api.client.rendering.v1.level.LevelTerrainRenderContext")
 			replace("WorldTerrainRenderContext", "LevelTerrainRenderContext")
@@ -75,7 +78,7 @@ spotless {
 		leadingSpacesToTabs()
 		trimTrailingWhitespace()
 		endWithNewline()
-		lineEndings = com.diffplug.spotless.LineEnding.UNIX
+		lineEndings = LineEnding.UNIX
 	}
 
 	json {
