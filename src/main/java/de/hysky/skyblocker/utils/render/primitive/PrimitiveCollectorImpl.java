@@ -35,12 +35,13 @@ import de.hysky.skyblocker.utils.render.state.QuadRenderState;
 import de.hysky.skyblocker.utils.render.state.SphereRenderState;
 import de.hysky.skyblocker.utils.render.state.TextRenderState;
 import de.hysky.skyblocker.utils.render.state.TexturedQuadRenderState;
+import org.jspecify.annotations.Nullable;
 
 public final class PrimitiveCollectorImpl implements PrimitiveCollector {
 	private static final Minecraft CLIENT = Minecraft.getInstance();
 	private static final int MAX_OVERWORLD_BUILD_HEIGHT = 319;
 	private final LevelRenderState worldState;
-	private final Frustum frustum;
+	private final @Nullable Frustum frustum;
 	private List<VanillaSubmittable<?>> vanillaSubmittables = null;
 	private List<FilledBoxRenderState> filledBoxStates = null;
 	private List<OutlinedBoxRenderState> outlinedBoxStates = null;

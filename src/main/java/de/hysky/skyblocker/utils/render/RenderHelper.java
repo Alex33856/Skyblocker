@@ -32,6 +32,8 @@ public class RenderHelper {
 	}
 
 	private static void startExtraction(WorldExtractionContext context) {
+		//? if >1.21.11
+		//if (context.worldState() == null) return;
 		ProfilerFiller profiler = Profiler.get();
 		profiler.push("skyblockerPrimitiveCollection");
 		collector = new PrimitiveCollectorImpl(context.worldState(), context.frustum());
@@ -41,6 +43,8 @@ public class RenderHelper {
 	}
 
 	private static void submitVanillaSubmittables(WorldRenderContext context) {
+		//? if >1.21.11
+		//if (context.worldState() == null || collector == null) return;
 		ProfilerFiller profiler = Profiler.get();
 		profiler.push("skyblockerSubmitVanillaSubmittables");
 		collector.dispatchVanillaSubmittables(context.worldState(), context.commandQueue());
@@ -48,6 +52,8 @@ public class RenderHelper {
 	}
 
 	private static void executeDraws(WorldRenderContext context) {
+		//? if >1.21.11
+		//if (context.worldState() == null || collector == null) return;
 		ProfilerFiller profiler = Profiler.get();
 
 		profiler.push("skyblockerSubmitPrimitives");
