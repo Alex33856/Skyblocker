@@ -63,6 +63,7 @@ stonecutter.parameters {
 			replace("scrollbarVisible()", "scrollable()")
 			replace("getDayTime()", "getOverworldClockTime()") // TODO (26.1): test this
 			replace("ItemTags.DYEABLE", "ItemTags.CAULDRON_CAN_REMOVE_DYE")
+			replace("getChat().addMessage(", "getChat().addClientSystemMessage(")
 		}
 
 		string(current.parsed.matches("<1.21.11")) {
