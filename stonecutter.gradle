@@ -43,7 +43,7 @@ stonecutter.parameters {
 			replace("net.fabricmc.fabric.api.client.rendering.v1.world.WorldRenderContext", "net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderContext")
 			replace("WorldRenderContext", "LevelRenderContext")
 			replace("context.worldState()", "context.levelState()")
-			replace("context.commandQueue()",  "context.submitNodeCollector()")
+			replace("context.commandQueue()", "context.submitNodeCollector()")
 
 			replace("net.fabricmc.fabric.api.client.rendering.v1.SpecialGuiElementRegistry", "net.fabricmc.fabric.api.client.rendering.v1.PictureInPictureRendererRegistry")
 			replace("SpecialGuiElementRegistry", "PictureInPictureRendererRegistry")
@@ -64,6 +64,20 @@ stonecutter.parameters {
 			replace("getDayTime()", "getOverworldClockTime()") // TODO (26.1): test this
 			replace("ItemTags.DYEABLE", "ItemTags.CAULDRON_CAN_REMOVE_DYE")
 			replace("getChat().addMessage(", "getChat().addClientSystemMessage(")
+		}
+
+		// regex replacements are evil
+		regex(current.parsed.matches(">1.21.11")) {
+			replace("displayClientMessage\\(([a-zA-Z0-9\\t\\n.()_\\->\"' ,+!\\[\\]%§?\\/:]+),(?: |\\n\\t+)?false(?:\\n\\t+)?\\)",
+					"sendSystemMessage(\$1)",
+					"sendSystemMessage\\(([a-zA-Z0-9\\t\\n.()_\\->\"' ,+!\\[\\]%§?\\/:]+)(?: |\\n\\t+)?\\)",
+					"displayClientMessage(\$1, false)"
+			)
+			replace("displayClientMessage\\(([a-zA-Z0-9\\t\\n.()_\\->\"' ,+!\\[\\]%§?\\/:]+),(?: |\\n\\t+)?true(?:\\n\\t+)?\\)",
+					"sendOverlayMessage(\$1)",
+					"sendOverlayMessage\\(([a-zA-Z0-9\\t\\n.()_\\->\"' ,+!\\[\\]%§?\\/:]+)(?: |\\n\\t+)?\\)",
+					"displayClientMessage(\$1, true)"
+			)
 		}
 
 		string(current.parsed.matches("<1.21.11")) {
