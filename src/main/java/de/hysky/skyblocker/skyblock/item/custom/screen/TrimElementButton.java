@@ -143,7 +143,11 @@ public abstract sealed class TrimElementButton extends AbstractButton permits Tr
 
 		@SuppressWarnings("incomplete-switch")
 		private static float setVisibleAndGetOffset(HumanoidModel<?> bipedModel, EquipmentSlot slot) {
+			//? if >1.21.11 {
+			/*bipedModel.allParts().forEach(part -> part.visible = false);
+			*///? } else {
 			bipedModel.setAllVisible(false);
+			//? }
 			switch (slot) {
 				case HEAD:
 					bipedModel.head.visible = true;
