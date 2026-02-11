@@ -67,9 +67,13 @@ public class CatPicture {
 				/*RenderType.entitySolidZOffsetForward(TextureAtlas.LOCATION_BLOCKS),
 				*///?}
 				blockStateModel,
+				//? if <=1.21.11 {
 				1f,
 				1f,
 				1f,
+				//? } else {
+				/*-1,
+				*///? }
 				LightTexture.FULL_BRIGHT,
 				OverlayTexture.NO_OVERLAY,
 				EntityRenderState.NO_OUTLINE
