@@ -72,12 +72,12 @@ stonecutter.parameters {
 					"sendSystemMessage(\$1)",
 					"sendSystemMessage\\(([a-zA-Z0-9\\t\\n.()_\\->\"' ,+!\\[\\]%§?\\/:]+)(?: |\\n\\t+)?\\)",
 					"displayClientMessage(\$1, false)"
-			)
+					)
 			replace("displayClientMessage\\(([a-zA-Z0-9\\t\\n.()_\\->\"' ,+!\\[\\]%§?\\/:]+),(?: |\\n\\t+)?true(?:\\n\\t+)?\\)",
 					"sendOverlayMessage(\$1)",
 					"sendOverlayMessage\\(([a-zA-Z0-9\\t\\n.()_\\->\"' ,+!\\[\\]%§?\\/:]+)(?: |\\n\\t+)?\\)",
 					"displayClientMessage(\$1, true)"
-			)
+					)
 		}
 
 		string(current.parsed.matches("<1.21.11")) {

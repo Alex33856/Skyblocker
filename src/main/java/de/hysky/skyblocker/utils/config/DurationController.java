@@ -1,3 +1,4 @@
+//? if <=1.21.11 {
 package de.hysky.skyblocker.utils.config;
 
 import de.hysky.skyblocker.utils.SkyblockTime;
@@ -120,3 +121,4 @@ public class DurationController extends IntegerControllerImpl {
 		}
 	}
 }
+//? }
