@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+// TODO (26.1): Get rid of this Mixin
 @Environment(EnvType.CLIENT)
 @Mixin(targets = "net/minecraft/core/Holder$Reference")
 public abstract class HolderReferenceMixin<T> implements Holder<T> {
