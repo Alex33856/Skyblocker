@@ -61,7 +61,7 @@ stonecutter.parameters {
 			replace("net.minecraft.client.renderer.LightTexture", "net.minecraft.util.LightCoordsUtil")
 			replace("LightTexture", "LightCoordsUtil")
 			replace("scrollbarVisible()", "scrollable()")
-			replace("getDayTime()", "getOverworldClockTime()") // TODO (26.1): test this
+			replace("getDayTime()", "getOverworldClockTime()")
 			replace("ItemTags.DYEABLE", "ItemTags.CAULDRON_CAN_REMOVE_DYE")
 			replace("getChat().addMessage(", "getChat().addClientSystemMessage(")
 		}
