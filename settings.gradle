@@ -20,7 +20,7 @@ plugins {
 stonecutter {
 	create(getRootProject()) {
 		versions("1.21.10", "1.21.11")
-		version("26.1", "26.1-snapshot-8").buildscript("build-unobf.gradle")
+		version("26.1", "26.1-snapshot-9").buildscript("build-unobf.gradle")
 		vcsVersion = "1.21.11"
 	}
 }
