@@ -72,7 +72,7 @@ public class CatPicture {
 				1f,
 				1f,
 				//? } else {
-				/*-1,
+				/*new int[]{-1},
 				*///? }
 				LightTexture.FULL_BRIGHT,
 				OverlayTexture.NO_OVERLAY,
