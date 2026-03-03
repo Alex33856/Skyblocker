@@ -44,3 +44,5 @@ inject-interface	net/minecraft/client/renderer/LevelRenderer	de/hysky/skyblocker
 inject-interface	net/minecraft/client/renderer/SubmitNodeStorage$ItemSubmit	de/hysky/skyblocker/injected/CustomGlowState
 inject-interface	net/minecraft/client/renderer/SubmitNodeStorage$ModelPartSubmit	de/hysky/skyblocker/injected/CustomGlowState
 inject-interface	net/minecraft/client/renderer/SubmitNodeStorage$ModelSubmit	de/hysky/skyblocker/injected/CustomGlowState
+# Surely this is only needed because of an issue with my gradle cache or something
+inject-interface    net/minecraft/client/renderer/state/level/LevelRenderState net/fabricmc/fabric/api/client/rendering/v1/FabricRenderState

@@ -41,7 +41,7 @@ public final class PrimitiveCollectorImpl implements PrimitiveCollector {
 	private static final Minecraft CLIENT = Minecraft.getInstance();
 	private static final int MAX_OVERWORLD_BUILD_HEIGHT = 319;
 	private final LevelRenderState worldState;
-	private final Frustum frustum;
+	private final @Nullable Frustum frustum;
 	private @Nullable List<VanillaSubmittable<?>> vanillaSubmittables = null;
 	private @Nullable List<FilledBoxRenderState> filledBoxStates = null;
 	private @Nullable List<OutlinedBoxRenderState> outlinedBoxStates = null;
@@ -57,7 +57,7 @@ public final class PrimitiveCollectorImpl implements PrimitiveCollector {
 	private @Nullable List<OutlinedCircleRenderState> outlinedCircleStates = null;
 	private boolean frozen = false;
 
-	public PrimitiveCollectorImpl(LevelRenderState worldState, Frustum frustum) {
+	public PrimitiveCollectorImpl(LevelRenderState worldState, @Nullable Frustum frustum) {
 		this.worldState = worldState;
 		this.frustum = frustum;
 	}
