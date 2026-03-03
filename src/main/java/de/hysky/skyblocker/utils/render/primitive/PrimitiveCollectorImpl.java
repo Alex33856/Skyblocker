@@ -138,6 +138,7 @@ public final class PrimitiveCollectorImpl implements PrimitiveCollector {
 		float length = (float) RenderHelper.getCamera().position().subtract(pos.getCenter()).horizontalDistance();
 		BeaconRenderState state = new BeaconRenderState();
 		state.blockPos = pos;
+		//? if <=1.21.11
 		state.blockState = Blocks.BEACON.defaultBlockState();
 		state.blockEntityType = BlockEntityType.BEACON;
 		state.lightCoords = LightTexture.FULL_BRIGHT;

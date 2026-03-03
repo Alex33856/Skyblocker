@@ -64,6 +64,11 @@ stonecutter.parameters {
 			replace("getDayTime()", "getOverworldClockTime()")
 			replace("ItemTags.DYEABLE", "ItemTags.CAULDRON_CAN_REMOVE_DYE")
 			replace("getChat().addMessage(", "getChat().addClientSystemMessage(")
+			replace("net.minecraft.client.renderer.state.CameraRenderState", "net.minecraft.client.renderer.state.level.CameraRenderState")
+			replace("net.minecraft.client.renderer.state.LevelRenderState", "net.minecraft.client.renderer.state.level.LevelRenderState")
+			replace("net.minecraft.client.renderer.state.BlockBreakingRenderState", "net.minecraft.client.renderer.state.level.BlockBreakingRenderState")
+			replace("net.minecraft.client.gui.render.state", "net.minecraft.client.renderer.state.gui")
+			replace("net.minecraft.client.renderer.block.model.BlockStateModel", "net.minecraft.client.renderer.block.dispatch.BlockStateModel")
 		}
 
 		// regex replacements are evil
@@ -82,6 +87,7 @@ stonecutter.parameters {
 
 		string(current.parsed.matches("<1.21.11")) {
 			replace("net.azureaaron.dandelion.", "net.azureaaron.dandelion_bp.")
+			replace("RenderTypes.entitySolidZOffsetForward", "RenderType.entitySolidZOffsetForward")
 		}
 	}
 }

@@ -30,6 +30,12 @@ import net.minecraft.client.renderer.rendertype.RenderTypes;
 /*import net.minecraft.client.renderer.rendertype.RenderType;
 *///?}
 
+//? if >1.21.11 {
+/*import java.util.ArrayList;
+import java.util.List;
+import net.minecraft.client.renderer.block.model.BlockStateModelPart;
+*///? }
+
 public class CatPicture {
 	private static final Vec3 RENDER_POSITION = new Vec3(-3, 79, 3);
 	//private static final Box CULLING_BOX = new Box(RENDER_POSITION.x, RENDER_POSITION.y, RENDER_POSITION.z, RENDER_POSITION.x + 1, RENDER_POSITION.y + 1, RENDER_POSITION.z + 1/16d);
@@ -51,7 +57,9 @@ public class CatPicture {
 	private static void render(EmptyRenderState state, LevelRenderState worldState, SubmitNodeCollector commandQueue) {
 		// Vanilla does this in the ItemFrameEntityRenderer
 		BlockState blockState = BlockStateDefinitions.getItemFrameFakeState(false, true);
-		BlockStateModel blockStateModel = Minecraft.getInstance().getBlockRenderer().getBlockModel(blockState);
+		Minecraft client = Minecraft.getInstance();
+		BlockStateModel blockStateModel = client.getBlockRenderer().getBlockModel(blockState);
+		if (client.level == null) return;
 
 		PoseStack matrices = new PoseStack();
 		matrices.pushPose();
@@ -59,25 +67,31 @@ public class CatPicture {
 		matrices.mulPose(Axis.YP.rotationDegrees(180));
 
 		// Render Item Frame
+		//? if <=1.21.11 {
 		commandQueue.submitBlockModel(
 				matrices,
-				//? if >1.21.10 {
 				RenderTypes.entitySolidZOffsetForward(TextureAtlas.LOCATION_BLOCKS),
-				//?} else {
-				/*RenderType.entitySolidZOffsetForward(TextureAtlas.LOCATION_BLOCKS),
-				*///?}
 				blockStateModel,
-				//? if <=1.21.11 {
 				1f,
 				1f,
 				1f,
-				//? } else {
-				/*new int[]{-1},
-				*///? }
 				LightTexture.FULL_BRIGHT,
 				OverlayTexture.NO_OVERLAY,
 				EntityRenderState.NO_OUTLINE
 		);
+		//? } else {
+		/*List<BlockStateModelPart> parts = new ArrayList<>();
+		blockStateModel.collectParts(client.level.getRandom(), parts);
+		commandQueue.submitBlockModel(
+				matrices,
+				RenderTypes.entitySolidZOffsetForward(TextureAtlas.LOCATION_BLOCKS),
+				parts,
+				new int[]{-1},
+				LightTexture.FULL_BRIGHT,
+				OverlayTexture.NO_OVERLAY,
+				EntityRenderState.NO_OUTLINE
+		);
+		*///? }
 
 		// Render Kitty
 		matrices.translate(1, 1, 0);
