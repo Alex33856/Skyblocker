@@ -22,8 +22,10 @@ public abstract class BossHealthOverlayMixin {
 	private Minecraft minecraft;
 
 	@Shadow
+	//~ if >1.21.11 'drawBar' -> 'extractBar'
 	protected abstract void drawBar(GuiGraphics context, int x, int y, BossEvent bossBar);
 
+	//~ if >1.21.11 'render' -> 'extractRenderState'
 	@Inject(method = "render", at = @At("HEAD"), cancellable = true)
 	private void onRender(GuiGraphics context, CallbackInfo ci) {
 		if (SkyblockerConfigManager.get().slayers.displayBossbar && SlayerBossBar.shouldRenderBossBar()) {
@@ -32,6 +34,7 @@ public abstract class BossHealthOverlayMixin {
 			int textWidth = this.minecraft.font.width(bossBar.getName());
 			context.drawString(this.minecraft.font, bossBar.getName(), context.guiWidth() / 2 - textWidth / 2, 3, CommonColors.WHITE);
 
+			//~ if >1.21.11 'drawBar' -> 'extractBar'
 			this.drawBar(context, (context.guiWidth() / 2) - 91, 12, bossBar);
 
 			ci.cancel();

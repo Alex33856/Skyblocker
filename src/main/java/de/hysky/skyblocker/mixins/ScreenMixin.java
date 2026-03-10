@@ -32,7 +32,11 @@ public class ScreenMixin {
 		}
 	}
 
+	//? if >1.21.11 {
+	/*@Inject(method = "extractRenderState", at = @At("HEAD"), cancellable = true)
+	*///? } else {
 	@Inject(method = "render", at = @At("HEAD"), cancellable = true)
+	//? }
 	private void skyblocker$hideReconfiguringScreen(CallbackInfo ci) {
 		if ((Object) this instanceof ServerReconfigScreen && Utils.isOnHypixel()) ci.cancel();
 	}

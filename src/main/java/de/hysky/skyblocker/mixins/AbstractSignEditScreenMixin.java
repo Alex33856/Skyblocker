@@ -48,6 +48,7 @@ public abstract class AbstractSignEditScreenMixin extends Screen {
 		}
 	}
 
+	//~ if >1.21.11 'render' -> 'extractRenderState'
 	@Inject(method = "render", at = @At("HEAD"))
 	private void skyblocker$render(CallbackInfo ci, @Local(argsOnly = true) GuiGraphics context) {
 		if (Utils.isOnSkyblock()) {

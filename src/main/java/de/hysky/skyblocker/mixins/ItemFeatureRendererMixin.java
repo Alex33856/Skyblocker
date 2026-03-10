@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 public class ItemFeatureRendererMixin {
 	@WrapOperation(
 			//? if >1.21.11 {
-			/*method = {"renderSolid", "renderTranslucent"},
+			/*method = "renderItem",
 			*///? } else {
 			method = "render",
 			//? }
@@ -27,7 +27,7 @@ public class ItemFeatureRendererMixin {
 
 	@ModifyVariable(
 			//? if >1.21.11 {
-			/*method = {"renderSolid", "renderTranslucent"},
+			/*method = "renderItem",
 			*///? } else {
 			method = "render",
 			//? }

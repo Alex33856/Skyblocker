@@ -15,6 +15,7 @@ public class LevelLoadingScreenMixin {
 	@Shadow
 	private LevelLoadTracker loadTracker;
 
+	//~ if >1.21.11 'render' -> 'extract'
 	@Inject(method = { "render", "renderBackground" }, at = @At("HEAD"), cancellable = true)
 	private void skyblocker$hideWorldLoadingScreen(CallbackInfo ci) {
 		if (Utils.isOnHypixel() && this.loadTracker.statusView() == null) ci.cancel();

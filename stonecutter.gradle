@@ -101,13 +101,14 @@ stonecutter.parameters {
 			replace("PlayerFaceRenderer.draw(", "PlayerFaceExtractor.extractRenderState(")
 
 			replace("glyph.render(", "glyph.render (") // jank
+			replace("\$render(", "\$renderr(") // also jank
 			replace("render(", "extractRenderState(")
 			replace("CatPicture::render", "CatPicture::extractRenderState")
 			replace("FishingHookDisplayHelper::render", "FishingHookDisplayHelper::extractRenderState")
 			replace("TitleContainer::render", "TitleContainer::extractRenderState")
 
 			replace("extractMenuBackgroundTexture(", "extractMenuBackgroundTexture(")
-			replace("renderBackground(", "extractBackground(")
+			replace("renderBackground", "extractBackground")
 			replace("renderContent(", "extractContent(")
 			replace("renderContents(", "extractContents(")
 			replace("renderDefaultLabel(", "extractDefaultLabel(")
@@ -123,8 +124,8 @@ stonecutter.parameters {
 			replace("renderMenuBackground(", "extractMenuBackground(")
 			replace("renderMenuBackgroundTexture(", "extractMenuBackgroundTexture(")
 			replace("renderScrollbar(", "extractScrollbar(")
-			replace("renderSlot(", "extractSlot(")
-			replace("renderTooltip(", "extractTooltip(")
+			replace("renderSlot", "extractSlot")
+			replace("renderTooltip", "extractTooltip")
 			replace("renderTooltipBackground(", "extractTooltipBackground(")
 			replace("renderTransparentBackground(", "extractTransparentBackground(")
 			replace("renderWidget(", "extractWidgetRenderState(")

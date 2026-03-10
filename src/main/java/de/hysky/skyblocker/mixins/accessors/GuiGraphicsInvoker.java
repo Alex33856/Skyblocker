@@ -12,6 +12,10 @@ import net.minecraft.client.gui.render.TextureSetup;
 @Mixin(GuiGraphics.class)
 public interface GuiGraphicsInvoker {
 
+	//? if >1.21.11 {
+	/*@Invoker("innerFill")
+	*///? } else {
 	@Invoker
+	//? }
 	void invokeSubmitColoredRectangle(RenderPipeline pipeline, TextureSetup textureSetup, int x0, int y0, int x1, int y1, int colour1, @Nullable Integer colour2);
 }

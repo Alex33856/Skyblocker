@@ -11,7 +11,13 @@ import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(GuiGraphics.class)
 public abstract class GuiGraphicsMixin {
-	@ModifyExpressionValue(method = "renderItemCooldown", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemCooldowns;getCooldownPercent(Lnet/minecraft/world/item/ItemStack;F)F"))
+	@ModifyExpressionValue(
+			//? if >1.21.11 {
+			/*method = "itemCooldown",
+			*///? } else {
+			method = "renderItemCooldown",
+			//? }
+			at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemCooldowns;getCooldownPercent(Lnet/minecraft/world/item/ItemStack;F)F"))
 	private float skyblocker$modifyItemCooldown(float cooldownProgress, @Local(argsOnly = true) ItemStack stack) {
 		return Utils.isOnSkyblock() && ItemCooldowns.isOnCooldown(stack) ? ItemCooldowns.getItemCooldownEntry(stack).getRemainingCooldownPercent() : cooldownProgress;
 	}
