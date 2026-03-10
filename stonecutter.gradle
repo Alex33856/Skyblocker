@@ -75,28 +75,26 @@ stonecutter.parameters {
 
 		string(current.parsed.matches(">=26.1-pre.1")) {
 			// GuiGraphics
-			replace("GuiGraphics", "GuiGraphicsExtractor")
-			replace("GuiGraphicsExtractorInvoker", "GuiGraphicsInvoker")
-			replace("GuiGraphicsExtractorMixin", "GuiGraphicsMixin")
-			replace(".drawWordWrap", ".textWithWordWrap")
-			replace(".renderItemDecorations", ".itemDecorations")
-			replace(".submitEntityRenderState", ".entity")
-			replace(".submitMapRenderState", ".map")
-			replace(".guiRenderState.submitGuiElement", ".guiRenderState.addGuiElement")
-			replace(".guiRenderState.submitText", ".guiRenderState.addText")
-			replace(".guiRenderState.submitPicturesInPictureState", ".guiRenderState.addPicturesInPictureState")
-			replace("context.drawCenteredString", "context.centeredText")
-			replace("context.drawString", "context.text")
-			replace("context.hLine", "context.horizontalLine")
-			replace("context.renderFakeItem", "context.fakeItem")
-			replace("context.renderItem", "context.item")
-			replace("context.renderTooltip", "context.tooltip")
-			replace("context.vLine", "context.verticalLine")
-			replace("graphics.drawCenteredString", "graphics.centeredText")
-			replace("graphics.drawString", "graphics.text")
-			replace("graphics.renderFakeItem", "graphics.fakeItem")
-			replace("guiGraphics.drawString", "guiGraphics.text")
-			replace("guiGraphics.renderItem", "guiGraphics.item")
+			for (x in [" ", ";", "."]) {
+				replace("GuiGraphics" + x, "GuiGraphicsExtractor" + x)
+			}
+			for (x in ["context", "graphics", "guiGraphics"]) {
+				replace(x + ".drawCenteredString(", x + ".centeredText(")
+				replace(x + ".drawString(", x + ".text(")
+				replace(x + ".drawWordWrap(", x + ".textWithWordWrap(")
+				replace(x + ".guiRenderState.submitGuiElement(", x + ".guiRenderState.addGuiElement(")
+				replace(x + ".guiRenderState.submitPicturesInPictureState(", x + ".guiRenderState.addPicturesInPictureState(")
+				replace(x + ".guiRenderState.submitText(", x + ".guiRenderState.addText(")
+				replace(x + ".hLine(", x + ".horizontalLine(")
+				replace(x + ".renderFakeItem(", x + ".fakeItem(")
+				replace(x + ".renderItem(", x + ".item(")
+				replace(x + ".renderItemDecorations(", x + ".itemDecorations(")
+				replace(x + ".renderTooltip(", x + ".tooltip(")
+				replace(x + ".submitEntityRenderState(", x + ".entity(")
+				replace(x + ".submitMapRenderState(", x + ".map(")
+				replace(x + ".vLine(", x + ".verticalLine(")
+			}
+			replace("instance.renderItemDecorations", "instance.itemDecorations")
 
 			// Misc. GUI renames
 			replace("PlayerFaceRenderer", "PlayerFaceExtractor")
