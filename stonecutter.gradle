@@ -73,6 +73,68 @@ stonecutter.parameters {
 			replace("net.minecraft.client.renderer.block.model.BlockStateModel", "net.minecraft.client.renderer.block.dispatch.BlockStateModel")
 		}
 
+		string(current.parsed.matches(">=26.1-pre.1")) {
+			// GuiGraphics
+			replace("GuiGraphics", "GuiGraphicsExtractor")
+			replace("GuiGraphicsExtractorInvoker", "GuiGraphicsInvoker")
+			replace("GuiGraphicsExtractorMixin", "GuiGraphicsMixin")
+			replace(".drawWordWrap", ".textWithWordWrap")
+			replace(".renderItemDecorations", ".itemDecorations")
+			replace(".submitEntityRenderState", ".entity")
+			replace(".submitMapRenderState", ".map")
+			replace(".guiRenderState.submitGuiElement", ".guiRenderState.addGuiElement")
+			replace(".guiRenderState.submitText", ".guiRenderState.addText")
+			replace(".guiRenderState.submitPicturesInPictureState", ".guiRenderState.addPicturesInPictureState")
+			replace("context.drawCenteredString", "context.centeredText")
+			replace("context.drawString", "context.text")
+			replace("context.hLine", "context.horizontalLine")
+			replace("context.renderFakeItem", "context.fakeItem")
+			replace("context.renderItem", "context.item")
+			replace("context.renderTooltip", "context.tooltip")
+			replace("context.vLine", "context.verticalLine")
+			replace("graphics.drawCenteredString", "graphics.centeredText")
+			replace("graphics.drawString", "graphics.text")
+			replace("graphics.renderFakeItem", "graphics.fakeItem")
+			replace("guiGraphics.drawString", "guiGraphics.text")
+			replace("guiGraphics.renderItem", "guiGraphics.item")
+
+			// Misc. GUI renames
+			replace("PlayerFaceRenderer", "PlayerFaceExtractor")
+			replace("PlayerFaceRenderer.draw(", "PlayerFaceExtractor.extractRenderState(")
+
+			replace("glyph.render(", "glyph.render (") // jank
+			replace("render(", "extractRenderState(")
+			replace("CatPicture::render", "CatPicture::extractRenderState")
+			replace("FishingHookDisplayHelper::render", "FishingHookDisplayHelper::extractRenderState")
+			replace("TitleContainer::render", "TitleContainer::extractRenderState")
+
+			replace("extractMenuBackgroundTexture(", "extractMenuBackgroundTexture(")
+			replace("renderBackground(", "extractBackground(")
+			replace("renderContent(", "extractContent(")
+			replace("renderContents(", "extractContents(")
+			replace("renderDefaultLabel(", "extractDefaultLabel(")
+			replace("renderDefaultSprite(", "extractDefaultSprite(")
+			replace("renderEntityInInventoryFollowsMouse", "extractEntityInInventoryFollowsMouse")
+			replace("renderGhostRecipe(", "extractGhostRecipe(")
+			replace("renderImage(", "extractImage(")
+			replace("renderItem(", "extractItem(")
+			replace("renderLabels(", "extractLabels(")
+			replace("renderListBackground(", "extractListBackground(")
+			replace("renderListItems(", "extractListItems(")
+			replace("renderListSeparators(", "extractListSeparators(")
+			replace("renderMenuBackground(", "extractMenuBackground(")
+			replace("renderMenuBackgroundTexture(", "extractMenuBackgroundTexture(")
+			replace("renderScrollbar(", "extractScrollbar(")
+			replace("renderSlot(", "extractSlot(")
+			replace("renderTooltip(", "extractTooltip(")
+			replace("renderTooltipBackground(", "extractTooltipBackground(")
+			replace("renderTransparentBackground(", "extractTransparentBackground(")
+			replace("renderWidget(", "extractWidgetRenderState(")
+
+			// Misc
+			replace("RenderPipelines.TRANSLUCENT_MOVING_BLOCK", "RenderPipelines.TRANSLUCENT_BLOCK")
+		}
+
 		// regex replacements are evil
 		regex(current.parsed.matches(">1.21.11")) {
 			replace("displayClientMessage\\(([a-zA-Z0-9\\t\\n.()_\\->\"' ,+!\\[\\]%§?\\/:]+),(?: |\\n\\t+)?false(?:\\n\\t+)?\\)",

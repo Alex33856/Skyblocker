@@ -142,7 +142,11 @@ public class AuctionViewScreen extends AbstractCustomHypixelGUI<AuctionHouseScre
 	}
 
 	@Override
+	//? if >1.21.11 {
+	/*public void extractBackground(GuiGraphics context, int mouseX, int mouseY, float delta) {
+	*///? } else {
 	protected void renderBg(GuiGraphics context, float delta, int mouseX, int mouseY) {
+	//? }
 		context.blit(RenderPipelines.GUI_TEXTURED, BACKGROUND_TEXTURE, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight, 256, 256);
 	}
 

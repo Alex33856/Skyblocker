@@ -58,7 +58,12 @@ public class CatPicture {
 		// Vanilla does this in the ItemFrameEntityRenderer
 		BlockState blockState = BlockStateDefinitions.getItemFrameFakeState(false, true);
 		Minecraft client = Minecraft.getInstance();
+		// TODO (26.1): Surely there's a better way for this.
+		//? if >1.21.11 {
+		/*BlockStateModel blockStateModel = client.gameRenderer.getFeatureRenderDispatcher().modelManager.getBlockStateModelSet().get(blockState);
+		*///? } else {
 		BlockStateModel blockStateModel = client.getBlockRenderer().getBlockModel(blockState);
+		//? }
 		if (client.level == null) return;
 
 		PoseStack matrices = new PoseStack();

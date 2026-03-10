@@ -9,12 +9,15 @@ import de.hysky.skyblocker.injected.EntityRenderMarker;
 import de.hysky.skyblocker.skyblock.dwarven.BlockBreakPrediction;
 import de.hysky.skyblocker.skyblock.entity.MobGlow;
 import de.hysky.skyblocker.utils.render.GlowRenderer;
+//? if <=1.21.11
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.LevelRenderer;
 import net.minecraft.client.renderer.entity.state.EntityRenderState;
 import net.minecraft.client.renderer.state.BlockBreakingRenderState;
 import net.minecraft.client.renderer.state.LevelRenderState;
 import net.minecraft.core.BlockPos;
+//? if >1.21.11
+//import net.minecraft.world.level.block.state.BlockState;
 import org.jspecify.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -86,16 +89,30 @@ public class LevelRendererMixin implements EntityRenderMarker {
 		GlowRenderer.getInstance().getGlowVertexConsumers().endOutlineBatch();
 	}
 
+	//? if >1.21.11 {
+	/*@WrapOperation(method = "extractBlockDestroyAnimation", at = @At(value = "NEW", target = "(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;I)Lnet/minecraft/client/renderer/state/BlockBreakingRenderState;"))
+	private BlockBreakingRenderState skyblocker$addBlockBreakingProgressRenderState(BlockPos blockPos, BlockState blockState, int i, Operation<BlockBreakingRenderState> original) {
+	*///? } else {
 	@WrapOperation(method = "extractBlockDestroyAnimation", at = @At(value = "NEW", target = "(Lnet/minecraft/client/multiplayer/ClientLevel;Lnet/minecraft/core/BlockPos;I)Lnet/minecraft/client/renderer/state/BlockBreakingRenderState;"))
 	private BlockBreakingRenderState skyblocker$addBlockBreakingProgressRenderState(ClientLevel clientLevel, BlockPos blockPos, int i, Operation<BlockBreakingRenderState> original) {
+	//? }
 		if (SkyblockerConfigManager.get().mining.blockBreakPrediction.enabled) {
 			int pingModifiedProgress = BlockBreakPrediction.getBlockBreakPrediction(blockPos, i);
+			//? if >1.21.11 {
+			/*return new BlockBreakingRenderState(blockPos, blockState, pingModifiedProgress);
+			*///? } else {
 			return new BlockBreakingRenderState(clientLevel, blockPos, pingModifiedProgress);
+			//? }
+
 
 		}
 		//if the setting is not enabled do not modify anything
 		else {
+			//? if >1.21.11 {
+			/*return original.call(blockPos, blockState, i);
+			*///? } else {
 			return original.call(clientLevel, blockPos, i);
+			//? }
 		}
 
 	}

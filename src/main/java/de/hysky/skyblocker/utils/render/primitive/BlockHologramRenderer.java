@@ -33,6 +33,8 @@ public final class BlockHologramRenderer implements PrimitiveRenderer<BlockHolog
 
 	@Override
 	public void submitPrimitives(BlockHologramRenderState state, CameraRenderState cameraState) {
+		// TODO (26.1): Fix
+		//? if <=1.21.11 {
 		Matrix4f positionMatrix = new Matrix4f()
 				.translate((float) (state.pos.getX() - cameraState.pos.x()), (float) (state.pos.getY() - cameraState.pos.y()), (float) (state.pos.getZ() - cameraState.pos.z()));
 		PoseStack matrices = MatrixHelper.toStack(positionMatrix);
@@ -47,5 +49,6 @@ public final class BlockHologramRenderer implements PrimitiveRenderer<BlockHolog
 		/*MultiBufferSource consumers = SODIUM_LOADED ? CLIENT.renderBuffers().bufferSource() : _layer -> Renderer.getBuffer(RenderPipelines.TRANSLUCENT, TextureSetup.singleTexture(ChunkSectionLayer.TRANSLUCENT.textureView()), true);
 		CLIENT.getBlockRenderer().getModelRenderer().render(CLIENT.level, model, state.state, state.pos, matrices, RenderLayerHelper.movingDelegate(consumers), true, state.state.getSeed(state.pos), 0);
 		*///?}
+		//? }
 	}
 }

@@ -188,8 +188,13 @@ public class SkyblockInventoryScreen extends InventoryScreen implements HoveredI
 	}
 
 	@Override
+	//? if >1.21.11 {
+	/*public void extractBackground(GuiGraphics context, int mouseX, int mouseY, float delta) {
+		super.extractBackground(context, mouseX, mouseY, delta);
+	*///? } else {
 	protected void renderBg(GuiGraphics context, float delta, int mouseX, int mouseY) {
 		super.renderBg(context, delta, mouseX, mouseY);
+	//? }
 		for (int i = 0; i < 3; i++) {
 			context.blitSprite(RenderPipelines.GUI_TEXTURED, SLOT_TEXTURE, leftPos + 76, topPos + 7 + i * 18, 18, 18);
 		}

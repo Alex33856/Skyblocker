@@ -93,7 +93,11 @@ public class SkyblockCraftingTableScreen extends AbstractContainerScreen<Skybloc
 	}
 
 	@Override
+	//? if >1.21.11 {
+	/*public void extractBackground(GuiGraphics context, int mouseX, int mouseY, float delta) {
+	*///? } else {
 	protected void renderBg(GuiGraphics context, float delta, int mouseX, int mouseY) {
+	//? }
 		int i = this.leftPos;
 		int j = (this.height - this.imageHeight) / 2;
 		context.blit(RenderPipelines.GUI_TEXTURED, TEXTURE, i, j, 0, 0, this.imageWidth, this.imageHeight, 256, 256);
