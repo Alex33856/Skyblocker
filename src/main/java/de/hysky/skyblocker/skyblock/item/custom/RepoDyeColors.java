@@ -12,6 +12,7 @@ import io.github.moulberry.repo.NEURepoFile;
 import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
 import it.unimi.dsi.fastutil.objects.Object2ObjectMaps;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
+//? if >1.21.10
 import net.minecraft.util.ExtraCodecs;
 import org.slf4j.Logger;
 
@@ -50,8 +51,13 @@ public class RepoDyeColors {
 
 	private record Dyes(Object2ObjectMap<String, List<Integer>> animatedDyes, Map<String, Integer> staticDyes) {
 		private static final Codec<Dyes> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+				//? if >1.21.10 {
 				CodecUtils.object2ObjectMapCodec(Codec.STRING, ExtraCodecs.STRING_RGB_COLOR.listOf()).fieldOf("animated").forGetter(Dyes::animatedDyes),
 				Codec.unboundedMap(Codec.STRING, ExtraCodecs.STRING_RGB_COLOR).fieldOf("static").forGetter(Dyes::staticDyes)
+				//? } else {
+				/*CodecUtils.object2ObjectMapCodec(Codec.STRING, CodecUtils.STRING_RGB_COLOR.listOf()).fieldOf("animated").forGetter(Dyes::animatedDyes),
+				Codec.unboundedMap(Codec.STRING, CodecUtils.STRING_RGB_COLOR).fieldOf("static").forGetter(Dyes::staticDyes)
+				*///? }
 		).apply(instance, Dyes::new));
 	}
 }

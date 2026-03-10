@@ -242,6 +242,16 @@ loom {
 	}
 }
 
+if (stonecutter.current.version == "1.21.10") {
+	sourceSets {
+		main {
+			java {
+				exclude("de/hysky/skyblocker/skyblock/profileviewer2/**")
+			}
+		}
+	}
+}
+
 fabricApi {
 	configureTests {
 		createSourceSet = true

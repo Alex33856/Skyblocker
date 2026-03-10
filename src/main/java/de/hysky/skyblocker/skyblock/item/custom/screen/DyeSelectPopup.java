@@ -28,6 +28,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiConsumer;
 
+//? if 1.21.10 {
+/*import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.components.WidgetSprites;
+import net.minecraft.client.renderer.RenderPipelines;
+import net.minecraft.resources.Identifier;
+import net.minecraft.util.CommonColors;
+*///? }
+
 public class DyeSelectPopup extends AbstractPopupScreen {
 
 	private ScrollableLayout scrollableLayout;
@@ -151,8 +159,11 @@ public class DyeSelectPopup extends AbstractPopupScreen {
 	}
 
 
-	private static class StaticDyeButton extends Button.Plain {
+	private static class StaticDyeButton extends Button/*? if >1.21.10 {*/.Plain/*? }*/ {
 		private static final int TEXT_OFFSET = 10;
+		//? if < 1.21.11 {
+		/*private static final WidgetSprites SPRITES = new WidgetSprites(Identifier.withDefaultNamespace("widget/button"), Identifier.withDefaultNamespace("widget/button_disabled"), Identifier.withDefaultNamespace("widget/button_highlighted"));
+		*///? }
 
 		String name;
 		final ItemStack dyeStack;
@@ -167,18 +178,36 @@ public class DyeSelectPopup extends AbstractPopupScreen {
 			this.setMessage(component);
 		}
 
+		//? if >1.21.10 {
 		@Override
 		protected void renderContents(GuiGraphics guiGraphics, int mouseX, int mouseY, float delta) {
 			this.renderDefaultSprite(guiGraphics);
 			guiGraphics.renderItem(dyeStack, this.getX() + TEXT_OFFSET, this.getY() + 1);
 			renderName(guiGraphics, delta);
 		}
+		//? } else {
+		/*@Override
+		protected void renderWidget(GuiGraphics guiGraphics, int mouseX, int mouseY, float delta) {
+			Minecraft client = Minecraft.getInstance();
+			guiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, SPRITES.get(this.active, this.isHoveredOrFocused()), this.getX(), this.getY(), this.getWidth(), this.getHeight(), ARGB.white(this.alpha));
+			guiGraphics.renderItem(dyeStack, this.getX() + TEXT_OFFSET, this.getY() + 1);
+			renderName(guiGraphics, client.font, delta);
+		}
+		*///? }
 
-		protected void renderName(GuiGraphics guiGraphics, float f) {
+		protected void renderName(GuiGraphics guiGraphics, /*? if <1.21.11 {*//*Font font, *//*? }*/ float delta) {
+			//? if >1.21.10 {
 			guiGraphics.textRendererForWidget(this, GuiGraphics.HoveredTextEffects.NONE).acceptScrollingWithDefaultCenter(
 					getMessage(), getX() + TEXT_MARGIN + TEXT_OFFSET + 16,
 					getRight() - TEXT_MARGIN, getY() + TEXT_MARGIN, getBottom() - TEXT_MARGIN
 			);
+			//? } else {
+			/*renderScrollingString(guiGraphics, font, this.getMessage(),
+					getX() + TEXT_MARGIN + TEXT_OFFSET + 16, getY() + TEXT_MARGIN,
+					getRight() - TEXT_MARGIN, getBottom() - TEXT_MARGIN,
+					CommonColors.WHITE
+			);
+			*///? }
 		}
 	}
 
@@ -195,7 +224,7 @@ public class DyeSelectPopup extends AbstractPopupScreen {
 		}
 
 		@Override
-		protected void renderName(GuiGraphics guiGraphics, float delta) {
+		protected void renderName(GuiGraphics guiGraphics, /*? if <1.21.11 {*//*Font font, *//*? }*/ float delta) {
 			lastChange += delta;
 			if (lastChange > 2) {
 				lastChange = 0;
@@ -203,7 +232,7 @@ public class DyeSelectPopup extends AbstractPopupScreen {
 				setMessage(animatedNames.get(index));
 				if (index == animatedNames.size() - 1) index = 0;
 			}
-			super.renderName(guiGraphics, delta);
+			super.renderName(guiGraphics, /*? if <1.21.11 {*//*font, *//*? }*/ delta);
 		}
 	}
 
