@@ -31,7 +31,6 @@
     "HolderReferenceMixin",
     "InventoryMixin",
     "InventoryScreenMixin",
-    "ItemControllerElementMixin",
     "ItemFeatureRendererMixin",
     "ItemInHandRendererMixin",
     "ItemStackMixin",
