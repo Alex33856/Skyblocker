@@ -91,7 +91,7 @@
     "fabric-language-kotlin": "*",
     "hm-api": ">=1.0.1+1.21.2",
     "minecraft": "~${minecraft_version}",
-    "java": ">=21"
+    "java": ">=${java_version}"
   },
   "conflicts": {
   },

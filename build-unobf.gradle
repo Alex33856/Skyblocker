@@ -264,7 +264,8 @@ processResources {
 		"fabric_api_version": project.property("fabric_api_version"),
 		"dandelion_version": project.property("dandelion_version"),
 		"yacl_version": project.property("yacl_version"),
-		"minecraft_version": sc.current.version
+		"minecraft_version": "26.1-",
+		"java_version": 25
 	}
 }
 
@@ -294,7 +295,8 @@ checkstyle {
 	toolVersion = "${checkstyle_version}"
 	configFile = rootProject.file("checkstyle.xml")
 	configProperties = [
-		"suppressionsFile": rootProject.file("checkstyle-suppressions.xml")
+		"suppressionsFile": rootProject.file("checkstyle-suppressions.xml"),
+		"cacheFile": layout.buildDirectory.file("checkstyle/checkstyle-cache.txt").get().asFile
 	]
 }
 

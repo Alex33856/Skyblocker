@@ -274,7 +274,8 @@ tasks.withType(ProcessResources).configureEach {
 		"fabric_api_version": project.property("fabric_api_version"),
 		"dandelion_version": project.property("dandelion_version"),
 		"yacl_version": project.property("yacl_version"),
-		"minecraft_version": sc.current.version
+		"minecraft_version": sc.current.version,
+		"java_version": 21
 	}
 }
 
