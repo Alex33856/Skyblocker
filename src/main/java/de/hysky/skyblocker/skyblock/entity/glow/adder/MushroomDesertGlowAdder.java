@@ -6,11 +6,16 @@ import de.hysky.skyblocker.skyblock.entity.MobGlowAdder;
 import de.hysky.skyblocker.utils.Utils;
 import de.hysky.skyblocker.skyblock.entity.MobGlow;
 import net.minecraft.world.entity.Entity;
+//~ if <1.21.11 '.chicken.Chicken' -> '.Chicken'
 import net.minecraft.world.entity.animal.chicken.Chicken;
+//~ if <1.21.11 '.cow.Cow' -> '.Cow'
 import net.minecraft.world.entity.animal.cow.Cow;
+//~ if <1.21.11 '.pig.Pig' -> '.Pig'
 import net.minecraft.world.entity.animal.pig.Pig;
+//~ if <1.21.11 '.rabbit.Rabbit' -> '.Rabbit'
 import net.minecraft.world.entity.animal.rabbit.Rabbit;
 import net.minecraft.world.entity.animal.sheep.Sheep;
+//~ if <1.21.11 '.equine.Horse' -> '.horse.Horse'
 import net.minecraft.world.entity.animal.equine.Horse;
 
 public class MushroomDesertGlowAdder extends MobGlowAdder {

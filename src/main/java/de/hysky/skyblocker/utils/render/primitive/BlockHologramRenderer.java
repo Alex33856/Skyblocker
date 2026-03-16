@@ -46,7 +46,7 @@ public final class BlockHologramRenderer implements PrimitiveRenderer<BlockHolog
 		//? if <=1.21.11
 		CLIENT.getBlockRenderer().getModelRenderer().render(CLIENT.level, model, state.state, state.pos, matrices, RenderLayerHelper.movingDelegate(bufferSource), true, state.state.getSeed(state.pos), 0);
 		//?} else {
-		/*MultiBufferSource consumers = SODIUM_LOADED ? CLIENT.renderBuffers().bufferSource() : _layer -> Renderer.getBuffer(RenderPipelines.TRANSLUCENT, TextureSetup.singleTexture(ChunkSectionLayer.TRANSLUCENT.textureView()), true);
+		/*MultiBufferSource consumers = SODIUM_LOADED ? CLIENT.renderBuffers().bufferSource() : _layer -> Renderer.getBuffer(RenderPipelines.TRANSLUCENT, TextureSetup.singleTexture(ChunkSectionLayer.TRANSLUCENT.textureView()), state.alpha);
 		CLIENT.getBlockRenderer().getModelRenderer().render(CLIENT.level, model, state.state, state.pos, matrices, RenderLayerHelper.movingDelegate(consumers), true, state.state.getSeed(state.pos), 0);
 		*///?}
 		//? }
