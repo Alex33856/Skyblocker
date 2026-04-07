@@ -62,7 +62,7 @@ public class SlayerHudWidget extends ElementBasedWidget {
 
 	@Override
 	public void updateContent() {
-		if (CLIENT.screen instanceof WidgetsConfigurationScreen) {
+		if (CLIENT.gui.screen() instanceof WidgetsConfigurationScreen) {
 			SlayerType slayerType = SlayerType.REVENANT;
 			SlayerTier slayerTier = SlayerTier.V;
 

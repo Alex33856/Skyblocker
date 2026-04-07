@@ -104,12 +104,13 @@ public class RadialMenuScreen extends Screen implements ContainerListener {
 	@Override
 	public void mouseMoved(double mouseX, double mouseY) {
 		super.mouseMoved(mouseX, mouseY);
-		if (CLIENT.screen == null) return;
-		float actualX = (float) (mouseX * 2) - CLIENT.screen.width;
-		float actualY = (float) (mouseY * 2) - CLIENT.screen.height;
+		Screen screen = CLIENT.gui.screen();
+		if (screen == null) return;
+		float actualX = (float) (mouseX * 2) - screen.width;
+		float actualY = (float) (mouseY * 2) - screen.height;
 
 		//return if over hide button
-		if (actualX > CLIENT.screen.width - 100 && actualY > CLIENT.screen.height - 50) {
+		if (actualX > screen.width - 100 && actualY > screen.height - 50) {
 			buttonsHoveredIndex = -1;
 			return;
 		}
@@ -189,7 +190,7 @@ public class RadialMenuScreen extends Screen implements ContainerListener {
 
 	private void hide(Button button) {
 		if (CLIENT.player == null) return;
-		CLIENT.setScreen(new ContainerScreen(handler, CLIENT.player.getInventory(), parentName));
+		CLIENT.gui.setScreen(new ContainerScreen(handler, CLIENT.player.getInventory(), parentName));
 	}
 
 	/**

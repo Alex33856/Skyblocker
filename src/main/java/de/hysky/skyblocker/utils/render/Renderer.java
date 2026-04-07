@@ -304,7 +304,7 @@ public class Renderer {
 
 	private static GpuBufferSlice setupDynamicTransforms(float alphaMultiplier) {
 		return RenderSystem.getDynamicUniforms()
-				.writeTransform(RenderSystem.getModelViewMatrix(), new Vector4f(1, 1, 1, alphaMultiplier), MODEL_OFFSET, TEXTURE_MATRIX);
+				.writeTransform(RenderSystem.getModelViewMatrixCopy(), new Vector4f(1, 1, 1, alphaMultiplier), MODEL_OFFSET, TEXTURE_MATRIX);
 	}
 
 	private static GpuTextureView getMainColorTexture() {

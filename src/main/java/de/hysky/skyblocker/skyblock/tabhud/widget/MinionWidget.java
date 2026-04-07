@@ -48,7 +48,7 @@ public class MinionWidget extends TabHudWidget {
 		MIN_ICOS.put("Potato", new FlexibleItemStack(Items.POTATO));
 		MIN_ICOS.put("Pumpkin", new FlexibleItemStack(Items.PUMPKIN));
 		MIN_ICOS.put("Rabbit", new FlexibleItemStack(Items.RABBIT));
-		MIN_ICOS.put("Sheep", new FlexibleItemStack(Items.WHITE_WOOL));
+		MIN_ICOS.put("Sheep", new FlexibleItemStack(Items.WOOL.white()));
 		MIN_ICOS.put("Sugar Cane", new FlexibleItemStack(Items.SUGAR_CANE));
 		MIN_ICOS.put("Wheat", new FlexibleItemStack(Items.WHEAT));
 		MIN_ICOS.put("Clay", new FlexibleItemStack(Items.CLAY));

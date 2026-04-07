@@ -208,7 +208,7 @@ public class CustomizeScreen extends Screen {
 
 	@Override
 	public void onClose() {
-		minecraft.setScreen(previousScreen);
+		minecraft.gui.setScreen(previousScreen);
 		SkyblockerConfigManager.update(Consumers.nop());
 	}
 
@@ -238,7 +238,7 @@ public class CustomizeScreen extends Screen {
 
 		@Override
 		public void onClick(MouseButtonEvent click, boolean doubled) {
-			CLIENT.setScreen(new CustomizeScreen(CLIENT.screen, false));
+			CLIENT.gui.setScreen(new CustomizeScreen(CLIENT.gui.screen(), false));
 		}
 
 		@Override

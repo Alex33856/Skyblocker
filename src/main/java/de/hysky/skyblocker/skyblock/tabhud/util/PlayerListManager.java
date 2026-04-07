@@ -97,7 +97,7 @@ public class PlayerListManager {
 			return;
 		}
 
-		if (Minecraft.getInstance().screen instanceof WidgetsConfigurationScreen widgetsConfigurationScreen && widgetsConfigurationScreen.isPreviewVisible()) return;
+		if (Minecraft.getInstance().gui.screen() instanceof WidgetsConfigurationScreen widgetsConfigurationScreen && widgetsConfigurationScreen.isPreviewVisible()) return;
 
 		if (Utils.isInDungeons()) updateDungeons(null);
 		else updateWidgetsFrom(playerList);

@@ -24,7 +24,7 @@ public abstract class BasicMenu extends RadialMenu {
 	}
 
 	public boolean itemMatches(int slotId, ItemStack stack) {
-		return stack.getItem() != Items.BLACK_STAINED_GLASS_PANE;
+		return stack.getItem() != Items.STAINED_GLASS_PANE.black();
 	}
 
 	public String getConfigId() {

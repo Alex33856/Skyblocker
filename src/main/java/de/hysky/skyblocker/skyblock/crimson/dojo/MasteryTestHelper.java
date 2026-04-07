@@ -33,7 +33,7 @@ public class MasteryTestHelper {
 		if (CLIENT == null || CLIENT.player == null) {
 			return;
 		}
-		if (state.is(Blocks.LIME_WOOL)) {
+		if (state.is(Blocks.WOOL.lime())) {
 			blockOrder.add(pos);
 			//add lifetime of a block to the time to get time when block expires
 			// work out how long it will take between the player firing and arrow hitting the block and to subtract from time

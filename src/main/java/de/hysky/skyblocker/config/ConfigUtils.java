@@ -49,7 +49,7 @@ public class ConfigUtils {
 		Minecraft client = Minecraft.getInstance();
 		return ButtonOption.createBuilder()
 				.name(Component.translatable("skyblocker.config.shortcutToKeybindsSettings"))
-				.action(screen -> client.setScreen(new KeyBindsScreen(screen, client.options)))
+				.action(screen -> client.gui.setScreen(new KeyBindsScreen(screen, client.options)))
 				.prompt(Component.translatable("skyblocker.config.shortcutToKeybindsSettings.@Text"))
 				.build();
 	}

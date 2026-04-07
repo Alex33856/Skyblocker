@@ -340,7 +340,7 @@ public class DungeonSplitsWidget extends TableWidget {
 
 	@Override
 	public void updateContent() {
-		if (!(Minecraft.getInstance().screen instanceof WidgetsConfigurationScreen)) {
+		if (!(Minecraft.getInstance().gui.screen() instanceof WidgetsConfigurationScreen)) {
 			updateFloor();
 			loadFloorSplits();
 		}

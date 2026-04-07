@@ -116,7 +116,7 @@ public class TreeBreakProgressHud extends ElementBasedWidget {
 		ClientLevel world = CLIENT.level;
 		ArmorStand closest;
 
-		if (CLIENT.screen instanceof WidgetsConfigurationScreen) {
+		if (CLIENT.gui.screen() instanceof WidgetsConfigurationScreen) {
 			addSimpleIcoText(Ico.STRIPPED_SPRUCE_WOOD, "Fig Tree ", ChatFormatting.GREEN, "37%");
 			return;
 		}

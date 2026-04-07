@@ -8,6 +8,7 @@ import de.hysky.skyblocker.utils.render.state.gui.GuiEquipmentRenderState;
 import net.fabricmc.fabric.api.client.rendering.v1.PictureInPictureRendererRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.render.pip.PictureInPictureRenderer;
+import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.SubmitNodeStorage;
 import net.minecraft.client.renderer.feature.FeatureRenderDispatcher;
 import net.minecraft.util.LightCoordsUtil;
@@ -15,7 +16,7 @@ import net.minecraft.util.LightCoordsUtil;
 public class GuiEquipmentRenderer<S> extends PictureInPictureRenderer<GuiEquipmentRenderState<S>> {
 
 	private GuiEquipmentRenderer(PictureInPictureRendererRegistry.Context context) {
-		super(context.bufferSource());
+		super();
 	}
 
 	@Init
@@ -30,7 +31,7 @@ public class GuiEquipmentRenderer<S> extends PictureInPictureRenderer<GuiEquipme
 	}
 
 	@Override
-	protected void renderToTexture(GuiEquipmentRenderState<S> state, PoseStack matrices) {
+	protected void renderToTexture(GuiEquipmentRenderState<S> state, PoseStack matrices, SubmitNodeCollector submitNodeCollector) {
 		Minecraft client = Minecraft.getInstance();
 
 		matrices.pushPose();

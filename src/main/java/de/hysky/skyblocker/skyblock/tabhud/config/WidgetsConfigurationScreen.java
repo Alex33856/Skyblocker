@@ -316,7 +316,7 @@ public class WidgetsConfigurationScreen extends Screen implements ContainerListe
 			this.minecraft.player.closeContainer();
 			super.onClose();
 		} else {
-			minecraft.setScreen(parent);
+			minecraft.gui.setScreen(parent);
 		}
 	}
 

@@ -132,8 +132,8 @@ public class JsonData<T> {
 			LOGGER.error("[Skyblocker Json Data] Failed to load data from file: `{}`", file, e);
 		}
 		if (createBackup) {
-			Minecraft.getInstance().getToastManager().addToast(SystemToast.multiline(
-					Minecraft.getInstance(), ERROR_TOAST_ID,
+			Minecraft.getInstance().gui.toastManager().addToast(new SystemToast(
+					ERROR_TOAST_ID,
 					Component.literal("Skyblocker Config Error"),
 					Component.literal("Failed to load '" + FabricLoader.getInstance().getConfigDir().relativize(file) + "'")
 							.append("\n")

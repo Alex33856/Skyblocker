@@ -105,7 +105,7 @@ public class SkyblockerScreen extends Screen {
 	}
 
 	private void openConfig() {
-		this.minecraft.setScreen(SkyblockerConfigManager.createGUI(this));
+		this.minecraft.gui.setScreen(SkyblockerConfigManager.createGUI(this));
 	}
 
 	@Override

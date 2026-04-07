@@ -66,6 +66,6 @@ public class ChatRuleLocationConfigScreen extends Screen {
 	@Override
 	public void onClose() {
 		assert minecraft != null;
-		minecraft.setScreen(parent);
+		minecraft.gui.setScreen(parent);
 	}
 }
