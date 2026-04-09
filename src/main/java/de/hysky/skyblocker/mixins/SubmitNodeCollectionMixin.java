@@ -21,10 +21,9 @@ public class SubmitNodeCollectionMixin {
 
 	// NB: Custom glow must be initialized after the record constructor is run (so that the field value is not overridden by false).
 
-	@WrapOperation(method = { "submitModel", "submitModelPart" }, at = {
+	@WrapOperation(method = { "submitModel" }, at = {
 			@At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/feature/ModelFeatureRenderer$Storage;add(Lnet/minecraft/client/renderer/rendertype/RenderType;Lnet/minecraft/client/renderer/SubmitNodeStorage$ModelSubmit;)V"),
-			@At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/feature/ModelPartFeatureRenderer$Storage;add(Lnet/minecraft/client/renderer/rendertype/RenderType;Lnet/minecraft/client/renderer/SubmitNodeStorage$ModelPartSubmit;)V")
-	}, require = 2)
+	}, require = 1)
 	private void skyblocker$markCustomGlow(@Coerce Object commandList, RenderType layer, @Coerce CustomGlowState command, Operation<Void> operation) {
 		EntityRenderState entityStateBeingRendered = Minecraft.getInstance().levelRenderer.skyblocker$getEntityStateBeingRendered();
 

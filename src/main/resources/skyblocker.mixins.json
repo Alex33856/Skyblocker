@@ -42,7 +42,6 @@
 		"MenuScreensConstructorMixin",
 		"MinecraftMixin",
 		"ModelFeatureRendererMixin",
-		"ModelPartFeatureRendererMixin",
 		"MouseHandlerMixin",
 		"MultiPlayerGameModeMixin",
 		"OptionsMixin",

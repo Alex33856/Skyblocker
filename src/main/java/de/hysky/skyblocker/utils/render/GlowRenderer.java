@@ -77,7 +77,7 @@ public class GlowRenderer implements AutoCloseable {
 				this.glowDepthTextureView.close();
 			}
 
-			this.glowDepthTexture = device.createTexture(() -> "Skyblocker Glow Depth Tex", GpuTexture.USAGE_RENDER_ATTACHMENT | GpuTexture.USAGE_COPY_DST | GpuTexture.USAGE_TEXTURE_BINDING, GpuFormat.DEPTH32, neededWidth, neededHeight, 1, 1);
+			this.glowDepthTexture = device.createTexture(() -> "Skyblocker Glow Depth Tex", GpuTexture.USAGE_RENDER_ATTACHMENT | GpuTexture.USAGE_COPY_DST | GpuTexture.USAGE_TEXTURE_BINDING, GpuFormat.D32_FLOAT, neededWidth, neededHeight, 1, 1);
 			this.glowDepthTextureView = device.createTextureView(this.glowDepthTexture);
 		}
 	}

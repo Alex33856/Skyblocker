@@ -44,5 +44,4 @@ inject-interface	net/minecraft/world/item/ItemStack	de/hysky/skyblocker/injected
 inject-interface	net/minecraft/client/gui/screens/inventory/InventoryScreen	de/hysky/skyblocker/injected/RecipeBookHolder
 inject-interface	net/minecraft/client/renderer/LevelRenderer	de/hysky/skyblocker/injected/EntityRenderMarker
 inject-interface	net/minecraft/client/renderer/SubmitNodeStorage$ItemSubmit	de/hysky/skyblocker/injected/CustomGlowState
-inject-interface	net/minecraft/client/renderer/SubmitNodeStorage$ModelPartSubmit	de/hysky/skyblocker/injected/CustomGlowState
 inject-interface	net/minecraft/client/renderer/SubmitNodeStorage$ModelSubmit	de/hysky/skyblocker/injected/CustomGlowState

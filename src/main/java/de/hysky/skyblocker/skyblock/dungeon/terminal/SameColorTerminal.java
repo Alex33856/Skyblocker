@@ -29,7 +29,7 @@ public final class SameColorTerminal extends SimpleContainerSolver implements Te
 	private static final Item[] ORDER = new Item[]{
 			Items.STAINED_GLASS_PANE.red(),
 			Items.STAINED_GLASS_PANE.orange(),
-			Items.STAINED_GLASS_PANE.orange(),
+			Items.STAINED_GLASS_PANE.yellow(),
 			Items.STAINED_GLASS_PANE.green(),
 			Items.STAINED_GLASS_PANE.blue()
 	};
