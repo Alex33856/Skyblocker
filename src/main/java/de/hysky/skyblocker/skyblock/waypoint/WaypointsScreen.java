@@ -39,7 +39,6 @@ public class WaypointsScreen extends AbstractWaypointsScreen<Screen> {
 
 	@Override
 	public void onClose() {
-		assert minecraft != null;
 		if (!Waypoints.areWaypointsEqual(waypoints)) {
 			minecraft.gui.setScreen(new ConfirmScreen(confirmedAction -> minecraft.gui.setScreen(confirmedAction ? parent : this),
 					Component.translatable("text.skyblocker.quit_config"),
