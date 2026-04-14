@@ -258,17 +258,17 @@ public class Renderer {
 		GpuBuffer indices;
 		IndexType indexType;
 
-		if (draw.pipeline().getVertexFormatMode() == Mode.QUADS) {
+		/*if (draw.pipeline().getVertexFormatMode() == Mode.QUADS) {
 			//The quads we're rendering are translucent so they need to be sorted for our index buffer
 			draw.builtBuffer().sortQuads(GENERAL_ALLOCATOR, RenderSystem.getProjectionType().vertexSorting());
 			indices = draw.pipeline().getVertexFormat().uploadImmediateIndexBuffer(draw.builtBuffer().indexBuffer());
 			indexType = draw.builtBuffer().drawState().indexType();
-		} else {
+		} else {*/
 			//Use general shape index buffer for other draw modes
 			AutoStorageIndexBuffer shapeIndexBuffer = RenderSystem.getSequentialBuffer(draw.pipeline().getVertexFormatMode());
 			indices = shapeIndexBuffer.getBuffer(draw.indexCount());
 			indexType = shapeIndexBuffer.type();
-		}
+//		}
 
 		draw(draw, indices, indexType);
 	}
