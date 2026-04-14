@@ -39,19 +39,8 @@ public class LevelRendererMixin implements EntityRenderMarker {
 		return this.currentEntityStateBeingRendered;
 	}
 
-	@ModifyExpressionValue(method = "extractVisibleEntities", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/entity/state/EntityRenderState;appearsGlowing()Z"))
-	private boolean skyblocker$markCustomGlowUsedThisFrame(boolean hasVanillaGlow, @Local(name = "state") EntityRenderState entityRenderState) {
-		boolean hasCustomGlow = entityRenderState.getDataOrDefault(MobGlow.ENTITY_CUSTOM_GLOW_COLOUR, MobGlow.NO_GLOW) != MobGlow.NO_GLOW;
-
-		if (hasCustomGlow) {
-			this.levelRenderState.setData(MobGlow.FRAME_USES_CUSTOM_GLOW, true);
-		}
-
-		return hasVanillaGlow || hasCustomGlow;
-	}
-
 	@Inject(method = "lambda$addMainPass$0",
-			slice = @Slice(from = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/LevelRenderer;shouldShowEntityOutlines()Z")),
+			slice = @Slice(from = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/state/level/LevelRenderState;shouldShowEntityOutlines:Z")),
 			at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/systems/CommandEncoder;clearColorAndDepthTextures(Lcom/mojang/blaze3d/textures/GpuTexture;ILcom/mojang/blaze3d/textures/GpuTexture;D)V", ordinal = 0, shift = At.Shift.AFTER)
 	)
 	private void skyblocker$updateGlowDepthTexDepth(CallbackInfo ci) {
@@ -73,18 +62,5 @@ public class LevelRendererMixin implements EntityRenderMarker {
 	@Inject(method = "lambda$addMainPass$0", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/OutlineBufferSource;endOutlineBatch()V"))
 	private void skyblocker$drawGlowVertexConsumers(CallbackInfo ci) {
 		GlowRenderer.getInstance().getGlowBufferSource().endOutlineBatch();
-	}
-
-	@WrapOperation(method = "extractBlockDestroyAnimation", at = @At(value = "NEW", target = "(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;I)Lnet/minecraft/client/renderer/state/level/BlockBreakingRenderState;"))
-	private BlockBreakingRenderState skyblocker$addBlockBreakingProgressRenderState(BlockPos pos, BlockState state, int progress, Operation<BlockBreakingRenderState> original) {
-		if (SkyblockerConfigManager.get().mining.blockBreakPrediction.enabled) {
-			int pingModifiedProgress = BlockBreakPrediction.getBlockBreakPrediction(pos, progress);
-			return new BlockBreakingRenderState(pos, state, pingModifiedProgress);
-
-		}
-		//if the setting is not enabled do not modify anything
-		else {
-			return original.call(pos, state, progress);
-		}
 	}
 }

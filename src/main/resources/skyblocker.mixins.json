@@ -35,6 +35,7 @@
 		"ItemInHandRendererMixin",
 		"ItemStackMixin",
 		"KeyMappingMixin",
+		"LevelExtractorMixin",
 		"LevelLoadingScreenMixin",
 		"LevelRendererMixin",
 		"LocalPlayerMixin",
