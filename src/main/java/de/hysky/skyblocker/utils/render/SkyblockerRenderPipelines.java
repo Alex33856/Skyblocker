@@ -11,6 +11,7 @@ import com.mojang.blaze3d.vertex.VertexFormat.Mode;
 import de.hysky.skyblocker.SkyblockerMod;
 import de.hysky.skyblocker.annotations.Init;
 import de.hysky.skyblocker.compatibility.IrisCompatibility;
+import net.minecraft.client.renderer.BindGroupLayouts;
 import net.minecraft.client.renderer.RenderPipelines;
 
 public class SkyblockerRenderPipelines {
@@ -56,11 +57,12 @@ public class SkyblockerRenderPipelines {
 			.withVertexFormat(DefaultVertexFormat.POSITION_COLOR, Mode.QUADS)
 			.withCull(false)
 			.build());
-	public static final RenderPipeline BLURRED_RECTANGLE = RenderPipelines.register(RenderPipeline.builder(RenderPipelines.GUI_SNIPPET, RenderPipelines.GLOBALS_SNIPPET)
+	public static final RenderPipeline BLURRED_RECTANGLE = RenderPipelines.register(RenderPipeline.builder(RenderPipelines.GUI_SNIPPET)
+			.withBindGroupLayout(BindGroupLayouts.GLOBALS)
 			.withLocation(SkyblockerMod.id("pipeline/blurred_rectangle"))
 			.withVertexShader("core/position_color")
 			.withFragmentShader(SkyblockerMod.id("core/box_blur"))
-			.withSampler("Sampler0")
+			.withBindGroupLayout(BindGroupLayouts.SAMPLER0)
 			.withVertexFormat(DefaultVertexFormat.POSITION_COLOR, VertexFormat.Mode.QUADS)
 			.build());
 
