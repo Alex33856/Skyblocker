@@ -44,7 +44,7 @@ public class GlowRenderer implements AutoCloseable {
 
 	public void updateGlowDepthTexDepth() {
 		tryUpdateDepthTexture();
-		RenderSystem.getDevice().createCommandEncoder().copyTextureToTexture(this.minecraft.getMainRenderTarget().getDepthTexture(), this.glowDepthTexture, 0, 0, 0, 0, 0, this.glowDepthTexture.getWidth(0), this.glowDepthTexture.getHeight(0));
+		RenderSystem.getDevice().createCommandEncoder().copyTextureToTexture(this.minecraft.gameRenderer.mainRenderTarget().getDepthTexture(), this.glowDepthTexture, 0, 0, 0, 0, 0, this.glowDepthTexture.getWidth(0), this.glowDepthTexture.getHeight(0));
 	}
 
 	private void startRenderingGlow() {

@@ -121,7 +121,7 @@ public class GuiHelper {
 	 */
 	public static void blurredRectangle(GuiGraphicsExtractor graphics, int x0, int y0, int x1, int y1, int radius) {
 		if (blitIndexForFrame == -1) {
-			RenderTarget mainRenderTarget = CLIENT.getMainRenderTarget();
+			RenderTarget mainRenderTarget = CLIENT.gameRenderer.mainRenderTarget();
 			int requiredWidth = mainRenderTarget.width;
 			int requiredHeight = mainRenderTarget.height;
 			blitIndexForFrame = BLIT_TEXTURE_POOL.getNextAvailableIndex(requiredWidth, requiredHeight);
@@ -138,7 +138,7 @@ public class GuiHelper {
 
 	public static void updateScreenBlitTexture() {
 		if (blitIndexForFrame != -1) {
-			RenderTarget mainRenderTarget = CLIENT.getMainRenderTarget();
+			RenderTarget mainRenderTarget = CLIENT.gameRenderer.mainRenderTarget();
 			int requiredWidth = mainRenderTarget.width;
 			int requiredHeight = mainRenderTarget.height;
 			GpuTextureView blitTextureView = BLIT_TEXTURE_POOL.getTextureView(blitIndexForFrame);

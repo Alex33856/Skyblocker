@@ -39,8 +39,8 @@ public class GuiEquipmentRenderer<S> extends PictureInPictureRenderer<GuiEquipme
 		matrices.mulPose(Axis.XN.rotationDegrees(-5));
 		matrices.mulPose(Axis.YN.rotationDegrees(state.rotation()));
 
-		client.gameRenderer.getLighting().setupFor(Lighting.Entry.ENTITY_IN_UI);
-		FeatureRenderDispatcher renderDispatcher = Minecraft.getInstance().gameRenderer.getFeatureRenderDispatcher();
+		client.gameRenderer.lighting().setupFor(Lighting.Entry.ENTITY_IN_UI);
+		FeatureRenderDispatcher renderDispatcher = Minecraft.getInstance().gameRenderer.featureRenderDispatcher();
 		SubmitNodeStorage orderedRenderCommandQueueImpl = renderDispatcher.getSubmitNodeStorage();
 		state.equipmentRenderer().renderLayers(
 				state.layerType(),

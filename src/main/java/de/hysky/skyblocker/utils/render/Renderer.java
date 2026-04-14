@@ -310,12 +310,12 @@ public class Renderer {
 				.writeTransform(RenderSystem.getModelViewMatrixCopy(), new Vector4f(1, 1, 1, alphaMultiplier), MODEL_OFFSET, TEXTURE_MATRIX);
 	}
 
-	private static GpuTextureView getMainColorTexture() {
-		return CLIENT.getMainRenderTarget().getColorTextureView();
+	private static @Nullable GpuTextureView getMainColorTexture() {
+		return CLIENT.gameRenderer.mainRenderTarget().getColorTextureView();
 	}
 
-	private static GpuTextureView getMainDepthTexture() {
-		return CLIENT.getMainRenderTarget().getDepthTextureView();
+	private static @Nullable GpuTextureView getMainDepthTexture() {
+		return CLIENT.gameRenderer.mainRenderTarget().getDepthTextureView();
 	}
 
 	private static void applyViewOffsetZLayering() {

@@ -9,7 +9,7 @@ import net.minecraft.network.chat.TextColor;
 import net.minecraft.server.Bootstrap;
 import net.minecraft.util.CommonColors;
 import net.minecraft.util.Util;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.decoration.ArmorStand;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -41,7 +41,7 @@ public class CompactDamageTest {
 	}
 
 	private static ArmorStand createEntityWithName(Component text) {
-		ArmorStand entity = new ArmorStand(EntityType.ARMOR_STAND, null);
+		ArmorStand entity = new ArmorStand(EntityTypes.ARMOR_STAND, null);
 		entity.setInvisible(true);
 		entity.setCustomNameVisible(true);
 		entity.setCustomName(text);

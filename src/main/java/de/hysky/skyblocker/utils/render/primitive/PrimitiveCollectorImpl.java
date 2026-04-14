@@ -20,7 +20,7 @@ import net.minecraft.util.CommonColors;
 import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.util.LightCoordsUtil;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.entity.BlockEntityTypes;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
@@ -143,7 +143,7 @@ public final class PrimitiveCollectorImpl implements PrimitiveCollector {
 		BeaconRenderState state = new BeaconRenderState();
 		state.blockPos = pos;
 		((BlockEntityRenderStateAccessor) state).setBlockState(Blocks.BEACON.defaultBlockState());
-		state.blockEntityType = BlockEntityType.BEACON;
+		state.blockEntityType = BlockEntityTypes.BEACON;
 		state.lightCoords = LightCoordsUtil.FULL_BRIGHT;
 		state.breakProgress = null;
 		state.animationTime = MINECRAFT.level != null ? Math.floorMod(MINECRAFT.level.getGameTime(), 40) + MINECRAFT.getDeltaTracker().getGameTimeDeltaPartialTick(true) : 0f;
@@ -465,7 +465,7 @@ public final class PrimitiveCollectorImpl implements PrimitiveCollector {
 		}
 
 		if (this.blockHologramStates != null) {
-			AltModelBlockRenderer altModelBlockRenderer = Renderer.get().altModelBlockRenderer(MINECRAFT.gameRenderer.getGameRenderState().optionsRenderState.ambientOcclusion, false, MINECRAFT.getBlockColors());
+			AltModelBlockRenderer altModelBlockRenderer = Renderer.get().altModelBlockRenderer(MINECRAFT.gameRenderer.gameRenderState().optionsRenderState.ambientOcclusion, false, MINECRAFT.getBlockColors());
 
 			for (BlockHologramRenderState state : this.blockHologramStates) {
 				state.altModelBlockRenderer = altModelBlockRenderer;
