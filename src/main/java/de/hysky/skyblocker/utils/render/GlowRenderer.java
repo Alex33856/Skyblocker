@@ -5,15 +5,13 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.textures.GpuTexture;
 import com.mojang.blaze3d.textures.GpuTextureView;
 import com.mojang.blaze3d.GpuFormat;
-import com.mojang.blaze3d.vertex.ByteBufferBuilder;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import de.hysky.skyblocker.mixins.accessors.OutlineBufferSourceAccessor;
-import it.unimi.dsi.fastutil.objects.Object2ObjectSortedMaps;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.OutlineBufferSource;
 import net.minecraft.client.renderer.rendertype.RenderType;
-import net.minecraft.util.Util;
+
+import java.util.LinkedHashSet;
 
 public class GlowRenderer implements AutoCloseable {
 	private static GlowRenderer instance = null;
@@ -25,9 +23,7 @@ public class GlowRenderer implements AutoCloseable {
 
 	private GlowRenderer() {
 		this.minecraft = Minecraft.getInstance();
-		this.glowBufferSource = Util.make(new OutlineBufferSource(), outlineBufferSource -> {
-			((OutlineBufferSourceAccessor) outlineBufferSource).setOutlineBufferSource(new GlowBufferSource(new ByteBufferBuilder(RenderType.TRANSIENT_BUFFER_SIZE)));
-		});
+		this.glowBufferSource = new OutlineBufferSource(new GlowBufferSource(RenderType.TRANSIENT_BUFFER_SIZE));
 	}
 
 	public static GlowRenderer getInstance() {
@@ -92,13 +88,13 @@ public class GlowRenderer implements AutoCloseable {
 
 	private static class GlowBufferSource extends MultiBufferSource.BufferSource {
 
-		protected GlowBufferSource(ByteBufferBuilder sharedBuffer) {
-			super(sharedBuffer, Object2ObjectSortedMaps.emptyMap());
+		protected GlowBufferSource(int initialBufferSize) {
+			super(initialBufferSize, new LinkedHashSet<>());
 		}
 
 		@Override
 		public VertexConsumer getBuffer(RenderType renderType) {
-			if (this.startedBuilders.get(renderType) != null && !renderType.canConsolidateConsecutiveGeometry()) {
+			if (!this.drawTypes.isEmpty() && this.drawTypes.getLast() == renderType && !renderType.canConsolidateConsecutiveGeometry()) {
 				getInstance().startRenderingGlow();
 				VertexConsumer buffer = super.getBuffer(renderType);
 				getInstance().stopRenderingGlow();
@@ -110,9 +106,9 @@ public class GlowRenderer implements AutoCloseable {
 		}
 
 		@Override
-		public void endBatch(RenderType type) {
+		public void endFrame() {
 			getInstance().startRenderingGlow();
-			super.endBatch(type);
+			super.endFrame();
 			getInstance().stopRenderingGlow();
 		}
 	}
