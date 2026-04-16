@@ -29,12 +29,12 @@ public class SkyblockNpcShopRecipe implements SkyblockRecipe {
 		output = SkyblockRecipe.getItemStack(shopRecipe.getResult());
 	}
 
-	private boolean shouldSplit() {
+	private static boolean shouldSplit(List<ItemStack> inputs) {
 		return inputs.size() > 3;
 	}
 
-	private int getRowSize() {
-		return shouldSplit() ? Math.floorDiv(inputs.size(), 2) : inputs.size();
+	private static int getRowSize(List<ItemStack> inputs) {
+		return shouldSplit(inputs) ? Math.floorDiv(inputs.size(), 2) : inputs.size();
 	}
 
 	/**
@@ -42,31 +42,34 @@ public class SkyblockNpcShopRecipe implements SkyblockRecipe {
 	 * <p>
 	 * Recipes greater than 3 items are split into 2 rows evenly.
 	 * If the input size is odd, it is offset further so those items do not overlap with the arrow.
+	 * There are currently no recipes with > 7 items.
 	 */
-	private int getCenterX(int width) {
+	private static int getCenterX(int width, List<ItemStack> inputs) {
 		int centerX = width / 2;
 		int size = inputs.size();
-		centerX += Math.min(getRowSize(), 3) * SLOT_SIZE / 2 - SLOT_SIZE / 2;
-		if (size > 1 && shouldOffsetArrow()) centerX -= SLOT_SIZE / 2;
+		centerX += Math.min(getRowSize(inputs), 3) * SLOT_SIZE / 2 - SLOT_SIZE / 2;
+		if (size > 1 && size % 2 == 1) centerX -= SLOT_SIZE / 2;
 		return centerX;
 	}
 
 	/**
 	 * Input items are displayed in 1 or 2 rows depending on the recipe size.
 	 */
-	@Override
-	public List<RecipeSlot> getInputSlots(int width, int height) {
+	public static List<RecipeSlot> arrangeInputs(int width, int height, @Nullable ItemStack centeredItem, List<ItemStack> inputs) {
 		List<RecipeSlot> slots = new ArrayList<>();
-		slots.add(new RecipeSlot((width - SLOT_SIZE) / 2, SLOT_SIZE / 2, npcShop));
+		if (centeredItem != null)
+			slots.add(new RecipeSlot((width - SLOT_SIZE) / 2, SLOT_SIZE / 2, centeredItem));
+		else
+			height = height - SLOT_SIZE;
 
-		int centerX = getCenterX(width);
+		int centerX = getCenterX(width, inputs);
 		int centerY = height / 2;
 
 		boolean onSecondRow = false; // Max of 2 rows
-		int rowSize = getRowSize();
+		int rowSize = getRowSize(inputs);
 
 		int x = centerX - (SLOT_SIZE * Math.min(rowSize, 3)) - ARROW_LENGTH / 2 - ARROW_PADDING;
-		int y = shouldSplit() ? centerY - SLOT_SIZE / 2 + 3 : centerY;
+		int y = shouldSplit(inputs) ? centerY - SLOT_SIZE / 2 + 3 : centerY;
 
 		for (int i = 0; i < inputs.size(); i++) {
 			slots.add(new RecipeSlot(x, y, inputs.get(i)));
@@ -81,26 +84,33 @@ public class SkyblockNpcShopRecipe implements SkyblockRecipe {
 		return slots;
 	}
 
-	boolean shouldOffsetArrow() {
-		if (!shouldSplit()) return false;
-		int size = inputs.size();
-		return size % 2 == 1 || size >= 8;
-	}
-
-	@Override
-	public List<RecipeSlot> getOutputSlots(int width, int height) {
-		int centerX = getCenterX(width);
+	public static List<RecipeSlot> arrangeOutputs(int width, int height, List<ItemStack> inputs, ItemStack output) {
+		int centerX = getCenterX(width, inputs);
 		int centerY = height / 2;
-		if (shouldOffsetArrow()) centerX += SLOT_SIZE;
+		if (inputs.size() == 7 || inputs.size() == 8) centerX += SLOT_SIZE;
 		return List.of(new RecipeSlot(centerX + ARROW_LENGTH / 2 + ARROW_PADDING, centerY, output));
 	}
 
 	@Override
-	public @Nullable ScreenPosition getArrowLocation(int width, int height) {
-		int centerX = getCenterX(width);
+	public List<RecipeSlot> getInputSlots(int width, int height) {
+		return arrangeInputs(width, height, npcShop, inputs);
+	}
+
+	@Override
+	public List<RecipeSlot> getOutputSlots(int width, int height) {
+		return arrangeOutputs(width, height, inputs, output);
+	}
+
+	public static @Nullable ScreenPosition getArrowLocation(int width, int height, List<ItemStack> inputs) {
+		int centerX = getCenterX(width, inputs);
 		int centerY = height / 2;
-		if (shouldOffsetArrow()) centerX += SLOT_SIZE;
+		if (inputs.size() == 7 || inputs.size() == 8) centerX += SLOT_SIZE;
 		return new ScreenPosition(centerX - ARROW_LENGTH / 2 - 1, centerY);
+	}
+
+	@Override
+	public @Nullable ScreenPosition getArrowLocation(int width, int height) {
+		return getArrowLocation(width, height, inputs);
 	}
 
 	public ItemStack getNpcItem() {
