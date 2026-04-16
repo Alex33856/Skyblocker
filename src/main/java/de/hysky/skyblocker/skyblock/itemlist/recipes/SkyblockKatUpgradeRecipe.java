@@ -19,7 +19,6 @@ import java.util.Locale;
 
 public class SkyblockKatUpgradeRecipe implements SkyblockRecipe {
 	public static final Identifier ID = SkyblockerMod.id("skyblock_kat_upgrade");
-	private static final String KAT_STACK_ID = "KAT_NPC";
 
 	private final ItemStack basePet;
 	private final List<ItemStack> inputs;
@@ -29,7 +28,6 @@ public class SkyblockKatUpgradeRecipe implements SkyblockRecipe {
 
 	public SkyblockKatUpgradeRecipe(NEUKatUpgradeRecipe recipe) {
 		upgradeTime = SkyblockTime.formatTime(recipe.getSeconds());
-
 		basePet = SkyblockRecipe.getItemStack(recipe.getInput());
 		upgradedPet = SkyblockRecipe.getItemStack(recipe.getOutput());
 
