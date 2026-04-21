@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class SkyblockKatUpgradeRecipe implements SkyblockRecipe {
+public class SkyblockKatUpgradeRecipe implements CenteredRecipe {
 	public static final Identifier ID = SkyblockerMod.id("skyblock_kat_upgrade");
 
 	private final ItemStack basePet;
@@ -39,17 +39,17 @@ public class SkyblockKatUpgradeRecipe implements SkyblockRecipe {
 
 	@Override
 	public List<RecipeSlot> getInputSlots(int width, int height) {
-		return SkyblockNpcShopRecipe.arrangeInputs(width, height, null, inputs);
+		return CenteredRecipe.arrangeInputs(width, height, null, inputs);
 	}
 
 	@Override
 	public List<RecipeSlot> getOutputSlots(int width, int height) {
-		return SkyblockNpcShopRecipe.arrangeOutputs(width, height, inputs, upgradedPet);
+		return CenteredRecipe.arrangeOutputs(width, height, inputs, upgradedPet);
 	}
 
 	@Override
 	public @Nullable ScreenPosition getArrowLocation(int width, int height) {
-		return SkyblockNpcShopRecipe.getArrowLocation(width, height, inputs);
+		return CenteredRecipe.getArrowLocation(width, height, inputs);
 	}
 
 	@Override
