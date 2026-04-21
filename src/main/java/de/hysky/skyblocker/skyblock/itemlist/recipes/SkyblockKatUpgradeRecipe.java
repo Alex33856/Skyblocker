@@ -1,6 +1,7 @@
 package de.hysky.skyblocker.skyblock.itemlist.recipes;
 
 import de.hysky.skyblocker.SkyblockerMod;
+import de.hysky.skyblocker.skyblock.itemlist.ItemRepository;
 import de.hysky.skyblocker.utils.SkyblockTime;
 import io.github.moulberry.repo.data.NEUIngredient;
 import io.github.moulberry.repo.data.NEUKatUpgradeRecipe;
@@ -11,6 +12,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.CommonColors;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import org.jspecify.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -19,6 +21,7 @@ import java.util.Locale;
 
 public class SkyblockKatUpgradeRecipe implements CenteredRecipe {
 	public static final Identifier ID = SkyblockerMod.id("skyblock_kat_upgrade");
+	public static @Nullable ItemStack katIcon = null;
 
 	private final ItemStack basePet;
 	private final List<ItemStack> inputs;
@@ -27,6 +30,7 @@ public class SkyblockKatUpgradeRecipe implements CenteredRecipe {
 	private final Component upgradeTime;
 
 	public SkyblockKatUpgradeRecipe(NEUKatUpgradeRecipe recipe) {
+		if (katIcon == null) katIcon = ItemRepository.getItemStack("KAT_NPC");
 		upgradeTime = SkyblockTime.formatTime(recipe.getSeconds());
 		basePet = SkyblockRecipe.getItemStack(recipe.getInput());
 		upgradedPet = SkyblockRecipe.getItemStack(recipe.getOutput());
@@ -82,5 +86,15 @@ public class SkyblockKatUpgradeRecipe implements CenteredRecipe {
 		ScreenPosition arrowLocation = getArrowLocation(width, height);
 		if (arrowLocation == null) return;
 		graphics.centeredText(Minecraft.getInstance().font, upgradeTime, arrowLocation.x() + 12, arrowLocation.y() - 10, CommonColors.WHITE);
+	}
+
+	@Override
+	public ItemStack getIcon() {
+		return Items.BONE.getDefaultInstance();
+	}
+
+	@Override
+	public @Nullable ItemStack getRepresentative() {
+		return katIcon;
 	}
 }

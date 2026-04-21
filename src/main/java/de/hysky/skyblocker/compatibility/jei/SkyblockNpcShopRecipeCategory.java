@@ -8,6 +8,7 @@ import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.types.IRecipeType;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 
 public final class SkyblockNpcShopRecipeCategory extends AbstractSkyblockRecipeCategory<SkyblockNpcShopRecipe> {
@@ -28,10 +29,10 @@ public final class SkyblockNpcShopRecipeCategory extends AbstractSkyblockRecipeC
 
 		int itemX = 61 + ((recipeArrow.getWidth() - ITEM_SIZE) / 2);
 		int itemY = arrowYOffset - ITEM_SIZE - NPC_ITEM_PADDING;
-		graphics.item(recipe.getNpcItem(), itemX, itemY);
+		graphics.item(recipe.getRepresentative(), itemX, itemY);
 
 		if (GuiHelper.pointIsInArea(mouseX, mouseY, itemX, itemY, itemX + ITEM_SIZE, itemY + ITEM_SIZE)) {
-			this.drawTooltip(graphics, recipe.getNpcItem().getHoverName(), mouseX, mouseY);
+			this.drawTooltip(graphics, recipe.getRepresentative().getHoverName(), mouseX, mouseY);
 		}
 	}
 }

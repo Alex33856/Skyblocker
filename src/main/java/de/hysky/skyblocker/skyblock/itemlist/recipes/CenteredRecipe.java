@@ -80,4 +80,8 @@ public interface CenteredRecipe extends SkyblockRecipe {
 		if (inputs.size() == 7 || inputs.size() == 8) centerX += SLOT_SIZE;
 		return new ScreenPosition(centerX - ARROW_LENGTH / 2 - 1, centerY);
 	}
+
+	ItemStack getIcon();
+
+	@Nullable ItemStack getRepresentative();
 }

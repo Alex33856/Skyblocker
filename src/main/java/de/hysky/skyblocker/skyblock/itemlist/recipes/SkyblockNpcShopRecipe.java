@@ -11,6 +11,7 @@ import net.minecraft.client.gui.navigation.ScreenPosition;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import org.jspecify.annotations.Nullable;
 
 public class SkyblockNpcShopRecipe implements CenteredRecipe {
@@ -41,7 +42,8 @@ public class SkyblockNpcShopRecipe implements CenteredRecipe {
 		return CenteredRecipe.getArrowLocation(width, height, inputs);
 	}
 
-	public ItemStack getNpcItem() {
+	@Override
+	public ItemStack getRepresentative() {
 		return npcShop;
 	}
 
@@ -68,5 +70,10 @@ public class SkyblockNpcShopRecipe implements CenteredRecipe {
 	@Override
 	public Identifier getRecipeIdentifier() {
 		return Identifier.fromNamespaceAndPath("skyblock", output.getSkyblockId().toLowerCase(Locale.ENGLISH).replace(';', '_') + "_" + output.getCount());
+	}
+
+	@Override
+	public ItemStack getIcon() {
+		return Items.GOLD_NUGGET.getDefaultInstance();
 	}
 }
