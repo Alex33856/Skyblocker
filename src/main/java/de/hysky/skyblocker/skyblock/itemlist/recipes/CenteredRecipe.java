@@ -67,17 +67,21 @@ public interface CenteredRecipe extends SkyblockRecipe {
 		return slots;
 	}
 
+	static boolean requiresOffset(List<ItemStack> inputs) {
+		return inputs.size() % 2 == 1;
+	}
+
 	static List<SkyblockRecipe.RecipeSlot> arrangeOutputs(int width, int height, List<ItemStack> inputs, ItemStack output) {
 		int centerX = getCenterX(width, inputs);
 		int centerY = height / 2;
-		if (inputs.size() == 7 || inputs.size() == 8) centerX += SLOT_SIZE;
+		if (requiresOffset(inputs)) centerX += SLOT_SIZE;
 		return List.of(new SkyblockRecipe.RecipeSlot(centerX + ARROW_LENGTH / 2 + ARROW_PADDING, centerY, output));
 	}
 
 	static ScreenPosition getArrowLocation(int width, int height, List<ItemStack> inputs) {
 		int centerX = getCenterX(width, inputs);
 		int centerY = height / 2;
-		if (inputs.size() == 7 || inputs.size() == 8) centerX += SLOT_SIZE;
+		if (requiresOffset(inputs)) centerX += SLOT_SIZE;
 		return new ScreenPosition(centerX - ARROW_LENGTH / 2 - 1, centerY);
 	}
 
