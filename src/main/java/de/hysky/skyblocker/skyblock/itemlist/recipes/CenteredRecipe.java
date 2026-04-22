@@ -67,7 +67,7 @@ public interface CenteredRecipe extends SkyblockRecipe {
 	}
 
 	static boolean shouldOffsetArrow(int size) {
-		return size % 2 == 1 || size >= 8;
+		return shouldSplit(size) && (size % 2 == 1 || size >= 8);
 	}
 
 	static List<SkyblockRecipe.RecipeSlot> arrangeOutputs(int width, int height, int inputSize, ItemStack output) {
