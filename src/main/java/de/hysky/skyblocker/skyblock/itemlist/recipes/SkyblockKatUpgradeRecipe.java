@@ -48,12 +48,12 @@ public class SkyblockKatUpgradeRecipe implements CenteredRecipe {
 
 	@Override
 	public List<RecipeSlot> getOutputSlots(int width, int height) {
-		return CenteredRecipe.arrangeOutputs(width, height, inputs, upgradedPet);
+		return CenteredRecipe.arrangeOutputs(width, height, inputs.size(), upgradedPet);
 	}
 
 	@Override
 	public @Nullable ScreenPosition getArrowLocation(int width, int height) {
-		return CenteredRecipe.getArrowLocation(width, height, inputs);
+		return CenteredRecipe.getArrowLocation(width, height, inputs.size());
 	}
 
 	@Override

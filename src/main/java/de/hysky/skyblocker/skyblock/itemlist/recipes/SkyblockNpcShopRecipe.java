@@ -34,12 +34,12 @@ public class SkyblockNpcShopRecipe implements CenteredRecipe {
 
 	@Override
 	public List<RecipeSlot> getOutputSlots(int width, int height) {
-		return CenteredRecipe.arrangeOutputs(width, height, inputs, output);
+		return CenteredRecipe.arrangeOutputs(width, height, inputs.size(), output);
 	}
 
 	@Override
 	public @Nullable ScreenPosition getArrowLocation(int width, int height) {
-		return CenteredRecipe.getArrowLocation(width, height, inputs);
+		return CenteredRecipe.getArrowLocation(width, height, inputs.size());
 	}
 
 	@Override

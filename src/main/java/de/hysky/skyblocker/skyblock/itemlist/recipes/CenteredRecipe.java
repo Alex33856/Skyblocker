@@ -12,12 +12,12 @@ public interface CenteredRecipe extends SkyblockRecipe {
 	int ARROW_LENGTH = 24;
 	int ARROW_PADDING = 3;
 
-	private static boolean shouldSplit(List<ItemStack> inputs) {
-		return inputs.size() > 3;
+	private static boolean shouldSplit(int size) {
+		return size > 3;
 	}
 
-	private static int getRowSize(List<ItemStack> inputs) {
-		return shouldSplit(inputs) ? Math.floorDiv(inputs.size(), 2) : inputs.size();
+	private static int getRowSize(int size) {
+		return shouldSplit(size) ? Math.floorDiv(size, 2) : size;
 	}
 
 	/**
@@ -25,13 +25,11 @@ public interface CenteredRecipe extends SkyblockRecipe {
 	 * <p>
 	 * Recipes greater than 3 items are split into 2 rows evenly.
 	 * If the input size is odd, it is offset further so those items do not overlap with the arrow.
-	 * There are currently no recipes with > 7 items.
 	 */
-	private static int getCenterX(int width, List<ItemStack> inputs) {
+	private static int getCenterX(int width, int size) {
 		int centerX = width / 2;
-		int size = inputs.size();
-		centerX += Math.min(getRowSize(inputs), 3) * SLOT_SIZE / 2 - SLOT_SIZE / 2;
-		if (size > 1 && size % 2 == 1) centerX -= SLOT_SIZE / 2;
+		centerX += Math.min(getRowSize(size), 3) * SLOT_SIZE / 2 - SLOT_SIZE / 2;
+		if (size > 1 && shouldOffsetArrow(size)) centerX -= SLOT_SIZE / 2;
 		return centerX;
 	}
 
@@ -45,16 +43,17 @@ public interface CenteredRecipe extends SkyblockRecipe {
 		else
 			height = height - SLOT_SIZE;
 
-		int centerX = getCenterX(width, inputs);
+		int size = inputs.size();
+		int centerX = getCenterX(width, size);
 		int centerY = height / 2;
 
 		boolean onSecondRow = false; // Max of 2 rows
-		int rowSize = getRowSize(inputs);
+		int rowSize = getRowSize(size);
 
 		int x = centerX - (SLOT_SIZE * Math.min(rowSize, 3)) - ARROW_LENGTH / 2 - ARROW_PADDING;
-		int y = shouldSplit(inputs) ? centerY - SLOT_SIZE / 2 + 3 : centerY;
+		int y = shouldSplit(size) ? centerY - SLOT_SIZE / 2 + 3 : centerY;
 
-		for (int i = 0; i < inputs.size(); i++) {
+		for (int i = 0; i < size; i++) {
 			slots.add(new SkyblockRecipe.RecipeSlot(x, y, inputs.get(i)));
 			x += SLOT_SIZE;
 			if (((i + 1) % rowSize == 0) && !onSecondRow) {
@@ -67,21 +66,21 @@ public interface CenteredRecipe extends SkyblockRecipe {
 		return slots;
 	}
 
-	static boolean requiresOffset(List<ItemStack> inputs) {
-		return inputs.size() % 2 == 1;
+	static boolean shouldOffsetArrow(int size) {
+		return size % 2 == 1 || size >= 8;
 	}
 
-	static List<SkyblockRecipe.RecipeSlot> arrangeOutputs(int width, int height, List<ItemStack> inputs, ItemStack output) {
-		int centerX = getCenterX(width, inputs);
+	static List<SkyblockRecipe.RecipeSlot> arrangeOutputs(int width, int height, int inputSize, ItemStack output) {
+		int centerX = getCenterX(width, inputSize);
 		int centerY = height / 2;
-		if (requiresOffset(inputs)) centerX += SLOT_SIZE;
+		if (shouldOffsetArrow(inputSize)) centerX += SLOT_SIZE;
 		return List.of(new SkyblockRecipe.RecipeSlot(centerX + ARROW_LENGTH / 2 + ARROW_PADDING, centerY, output));
 	}
 
-	static ScreenPosition getArrowLocation(int width, int height, List<ItemStack> inputs) {
-		int centerX = getCenterX(width, inputs);
+	static ScreenPosition getArrowLocation(int width, int height, int inputSize) {
+		int centerX = getCenterX(width, inputSize);
 		int centerY = height / 2;
-		if (requiresOffset(inputs)) centerX += SLOT_SIZE;
+		if (shouldOffsetArrow(inputSize)) centerX += SLOT_SIZE;
 		return new ScreenPosition(centerX - ARROW_LENGTH / 2 - 1, centerY);
 	}
 
