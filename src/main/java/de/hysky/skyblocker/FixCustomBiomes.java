@@ -5,6 +5,7 @@ import de.hysky.skyblocker.utils.scheduler.Scheduler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.RegistrySynchronization;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
 import net.minecraft.network.protocol.configuration.ClientboundRegistryDataPacket;
 
 import java.util.Optional;
@@ -31,6 +32,35 @@ public final class FixCustomBiomes {
 		effects.getInt("water_fog_color").ifPresent(integer -> attributes.putInt("visual/water_fog_color", integer));
 	}
 
+	private static void processParticles(CompoundTag effects, CompoundTag attributes) {
+		effects.getCompound("particle").ifPresent(tag -> {
+			ListTag list = new ListTag();
+			list.add(tag);
+			tag.put("particle", tag.getCompoundOrEmpty("options"));
+			tag.remove("options");
+			attributes.put("visual/ambient_particles", list);
+		});
+	}
+
+	private static void processSounds(CompoundTag effects, CompoundTag attributes) {
+		if (effects.keySet().stream().noneMatch(key -> key.contains("_sound"))) return;
+		CompoundTag sounds = new CompoundTag();
+		attributes.put("audio/ambient_sounds", sounds);
+		effects.getString("ambient_sound").ifPresent(str -> sounds.putString("loop", str));
+		effects.getCompound("ambient_sound").ifPresent(tag -> sounds.put("loop", tag));
+		effects.getCompound("mood_sound").ifPresent(tag -> sounds.put("mood", tag));
+		effects.getCompound("additions_sounds").ifPresent(tag -> sounds.put("additions", tag));
+	}
+
+	private static void processMusic(CompoundTag effects, CompoundTag attributes) {
+		effects.getFloat("music_volume").ifPresent(vol -> attributes.putFloat("audio/music_volume", vol));
+		effects.getCompound("music").ifPresent(tag -> {
+			CompoundTag audioTag = new CompoundTag();
+			audioTag.put("default", tag);
+			attributes.put("audio/background_music", audioTag);
+		});
+	}
+
 	private static void processCompoundTag(CompoundTag tag) {
 		CompoundTag effects = tag.getCompoundOrEmpty("effects");
 		if (effects.isEmpty()) return;
@@ -41,6 +71,9 @@ public final class FixCustomBiomes {
 		}
 		tag.put("attributes", attributes);
 		processColors(effects, attributes);
+		processParticles(effects, attributes);
+		processSounds(effects, attributes);
+		processMusic(effects, attributes);
 	}
 
 	public static void fixBiomes(ClientboundRegistryDataPacket packet) {
