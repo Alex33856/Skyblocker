@@ -1,6 +1,6 @@
 package de.hysky.skyblocker.mixins;
 
-import de.hysky.skyblocker.FixCustomBiomeColors;
+import de.hysky.skyblocker.FixCustomBiomes;
 import net.minecraft.client.multiplayer.ClientConfigurationPacketListenerImpl;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.protocol.configuration.ClientboundRegistryDataPacket;
@@ -14,6 +14,6 @@ public class ClientConfigurationPacketListenerImplMixin {
 	@Inject(method = "handleRegistryData", at = @At("TAIL"))
 	public void skyblocker$handleRegistryData(ClientboundRegistryDataPacket packet, CallbackInfo ci) {
 		if (!packet.registry().identifier().equals(Registries.BIOME.identifier())) return;
-		FixCustomBiomeColors.fixBiomes(packet);
+		FixCustomBiomes.fixBiomes(packet);
 	}
 }

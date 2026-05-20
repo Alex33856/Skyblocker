@@ -9,20 +9,29 @@ import net.minecraft.network.protocol.configuration.ClientboundRegistryDataPacke
 
 import java.util.Optional;
 
-public final class FixCustomBiomeColors {
+/**
+ * Hypixel hasn't updated their custom biomes to support 1.21.11+ yet, so we have to do it...
+ */
+public final class FixCustomBiomes {
 	static boolean willAlert = false;
 
-	public static void alert() {
+	private static void alert() {
 		if (willAlert) return;
 		willAlert = true;
 		Scheduler.INSTANCE.schedule(() -> {
 			if (Minecraft.getInstance().player != null) {
-				Minecraft.getInstance().player.sendSystemMessage(Constants.PREFIX.get().append("biome colors were fixed!"));
+				Minecraft.getInstance().player.sendSystemMessage(Constants.PREFIX.get().append("custom biomes were fixed!!"));
 			}
 		}, 5);
 	}
 
-	public static void processCompoundTag(CompoundTag tag) {
+	private static void processColors(CompoundTag effects, CompoundTag attributes) {
+		effects.getInt("fog_color").ifPresent(integer -> attributes.putInt("visual/fog_color", integer));
+		effects.getInt("sky_color").ifPresent(integer -> attributes.putInt("visual/sky_color", integer));
+		effects.getInt("water_fog_color").ifPresent(integer -> attributes.putInt("visual/water_fog_color", integer));
+	}
+
+	private static void processCompoundTag(CompoundTag tag) {
 		CompoundTag effects = tag.getCompoundOrEmpty("effects");
 		if (effects.isEmpty()) return;
 		CompoundTag attributes = tag.getCompoundOrEmpty("attributes");
@@ -31,9 +40,7 @@ public final class FixCustomBiomeColors {
 			return;
 		}
 		tag.put("attributes", attributes);
-		effects.getInt("fog_color").ifPresent(integer -> attributes.putInt("visual/fog_color", integer));
-		effects.getInt("sky_color").ifPresent(integer -> attributes.putInt("visual/sky_color", integer));
-		effects.getInt("water_fog_color").ifPresent(integer -> attributes.putInt("visual/water_fog_color", integer));
+		processColors(effects, attributes);
 	}
 
 	public static void fixBiomes(ClientboundRegistryDataPacket packet) {
