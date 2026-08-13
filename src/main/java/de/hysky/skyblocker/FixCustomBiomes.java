@@ -1,14 +1,15 @@
 package de.hysky.skyblocker;
 
-import de.hysky.skyblocker.utils.Constants;
-import de.hysky.skyblocker.utils.scheduler.Scheduler;
+import java.util.Optional;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.RegistrySynchronization;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.network.protocol.configuration.ClientboundRegistryDataPacket;
 
-import java.util.Optional;
+import de.hysky.skyblocker.utils.Constants;
+import de.hysky.skyblocker.utils.scheduler.Scheduler;
 
 /**
  * Hypixel hasn't updated their custom biomes to support 1.21.11+ yet, so we have to do it...
