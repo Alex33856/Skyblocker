@@ -1,33 +1,5 @@
 package de.hysky.skyblocker.skyblock.rift;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.mojang.brigadier.Command;
-import com.mojang.brigadier.CommandDispatcher;
-import de.hysky.skyblocker.SkyblockerMod;
-import de.hysky.skyblocker.config.SkyblockerConfigManager;
-import de.hysky.skyblocker.config.configs.OtherLocationsConfig;
-import de.hysky.skyblocker.utils.ColorUtils;
-import de.hysky.skyblocker.utils.Constants;
-import de.hysky.skyblocker.utils.PosUtils;
-import de.hysky.skyblocker.utils.Utils;
-import de.hysky.skyblocker.utils.render.primitive.PrimitiveCollector;
-import de.hysky.skyblocker.utils.waypoint.ProfileAwareWaypoint;
-import de.hysky.skyblocker.utils.waypoint.Waypoint;
-import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
-import net.minecraft.ChatFormatting;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.commands.CommandBuildContext;
-import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.Component;
-import net.minecraft.resources.Identifier;
-import net.minecraft.world.item.DyeColor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -40,8 +12,37 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.Executors;
 import java.util.function.Supplier;
+
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.mojang.brigadier.Command;
+import com.mojang.brigadier.CommandDispatcher;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
+import net.minecraft.ChatFormatting;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.commands.CommandBuildContext;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.Identifier;
+import net.minecraft.world.item.DyeColor;
+
+import de.hysky.skyblocker.SkyblockerMod;
+import de.hysky.skyblocker.config.SkyblockerConfigManager;
+import de.hysky.skyblocker.config.configs.OtherLocationsConfig;
+import de.hysky.skyblocker.utils.ColorUtils;
+import de.hysky.skyblocker.utils.Constants;
+import de.hysky.skyblocker.utils.PosUtils;
+import de.hysky.skyblocker.utils.Utils;
+import de.hysky.skyblocker.utils.render.primitive.PrimitiveCollector;
+import de.hysky.skyblocker.utils.waypoint.ProfileAwareWaypoint;
+import de.hysky.skyblocker.utils.waypoint.Waypoint;
 
 import static net.fabricmc.fabric.api.client.command.v2.ClientCommands.literal;
 
@@ -49,7 +50,7 @@ public class EnigmaSouls {
 	private static final Logger LOGGER = LoggerFactory.getLogger(EnigmaSouls.class);
 	private static final Supplier<Waypoint.Type> TYPE_SUPPLIER = () -> SkyblockerConfigManager.get().uiAndVisuals.waypoints.waypointType;
 	private static final Identifier WAYPOINTS_JSON = SkyblockerMod.id("rift/enigma_soul_waypoints.json");
-	private static final Map<BlockPos, ProfileAwareWaypoint> SOUL_WAYPOINTS = new HashMap<>(42);
+	private static final Map<BlockPos, ProfileAwareWaypoint> SOUL_WAYPOINTS = new HashMap<>(52);
 	private static final Path FOUND_SOULS_FILE = SkyblockerMod.CONFIG_DIR.resolve("found_enigma_souls.json");
 	private static final float[] GREEN = ColorUtils.getFloatComponents(DyeColor.GREEN);
 	private static final float[] RED = ColorUtils.getFloatComponents(DyeColor.RED);
@@ -84,7 +85,7 @@ public class EnigmaSouls {
 			} catch (IOException e) {
 				LOGGER.error("[Skyblocker] There was an error while loading found enigma souls!", e);
 			}
-		}, Executors.newVirtualThreadPerTaskExecutor());
+		}, SkyblockerMod.VIRTUAL_THREAD_EXECUTOR);
 	}
 
 	static void save(Minecraft client) {
@@ -131,7 +132,7 @@ public class EnigmaSouls {
 			String message = text.getString();
 
 			if (message.equals("You have already found that Enigma Soul!") || ChatFormatting.stripFormatting(message).equals("SOUL! You unlocked an Enigma Soul!"))
-				markClosestSoulAsFound();
+				markClosestSoul(true);
 		}
 
 		return true;
@@ -152,10 +153,22 @@ public class EnigmaSouls {
 									context.getSource().sendFeedback(Constants.PREFIX.get().append(Component.translatable("skyblocker.rift.enigmaSouls.markAllMissing")));
 
 									return Command.SINGLE_SUCCESS;
+								}))
+								.then(literal("markClosestFound").executes(context -> {
+									markClosestSoul(true);
+									context.getSource().sendFeedback(Constants.PREFIX.get().append(Component.translatable("skyblocker.rift.enigmaSouls.markClosestFound")));
+
+									return Command.SINGLE_SUCCESS;
+								}))
+								.then(literal("markClosestMissing").executes(context -> {
+									markClosestSoul(false);
+									context.getSource().sendFeedback(Constants.PREFIX.get().append(Component.translatable("skyblocker.rift.enigmaSouls.markClosestMissing")));
+
+									return Command.SINGLE_SUCCESS;
 								})))));
 	}
 
-	private static void markClosestSoulAsFound() {
+	private static void markClosestSoul(boolean asFound) {
 		LocalPlayer player = Minecraft.getInstance().player;
 
 		if (!soulsLoaded.isDone() || player == null) return;
@@ -164,7 +177,7 @@ public class EnigmaSouls {
 				.filter(Waypoint::shouldRender)
 				.min(Comparator.comparingDouble(soul -> soul.pos.distToCenterSqr(player.position())))
 				.filter(soul -> soul.pos.distToCenterSqr(player.position()) <= 16)
-				.ifPresent(Waypoint::setFound);
+				.ifPresent(asFound ? Waypoint::setFound : Waypoint::setMissing);
 	}
 
 	private static class EnigmaSoul extends ProfileAwareWaypoint {

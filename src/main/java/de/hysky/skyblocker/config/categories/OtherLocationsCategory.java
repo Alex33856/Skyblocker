@@ -1,5 +1,13 @@
 package de.hysky.skyblocker.config.categories;
 
+import net.azureaaron.dandelion.api.ButtonOption;
+import net.azureaaron.dandelion.api.ConfigCategory;
+import net.azureaaron.dandelion.api.Option;
+import net.azureaaron.dandelion.api.OptionGroup;
+import net.azureaaron.dandelion.api.controllers.IntegerController;
+import net.minecraft.client.Minecraft;
+import net.minecraft.network.chat.Component;
+
 import de.hysky.skyblocker.SkyblockerMod;
 import de.hysky.skyblocker.config.CommonTags;
 import de.hysky.skyblocker.config.ConfigUtils;
@@ -9,13 +17,6 @@ import de.hysky.skyblocker.skyblock.end.TheEnd;
 import de.hysky.skyblocker.skyblock.tabhud.config.WidgetsConfigurationScreen;
 import de.hysky.skyblocker.utils.Location;
 import de.hysky.skyblocker.utils.waypoint.Waypoint;
-import net.azureaaron.dandelion.api.ButtonOption;
-import net.azureaaron.dandelion.api.ConfigCategory;
-import net.azureaaron.dandelion.api.Option;
-import net.azureaaron.dandelion.api.OptionGroup;
-import net.azureaaron.dandelion.api.controllers.IntegerController;
-import net.minecraft.client.Minecraft;
-import net.minecraft.network.chat.Component;
 
 public class OtherLocationsCategory {
 
@@ -59,7 +60,8 @@ public class OtherLocationsCategory {
 								.build())
 						.option(Option.<Boolean>createBuilder()
 								.name(Component.translatable("skyblocker.config.otherLocations.barn.enablePeltAnimalHighlighter"))
-								.tags(CommonTags.ADDED_IN_6_2_0)
+								.description(Component.translatable("skyblocker.config.otherLocations.barn.enablePeltAnimalHighlighter.@Tooltip"))
+								.tags(CommonTags.ADDED_IN_6_2_0, Component.literal("pelt animal"))
 								.binding(defaults.otherLocations.barn.enablePeltAnimalHighlighter,
 										() -> config.otherLocations.barn.enablePeltAnimalHighlighter,
 										newValue -> config.otherLocations.barn.enablePeltAnimalHighlighter = newValue)
@@ -177,7 +179,7 @@ public class OtherLocationsCategory {
 						.option(ButtonOption.createBuilder()
 								.name(Component.translatable("skyblocker.config.otherLocations.end.screen"))
 								.prompt(Component.translatable("text.skyblocker.open")) // Reusing again lol
-								.action(screen -> Minecraft.getInstance().setScreen(new WidgetsConfigurationScreen(Location.THE_END, EndHudWidget.getInstance().getInternalID(), screen)))
+								.action(screen -> Minecraft.getInstance().gui.setScreen(new WidgetsConfigurationScreen(Location.THE_END, EndHudWidget.getInstance().getInternalID(), screen)))
 								.build())
 						.option(ButtonOption.createBuilder()
 								.name(Component.translatable("skyblocker.config.otherLocations.end.resetName"))

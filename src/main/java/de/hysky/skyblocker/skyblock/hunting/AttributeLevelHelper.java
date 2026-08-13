@@ -1,16 +1,18 @@
 package de.hysky.skyblocker.skyblock.hunting;
 
-import de.hysky.skyblocker.skyblock.item.slottext.SimpleSlotTextAdder;
-import de.hysky.skyblocker.skyblock.item.slottext.SlotText;
-import de.hysky.skyblocker.utils.RomanNumerals;
+import java.util.List;
+
 import org.apache.commons.lang3.StringUtils;
 import org.jspecify.annotations.Nullable;
 
-import java.util.List;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+
+import de.hysky.skyblocker.skyblock.item.slottext.SimpleSlotTextAdder;
+import de.hysky.skyblocker.skyblock.item.slottext.SlotText;
+import de.hysky.skyblocker.utils.RomanNumerals;
 
 public class AttributeLevelHelper extends SimpleSlotTextAdder {
 	private static final ConfigInformation CONFIG_INFORMATION = new ConfigInformation("attribute_levels",
@@ -20,14 +22,15 @@ public class AttributeLevelHelper extends SimpleSlotTextAdder {
 
 
 	private AttributeLevelHelper() {
-		super("Attribute Menu", CONFIG_INFORMATION);
+		// ^(?:\(\d+\/\d+\) )?Attribute Menu$
+		super("^(?:\\(\\d+\\/\\d+\\) )?Attribute Menu$", CONFIG_INFORMATION);
 	}
 
 	@Override
 	public List<SlotText> getText(@Nullable Slot slot, ItemStack stack, int slotId) {
 		if (slot == null || stack.isEmpty()) return List.of();
 		if (slot.index <= 9 || slot.index >= 44) return List.of(); // Don't need to process the first row and the last row
-		if (stack.is(Items.BLACK_STAINED_GLASS_PANE)) return List.of();
+		if (stack.is(Items.STAINED_GLASS_PANE.black())) return List.of();
 
 		Component customName = stack.getCustomName();
 		if (customName == null) return List.of();

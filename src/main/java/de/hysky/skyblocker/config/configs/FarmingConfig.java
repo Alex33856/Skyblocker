@@ -13,6 +13,14 @@ public class FarmingConfig {
 
 	public VisitorHelper visitorHelper = new VisitorHelper();
 
+	public Greenhouse greenhouse = new Greenhouse();
+
+	public static class Greenhouse {
+		public boolean enabled = true;
+
+		public boolean showMutationSlot = true;
+	}
+
 	public static class PestHighlighter {
 		public boolean enabled = true;
 
@@ -33,6 +41,10 @@ public class FarmingConfig {
 		public boolean enabled = true;
 
 		public boolean closeScreenOnPlotClick = false;
+
+		public int x = 0;
+
+		public int y = 0;
 	}
 
 	public static class VisitorHelper {
@@ -51,6 +63,8 @@ public class FarmingConfig {
 		public boolean coins = true;
 
 		public Type type = Type.BOTH;
+
+		public boolean includeSeedsPrice = true;
 
 		public boolean experience = true;
 	}

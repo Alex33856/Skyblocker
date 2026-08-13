@@ -4,27 +4,28 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
-import de.hysky.skyblocker.skyblock.profileviewer2.LoadingInformation;
-import de.hysky.skyblocker.skyblock.profileviewer2.model.ProfileMember;
-import de.hysky.skyblocker.skyblock.profileviewer2.utils.Skill;
-import de.hysky.skyblocker.skyblock.profileviewer2.widgets.LevelBarWidget;
-import de.hysky.skyblocker.skyblock.profileviewer2.widgets.PlayerWidget;
-import de.hysky.skyblocker.skyblock.profileviewer2.widgets.ProfileViewerWidget;
-import de.hysky.skyblocker.skyblock.profileviewer2.widgets.RulerWidget;
-import de.hysky.skyblocker.skyblock.profileviewer2.widgets.SkillsInfoBoxWidget;
-import de.hysky.skyblocker.skyblock.tabhud.util.Ico;
-import de.hysky.skyblocker.utils.FlexibleItemStack;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.layouts.GridLayout;
 import net.minecraft.client.gui.layouts.LayoutElement;
 import net.minecraft.client.gui.layouts.LinearLayout;
 import net.minecraft.client.gui.layouts.SpacerElement;
 import net.minecraft.network.chat.Component;
 
+import de.hysky.skyblocker.skyblock.profileviewer2.LoadingInformation;
+import de.hysky.skyblocker.skyblock.profileviewer2.model.ProfileMember;
+import de.hysky.skyblocker.skyblock.profileviewer2.utils.Skill;
+import de.hysky.skyblocker.skyblock.profileviewer2.widgets.LevelBarWidget;
+import de.hysky.skyblocker.skyblock.profileviewer2.widgets.PlayerWidget;
+import de.hysky.skyblocker.skyblock.profileviewer2.widgets.RulerWidget;
+import de.hysky.skyblocker.skyblock.profileviewer2.widgets.SkillsInfoBoxWidget;
+import de.hysky.skyblocker.skyblock.tabhud.util.Ico;
+import de.hysky.skyblocker.utils.FlexibleItemStack;
+
 public final class SkillsPage implements ProfileViewerPage<LoadingInformation> {
 	private static final int SPACING = 2;
 	private static final int LEVEL_BAR_WIDTH = 112;
-	private final List<ProfileViewerWidget> widgets = new ArrayList<>();
+	private final List<AbstractWidget> widgets = new ArrayList<>();
 
 	@Override
 	public FlexibleItemStack getIcon() {
@@ -78,7 +79,7 @@ public final class SkillsPage implements ProfileViewerPage<LoadingInformation> {
 	}
 
 	@Override
-	public List<ProfileViewerWidget> getWidgets() {
+	public List<AbstractWidget> getWidgets() {
 		return this.widgets;
 	}
 }
